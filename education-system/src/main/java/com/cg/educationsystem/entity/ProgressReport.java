@@ -19,7 +19,6 @@ public class ProgressReport {
 	@Column(length = 3)
 	private double student_percentage;
 	@Column(length = 5)
-
 	private String student_result;
 	public int getProgress_report_id() {
 		return progress_report_id;
