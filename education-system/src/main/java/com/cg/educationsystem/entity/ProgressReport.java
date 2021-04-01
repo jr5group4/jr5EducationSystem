@@ -46,5 +46,5 @@ public class ProgressReport {
 	public void setStudent_result(String student_result) {
 		this.student_result = student_result;
 	}
-	
+
 }
