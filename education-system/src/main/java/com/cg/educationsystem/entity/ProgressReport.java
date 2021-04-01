@@ -1,14 +1,24 @@
 package com.cg.educationsystem.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "progress_report")
 public class ProgressReport {
+	@Id
 	private int progress_report_id;
+	@Column(length = 3)
 	private int student_marks;
+	@Column(length = 10)
 	private String student_grade;
+	@Column(length = 10)
 	private String present_for_test;
+	@Column(length = 3)
 	private double student_percentage;
+	@Column(length = 5)
 	private String student_result;
 	public int getProgress_report_id() {
 		return progress_report_id;
