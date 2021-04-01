@@ -1,10 +1,16 @@
 package com.cg.educationsystem.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "message")
 public class Message {
+	@Id
 	private int message_id;
+	@Column(length = 200)
 	private String message_description;
 	public int getMessage_id() {
 		return message_id;
