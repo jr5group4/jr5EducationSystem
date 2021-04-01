@@ -1,6 +1,7 @@
 package com.cg.educationsystem.entity;
 
 import javax.persistence.Entity;
+
 @Entity
 public class ProgressReport {
 	private int progress_report_id;
