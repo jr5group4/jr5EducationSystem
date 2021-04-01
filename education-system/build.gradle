@@ -15,10 +15,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-devtools'
     compile 'org.apache.tomcat.embed:tomcat-embed-jasper',
     'javax.servlet:jstl'
+<<<<<<< HEAD
+     
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation group : 'org.postgresql', name : 'postgresql', version: '42.2.18'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+=======
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
    // implementation 'org.springframework.boot:spring-boot-starter-log4j2:2.4.1'
     implementation group : 'org.postgresql', name : 'postgresql', version: '42.2.18'
     
+>>>>>>> branch 'master' of https://github.com/jr5group4/jr5EducationSystem.git
     
     testCompileOnly 'junit:junit:4.12' 
     testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.3.1'
