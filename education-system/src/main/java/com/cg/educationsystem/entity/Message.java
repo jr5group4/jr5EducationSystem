@@ -10,7 +10,7 @@ import javax.persistence.Table;
 public class Message {
 	@Id
 	private int message_id;
-	@Column(length = 200)
+	@Column(length = 250)
 	private String message_description;
 	public int getMessage_id() {
 		return message_id;
