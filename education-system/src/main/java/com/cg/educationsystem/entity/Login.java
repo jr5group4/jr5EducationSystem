@@ -1,12 +1,20 @@
 package com.cg.educationsystem.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="login")
 public class Login {
+	@Id
 	private int login_id;
+	@Column(length = 30)
 	private String user_id;
+	@Column(length = 30)
 	private String user_password;
+	@Column(length = 30)
 	private String role;
 	public int getLogin_id() {
 		return login_id;

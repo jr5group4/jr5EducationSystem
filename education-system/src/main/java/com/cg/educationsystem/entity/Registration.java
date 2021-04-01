@@ -2,15 +2,25 @@ package com.cg.educationsystem.entity;
 
 import java.sql.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "entity")
 public class Registration {
+	@Id
 	private int student_id;
+	@Column(length = 30)
 	private String first_name;
+	@Column(length = 30)
 	private String last_name;
+	@Column(length = 30)
 	private int phone_number;
+	@Column(length = 30)
 	private String student_email_id;
+	@Column
 	private Date date;
 	public int getStudent_id() {
 		return student_id;
