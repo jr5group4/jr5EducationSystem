@@ -67,6 +67,5 @@ public class Payment {
 	public void setFee_status(String fee_status) {
 		this.fee_status = fee_status;
 	}
-	
 
 }
