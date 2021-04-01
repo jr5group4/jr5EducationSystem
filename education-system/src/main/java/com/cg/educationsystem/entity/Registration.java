@@ -58,5 +58,5 @@ public class Registration {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
 }
