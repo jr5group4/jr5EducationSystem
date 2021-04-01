@@ -68,6 +68,5 @@ public class Payment {
 		this.fee_status = fee_status;
 	}
 	
-	
 
 }
