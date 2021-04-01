@@ -1,8 +1,12 @@
 package com.cg.educationsystem.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,8 +14,13 @@ import javax.persistence.Table;
 public class Message {
 	@Id
 	private int message_id;
+	
 	@Column(length = 250)
 	private String message_description;
+	
+	@OneToMany(mappedBy = "message",cascade = CascadeType.ALL)
+	private List<Registration> registration;
+	
 	public int getMessage_id() {
 		return message_id;
 	}
@@ -24,5 +33,11 @@ public class Message {
 	public void setMessage_description(String message_description) {
 		this.message_description = message_description;
 	}
-
+	public List<Registration> getRegistration() {
+		return registration;
+	}
+	public void setRegistration(List<Registration> registration) {
+		this.registration = registration;
+	}
+	
 }

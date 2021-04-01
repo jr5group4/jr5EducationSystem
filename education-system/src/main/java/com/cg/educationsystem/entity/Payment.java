@@ -2,9 +2,12 @@ package com.cg.educationsystem.entity;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -12,18 +15,28 @@ import javax.persistence.Table;
 public class Payment {
 	@Id
 	private int payment_id;
+	
 	@Column(length=30)
 	private int student_branch;
+	
 	@Column(length=30)
 	private int course_id;
+	
 	@Column(length=30)
 	private Date payment_date;
+	
 	@Column(length=30)
 	private Date payment_due;
+	
 	@Column(length=30)
 	private double fee_paid;
+	
 	@Column(length=30)
 	private String fee_status;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="student_id")
+	private Registration registration;
 	
 	public int getPayment_id() {
 		return payment_id;
@@ -67,5 +80,11 @@ public class Payment {
 	public void setFee_status(String fee_status) {
 		this.fee_status = fee_status;
 	}
-
+	public Registration getRegistration() {
+		return registration;
+	}
+	public void setRegistration(Registration registration) {
+		this.registration = registration;
+	}
+	
 }

@@ -10,12 +10,18 @@ import javax.persistence.Table;
 public class Login {
 	@Id
 	private int login_id;
+	
 	@Column(length = 30)
 	private String user_id;
+	
 	@Column(length = 30)
 	private String user_password;
+	
 	@Column(length = 30)
 	private String role;
+	
+	//private Registration registration;
+	
 	public int getLogin_id() {
 		return login_id;
 	}

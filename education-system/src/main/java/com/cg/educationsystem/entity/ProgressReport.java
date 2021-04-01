@@ -1,25 +1,41 @@
 package com.cg.educationsystem.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "progress_report")
+@Table(name = "progressreport")
 public class ProgressReport {
 	@Id
 	private int progress_report_id;
+	
 	@Column(length = 3)
 	private int student_marks;
+	
 	@Column(length = 10)
 	private String student_grade;
+	
 	@Column(length = 10)
 	private String present_for_test;
+	
 	@Column(length = 3)
 	private double student_percentage;
+	
 	@Column(length = 5)
 	private String student_result;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="student_id")
+	private Registration registration;
+	
 	public int getProgress_report_id() {
 		return progress_report_id;
 	}
@@ -56,5 +72,10 @@ public class ProgressReport {
 	public void setStudent_result(String student_result) {
 		this.student_result = student_result;
 	}
-
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
 }

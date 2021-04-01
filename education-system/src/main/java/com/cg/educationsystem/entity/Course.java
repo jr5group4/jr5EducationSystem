@@ -1,25 +1,48 @@
 package com.cg.educationsystem.entity;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import relational_many2many.Book;
 
 @Entity
 @Table(name="course")
 public class Course {
 	@Id
 	private int course_id;
+	
 	@Column(length=30)
 	private String course_name;
+	
 	@Column(length=30)
 	private int duration;
+	
 	@Column(length=30)
 	private Date start_date;
+	
 	@Column(length=30)
 	private Date end_date;
+	
+	@ManyToOne
+	@JoinColumn(name = "student_id")
+	private Registration registration;
+	
+	@ManyToMany(targetEntity = Trainer.class, cascade = { CascadeType.ALL }) 
+	@JoinTable(name = "course_trainer",   
+    joinColumns = { @JoinColumn(name = "course_id") },   
+    inverseJoinColumns = { @JoinColumn(name = "trainer_id") })
+	private List<Trainer> trainer;
+	
 	public int getCourse_id() {
 		return course_id;
 	}

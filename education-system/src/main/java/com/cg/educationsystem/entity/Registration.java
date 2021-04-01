@@ -1,10 +1,15 @@
 package com.cg.educationsystem.entity;
 
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,16 +17,29 @@ import javax.persistence.Table;
 public class Registration {
 	@Id
 	private int student_id;
+	
 	@Column(length = 30)
 	private String first_name;
+	
 	@Column(length = 30)
 	private String last_name;
+	
 	@Column(length = 30)
 	private int phone_number;
+	
 	@Column(length = 30)
 	private String student_email_id;
+	
 	@Column
 	private Date date;
+	
+	@OneToMany(mappedBy = "registration",cascade = CascadeType.ALL)
+	private List<Course> courses;
+	
+	@ManyToOne
+	@JoinColumn(name = "message_id")
+	private Message message;
+	
 	public int getStudent_id() {
 		return student_id;
 	}
@@ -58,5 +76,11 @@ public class Registration {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-
+	public List<Course> getCourses() {
+		return courses;
+	}
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
 }

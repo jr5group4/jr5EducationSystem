@@ -1,8 +1,12 @@
 package com.cg.educationsystem.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -10,14 +14,19 @@ import javax.persistence.Table;
 public class Trainer {
 	@Id
 	private int trainer_id;
+	
 	@Column(length=30)
 	private String trainer_name;
+	
 	@Column(length=30)
 	private int phone_number;
+	
 	@Column(length=30)
 	private int trainer_experience;
+	
 	@Column(length=30)
 	private String trainer_email_id;
+	
 	public String getTrainer_name() {
 		return trainer_name;
 	}
