@@ -24,5 +24,5 @@ public class Message {
 	public void setMessage_description(String message_description) {
 		this.message_description = message_description;
 	}
-	
+
 }

@@ -48,5 +48,5 @@ public class Trainer {
 	public void setTrainer_email_id(String trainer_email_id) {
 		this.trainer_email_id = trainer_email_id;
 	}
-	
+
 }
