@@ -1,7 +1,6 @@
 package com.cg.educationsystem.entity;
 
 import javax.persistence.Entity;
-
 @Entity
 public class Message {
 	private int message_id;
