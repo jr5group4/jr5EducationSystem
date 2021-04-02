@@ -86,4 +86,5 @@ public class Course {
 	public void setTrainer(List<Trainer> trainer) {
 		this.trainer = trainer;
 	}
+
 }

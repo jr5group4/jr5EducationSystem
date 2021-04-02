@@ -57,5 +57,4 @@ public class Trainer {
 	public void setTrainerEmailId(String trainerEmailId) {
 		this.trainerEmailId = trainerEmailId;
 	}
-
 }
