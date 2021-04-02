@@ -13,8 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import relational_many2many.Book;
-
 @Entity
 @Table(name="course")
 public class Course {

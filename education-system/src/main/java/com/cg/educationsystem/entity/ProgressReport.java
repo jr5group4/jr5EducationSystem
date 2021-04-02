@@ -72,10 +72,4 @@ public class ProgressReport {
 	public void setStudent_result(String student_result) {
 		this.student_result = student_result;
 	}
-	public List<Course> getCourses() {
-		return courses;
-	}
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}
 }
