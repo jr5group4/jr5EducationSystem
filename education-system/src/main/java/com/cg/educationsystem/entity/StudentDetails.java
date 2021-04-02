@@ -19,68 +19,81 @@ import javax.persistence.Table;
 public class StudentDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int student_id;
+	private int studentId;
 	
 	@Column(length = 30)
-	private String first_name;
+	private String firstName;
 	
 	@Column(length = 30)
-	private String last_name;
+	private String lastName;
 	
 	@Column(length = 30)
-	private long phone_number;
+	private long phoneNumber;
 	
 	@Column(length = 30)
-	private String student_email_id;
+	private String studentEmailId;
 	
 	@Column
 	private Date date;
 	
 	@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
 	private List<Course> courses;
-	
-	
-	public int getStudent_id() {
-		return student_id;
+
+	public int getStudentId() {
+		return studentId;
 	}
-	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
-	public String getFirst_name() {
-		return first_name;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirst_name(String first_name) {
-		this.first_name = first_name;
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
-	public String getLast_name() {
-		return last_name;
+
+	public String getLastName() {
+		return lastName;
 	}
-	public void setLast_name(String last_name) {
-		this.last_name = last_name;
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
-	public long getPhone_number() {
-		return phone_number;
+
+	public long getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhone_number(long phone_number) {
-		this.phone_number = phone_number;
+
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public String getStudent_email_id() {
-		return student_email_id;
+
+	public String getStudentEmailId() {
+		return studentEmailId;
 	}
-	public void setStudent_email_id(String student_email_id) {
-		this.student_email_id = student_email_id;
+
+	public void setStudentEmailId(String studentEmailId) {
+		this.studentEmailId = studentEmailId;
 	}
+
 	public Date getDate() {
 		return date;
 	}
+
 	public void setDate(Date date) {
 		this.date = date;
 	}
+
 	public List<Course> getCourses() {
 		return courses;
 	}
+
 	public void setCourses(List<Course> courses) {
 		this.courses = courses;
 	}
+	
 	
 }
