@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,68 +17,68 @@ import javax.persistence.Table;
 public class ProgressReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int progress_report_id;
+	private int progressReportId;
 	
 	@Column(length = 3)
-	private int student_marks;
+	private int studentMarks;
 	
 	@Column(length = 10)
-	private String student_grade;
+	private String studentGrade;
 	
 	@Column(length = 10)
-	private String present_for_test;
+	private String presentForTest;
 	
 	@Column(length = 3)
-	private double student_percentage;
+	private double studentPercentage;
 	
 	@Column(length = 5)
-	private String student_result;
+	private String studentResult;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="student_id")
-	private StudentDetails studentdetails;
+	@JoinColumn(name="studentId")
+	private StudentDetails studentDetails;
 	
-	public int getProgress_report_id() {
-		return progress_report_id;
+	public int getProgressReportId() {
+		return progressReportId;
 	}
-	public void setProgress_report_id(int progress_report_id) {
-		this.progress_report_id = progress_report_id;
+	public void setProgressReportId(int progressReportId) {
+		this.progressReportId = progressReportId;
 	}
-	public int getStudent_marks() {
-		return student_marks;
+	public int getStudentMarks() {
+		return studentMarks;
 	}
-	public void setStudent_marks(int student_marks) {
-		this.student_marks = student_marks;
+	public void setStudentMarks(int studentMarks) {
+		this.studentMarks = studentMarks;
 	}
-	public String getStudent_grade() {
-		return student_grade;
+	public String getStudentGrade() {
+		return studentGrade;
 	}
-	public void setStudent_grade(String student_grade) {
-		this.student_grade = student_grade;
+	public void setStudent_grade(String studentGrade) {
+		this.studentGrade = studentGrade;
 	}
-	public String getPresent_for_test() {
-		return present_for_test;
+	public String getPresentForTest() {
+		return presentForTest;
 	}
-	public void setPresent_for_test(String present_for_test) {
-		this.present_for_test = present_for_test;
+	public void setPresentForTest(String presentForTest) {
+		this.presentForTest = presentForTest;
 	}
-	public double getStudent_percentage() {
-		return student_percentage;
+	public double getStudentPercentage() {
+		return studentPercentage;
 	}
-	public void setStudent_percentage(double student_percentage) {
-		this.student_percentage = student_percentage;
+	public void setStudentPercentage(double studentPercentage) {
+		this.studentPercentage = studentPercentage;
 	}
-	public String getStudent_result() {
-		return student_result;
+	public String getStudentResult() {
+		return studentResult;
 	}
-	public void setStudent_result(String student_result) {
-		this.student_result = student_result;
+	public void setStudentResult(String studentResult) {
+		this.studentResult = studentResult;
 	}
-	public StudentDetails getStudentdetails() {
-		return studentdetails;
+	public StudentDetails getStudentDetails() {
+		return studentDetails;
 	}
-	public void setStudentdetails(StudentDetails studentdetails) {
-		this.studentdetails = studentdetails;
+	public void setStudentDetails(StudentDetails studentDetails) {
+		this.studentDetails = studentDetails;
 	}
 	
 }

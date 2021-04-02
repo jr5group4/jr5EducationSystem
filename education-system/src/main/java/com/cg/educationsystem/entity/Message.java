@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -18,32 +17,32 @@ import javax.persistence.Table;
 public class Message {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int message_id;
+	private int messageId;
 	
 	@Column(length = 250)
-	private String message_description;
+	private String messageDescription;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="student_id")
-	private StudentDetails studentdetails;
+	@JoinColumn(name="studentId")
+	private StudentDetails studentDetails;
 	
-	public int getMessage_id() {
-		return message_id;
+	public int getMessageId() {
+		return messageId;
 	}
-	public void setMessage_id(int message_id) {
-		this.message_id = message_id;
+	public void setMessageId(int messageId) {
+		this.messageId = messageId;
 	}
-	public String getMessage_description() {
-		return message_description;
+	public String getMessageDescription() {
+		return messageDescription;
 	}
-	public void setMessage_description(String message_description) {
-		this.message_description = message_description;
+	public void setMessageDescription(String messageDescription) {
+		this.messageDescription = messageDescription;
 	}
-	public StudentDetails getStudentdetails() {
-		return studentdetails;
+	public StudentDetails getStudentDetails() {
+		return studentDetails;
 	}
-	public void setStudentdetails(StudentDetails studentdetails) {
-		this.studentdetails = studentdetails;
+	public void setStudentDetails(StudentDetails studentDetails) {
+		this.studentDetails = studentDetails;
 	}
 	
 }
