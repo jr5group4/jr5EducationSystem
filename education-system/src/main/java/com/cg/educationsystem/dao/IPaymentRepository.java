@@ -7,5 +7,5 @@ import com.cg.educationsystem.entity.Payment;
 
 @Repository
 public interface IPaymentRepository extends JpaRepository<Payment, Integer>{
-
+	public Payment getPaymentById(int studentId);
 }
