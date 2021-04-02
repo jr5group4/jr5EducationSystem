@@ -34,7 +34,7 @@ public class ProgressReport {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="student_id")
-	private Registration registration;
+	private StudentDetails registration;
 	
 	public int getProgress_report_id() {
 		return progress_report_id;

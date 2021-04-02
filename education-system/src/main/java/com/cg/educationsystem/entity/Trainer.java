@@ -19,7 +19,7 @@ public class Trainer {
 	private String trainer_name;
 	
 	@Column(length=30)
-	private int phone_number;
+	private long phone_number;
 	
 	@Column(length=30)
 	private int trainer_experience;
@@ -39,10 +39,10 @@ public class Trainer {
 	public void setTrainer_id(int trainer_id) {
 		this.trainer_id = trainer_id;
 	}
-	public int getPhone_number() {
+	public long getPhone_number() {
 		return phone_number;
 	}
-	public void setPhone_number(int phone_number) {
+	public void setPhone_number(long phone_number) {
 		this.phone_number = phone_number;
 	}
 	public int getTrainer_experience() {

@@ -1,6 +1,6 @@
 package com.cg.educationsystem.entity;
 
-import java.util.Date;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,11 +16,11 @@ public class Payment {
 	@Id
 	private int payment_id;
 	
-	@Column(length=30)
-	private int student_branch;
+	//@Column(length=30)
+	//private int student_branch;
 	
-	@Column(length=30)
-	private int course_id;
+	//@Column(length=30)
+	//private int course_id;
 	
 	@Column(length=30)
 	private Date payment_date;
@@ -36,7 +36,7 @@ public class Payment {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="student_id")
-	private Registration registration;
+	private StudentDetails registration;
 	
 	public int getPayment_id() {
 		return payment_id;
@@ -44,18 +44,7 @@ public class Payment {
 	public void setPayment_id(int payment_id) {
 		this.payment_id = payment_id;
 	}
-	public int getStudent_branch() {
-		return student_branch;
-	}
-	public void setStudent_branch(int student_branch) {
-		this.student_branch = student_branch;
-	}
-	public int getCourse_id() {
-		return course_id;
-	}
-	public void setCourse_id(int course_id) {
-		this.course_id = course_id;
-	}
+	
 	public Date getPayment_date() {
 		return payment_date;
 	}
@@ -80,10 +69,10 @@ public class Payment {
 	public void setFee_status(String fee_status) {
 		this.fee_status = fee_status;
 	}
-	public Registration getRegistration() {
+	public StudentDetails getRegistration() {
 		return registration;
 	}
-	public void setRegistration(Registration registration) {
+	public void setRegistration(StudentDetails registration) {
 		this.registration = registration;
 	}
 	

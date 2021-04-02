@@ -1,6 +1,6 @@
 package com.cg.educationsystem.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -33,7 +33,7 @@ public class Course {
 	
 	@ManyToOne
 	@JoinColumn(name = "student_id")
-	private Registration registration;
+	private StudentDetails registration;
 	
 	@ManyToMany(targetEntity = Trainer.class, cascade = { CascadeType.ALL }) 
 	@JoinTable(name = "course_trainer",   

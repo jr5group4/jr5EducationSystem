@@ -19,7 +19,7 @@ public class Message {
 	private String message_description;
 	
 	@OneToMany(mappedBy = "message",cascade = CascadeType.ALL)
-	private List<Registration> registration;
+	private List<StudentDetails> registration;
 	
 	public int getMessage_id() {
 		return message_id;
@@ -33,10 +33,10 @@ public class Message {
 	public void setMessage_description(String message_description) {
 		this.message_description = message_description;
 	}
-	public List<Registration> getRegistration() {
+	public List<StudentDetails> getRegistration() {
 		return registration;
 	}
-	public void setRegistration(List<Registration> registration) {
+	public void setRegistration(List<StudentDetails> registration) {
 		this.registration = registration;
 	}
 	

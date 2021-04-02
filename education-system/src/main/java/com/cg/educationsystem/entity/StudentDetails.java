@@ -13,8 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "registration")
-public class Registration {
+@Table(name = "studentdetails")
+public class StudentDetails {
 	@Id
 	private int student_id;
 	
@@ -25,7 +25,7 @@ public class Registration {
 	private String last_name;
 	
 	@Column(length = 30)
-	private int phone_number;
+	private long phone_number;
 	
 	@Column(length = 30)
 	private String student_email_id;
@@ -33,7 +33,7 @@ public class Registration {
 	@Column
 	private Date date;
 	
-	@OneToMany(mappedBy = "registration",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
 	private List<Course> courses;
 	
 	@ManyToOne
@@ -58,10 +58,10 @@ public class Registration {
 	public void setLast_name(String last_name) {
 		this.last_name = last_name;
 	}
-	public int getPhone_number() {
+	public long getPhone_number() {
 		return phone_number;
 	}
-	public void setPhone_number(int phone_number) {
+	public void setPhone_number(long phone_number) {
 		this.phone_number = phone_number;
 	}
 	public String getStudent_email_id() {
