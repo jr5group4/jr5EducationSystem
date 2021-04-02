@@ -1,7 +1,5 @@
 package com.cg.educationsystem.entity;
 
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,7 +51,7 @@ public class ProgressReport {
 	public String getStudentGrade() {
 		return studentGrade;
 	}
-	public void setStudent_grade(String studentGrade) {
+	public void setStudentGrade(String studentGrade) {
 		this.studentGrade = studentGrade;
 	}
 	public String getPresentForTest() {
