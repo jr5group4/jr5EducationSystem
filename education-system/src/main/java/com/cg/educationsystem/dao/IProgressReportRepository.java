@@ -7,5 +7,6 @@ import com.cg.educationsystem.entity.ProgressReport;
 
 @Repository
 public interface IProgressReportRepository extends JpaRepository<ProgressReport, Integer> {
-
+	public ProgressReport viewPreviousProgressReport(int studentId);
+	public ProgressReport viewCurrentProgressReport(int studentId);
 }
