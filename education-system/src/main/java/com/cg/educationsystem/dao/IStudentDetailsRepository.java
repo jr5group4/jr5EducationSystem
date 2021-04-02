@@ -7,6 +7,6 @@ import com.cg.educationsystem.entity.StudentDetails;
 
 @Repository
 public interface IStudentDetailsRepository extends JpaRepository<StudentDetails, Integer> {
-	
+	public StudentDetails getStudentDetailsById(int id);
 
 }
