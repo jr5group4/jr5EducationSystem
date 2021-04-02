@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 @Table(name = "studentdetails")
 public class StudentDetails {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int student_id;
 	
 	@Column(length = 30)
@@ -36,9 +39,6 @@ public class StudentDetails {
 	@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
 	private List<Course> courses;
 	
-	@ManyToOne
-	@JoinColumn(name = "message_id")
-	private Message message;
 	
 	public int getStudent_id() {
 		return student_id;

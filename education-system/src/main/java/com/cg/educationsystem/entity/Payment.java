@@ -5,6 +5,8 @@ import java.sql.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -14,6 +16,7 @@ import javax.persistence.Table;
 @Table(name="payment")
 public class Payment {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int payment_id;
 	
 	//@Column(length=30)
@@ -22,10 +25,10 @@ public class Payment {
 	//@Column(length=30)
 	//private int course_id;
 	
-	@Column(length=30)
+	@Column
 	private Date payment_date;
 	
-	@Column(length=30)
+	@Column
 	private Date payment_due;
 	
 	@Column(length=30)
@@ -36,7 +39,7 @@ public class Payment {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="student_id")
-	private StudentDetails registration;
+	private StudentDetails studentdetails;
 	
 	public int getPayment_id() {
 		return payment_id;
@@ -69,11 +72,11 @@ public class Payment {
 	public void setFee_status(String fee_status) {
 		this.fee_status = fee_status;
 	}
-	public StudentDetails getRegistration() {
-		return registration;
+	public StudentDetails getStudentdetails() {
+		return studentdetails;
 	}
-	public void setRegistration(StudentDetails registration) {
-		this.registration = registration;
+	public void setStudentdetails(StudentDetails studentdetails) {
+		this.studentdetails = studentdetails;
 	}
 	
 }

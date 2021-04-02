@@ -5,21 +5,27 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "message")
 public class Message {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int message_id;
 	
 	@Column(length = 250)
 	private String message_description;
 	
-	@OneToMany(mappedBy = "message",cascade = CascadeType.ALL)
-	private List<StudentDetails> registration;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="student_id")
+	private StudentDetails studentdetails;
 	
 	public int getMessage_id() {
 		return message_id;
@@ -33,11 +39,11 @@ public class Message {
 	public void setMessage_description(String message_description) {
 		this.message_description = message_description;
 	}
-	public List<StudentDetails> getRegistration() {
-		return registration;
+	public StudentDetails getStudentdetails() {
+		return studentdetails;
 	}
-	public void setRegistration(List<StudentDetails> registration) {
-		this.registration = registration;
+	public void setStudentdetails(StudentDetails studentdetails) {
+		this.studentdetails = studentdetails;
 	}
 	
 }

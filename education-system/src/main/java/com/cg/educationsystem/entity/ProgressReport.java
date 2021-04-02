@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "progressreport")
 public class ProgressReport {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int progress_report_id;
 	
 	@Column(length = 3)
@@ -34,7 +37,7 @@ public class ProgressReport {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="student_id")
-	private StudentDetails registration;
+	private StudentDetails studentdetails;
 	
 	public int getProgress_report_id() {
 		return progress_report_id;
@@ -72,4 +75,11 @@ public class ProgressReport {
 	public void setStudent_result(String student_result) {
 		this.student_result = student_result;
 	}
+	public StudentDetails getStudentdetails() {
+		return studentdetails;
+	}
+	public void setStudentdetails(StudentDetails studentdetails) {
+		this.studentdetails = studentdetails;
+	}
+	
 }

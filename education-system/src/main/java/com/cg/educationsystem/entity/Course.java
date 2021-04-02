@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -17,6 +19,7 @@ import javax.persistence.Table;
 @Table(name="course")
 public class Course {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int course_id;
 	
 	@Column(length=30)
@@ -25,15 +28,15 @@ public class Course {
 	@Column(length=30)
 	private int duration;
 	
-	@Column(length=30)
+	@Column
 	private Date start_date;
 	
-	@Column(length=30)
+	@Column
 	private Date end_date;
 	
 	@ManyToOne
 	@JoinColumn(name = "student_id")
-	private StudentDetails registration;
+	private StudentDetails studentdetails;
 	
 	@ManyToMany(targetEntity = Trainer.class, cascade = { CascadeType.ALL }) 
 	@JoinTable(name = "course_trainer",   
@@ -71,5 +74,17 @@ public class Course {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-
+	public StudentDetails getStudentdetails() {
+		return studentdetails;
+	}
+	public void setStudentdetails(StudentDetails studentdetails) {
+		this.studentdetails = studentdetails;
+	}
+	public List<Trainer> getTrainer() {
+		return trainer;
+	}
+	public void setTrainer(List<Trainer> trainer) {
+		this.trainer = trainer;
+	}
+	
 }
