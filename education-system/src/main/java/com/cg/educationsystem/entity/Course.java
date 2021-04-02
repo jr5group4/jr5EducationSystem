@@ -20,41 +20,41 @@ import javax.persistence.Table;
 public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int course_id;
+	private int courseId;
 	
 	@Column(length=30)
-	private String course_name;
+	private String courseName;
 	
 	@Column(length=30)
 	private int duration;
 	
 	@Column
-	private Date start_date;
+	private Date startDate;
 	
 	@Column
-	private Date end_date;
+	private Date endDate;
 	
 	@ManyToOne
-	@JoinColumn(name = "student_id")
+	@JoinColumn(name = "studentId")
 	private StudentDetails studentdetails;
 	
 	@ManyToMany(targetEntity = Trainer.class, cascade = { CascadeType.ALL }) 
 	@JoinTable(name = "course_trainer",   
-    joinColumns = { @JoinColumn(name = "course_id") },   
-    inverseJoinColumns = { @JoinColumn(name = "trainer_id") })
+    joinColumns = { @JoinColumn(name = "courseId") },   
+    inverseJoinColumns = { @JoinColumn(name = "trainerId") })
 	private List<Trainer> trainer;
 	
-	public int getCourse_id() {
-		return course_id;
+	public int getCourseId() {
+		return courseId;
 	}
-	public void setCourse_id(int course_id) {
-		this.course_id = course_id;
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
 	}
-	public String getCourse_name() {
-		return course_name;
+	public String getCourseName() {
+		return courseName;
 	}
-	public void setCourse_name(String course_name) {
-		this.course_name = course_name;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 	public int getDuration() {
 		return duration;
@@ -62,17 +62,17 @@ public class Course {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public Date getStart_date() {
-		return start_date;
+	public Date getStartDate() {
+		return startDate;
 	}
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getEnd_date() {
-		return end_date;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	public StudentDetails getStudentdetails() {
 		return studentdetails;

@@ -16,49 +16,49 @@ import javax.persistence.Table;
 public class Trainer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int trainer_id;
+	private int trainerId;
 	
 	@Column(length=30)
-	private String trainer_name;
+	private String trainerName;
 	
 	@Column(length=30)
-	private long phone_number;
+	private long phoneNumber;
 	
 	@Column(length=30)
-	private int trainer_experience;
+	private int trainerExperience;
 	
 	@Column(length=30)
-	private String trainer_email_id;
+	private String trainerEmailId;
 	
-	public String getTrainer_name() {
-		return trainer_name;
+	public String getTrainerName() {
+		return trainerName;
 	}
-	public void setTrainer_name(String trainer_name) {
-		this.trainer_name = trainer_name;
+	public void setTrainerName(String trainerName) {
+		this.trainerName = trainerName;
 	}
-	public int getTrainer_id() {
-		return trainer_id;
+	public int getTrainerId() {
+		return trainerId;
 	}
-	public void setTrainer_id(int trainer_id) {
-		this.trainer_id = trainer_id;
+	public void setTrainerId(int trainerId) {
+		this.trainerId = trainerId;
 	}
-	public long getPhone_number() {
-		return phone_number;
+	public long getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhone_number(long phone_number) {
-		this.phone_number = phone_number;
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public int getTrainer_experience() {
-		return trainer_experience;
+	public int getTrainerExperience() {
+		return trainerExperience;
 	}
-	public void setTrainer_experience(int trainer_experience) {
-		this.trainer_experience = trainer_experience;
+	public void setTrainerExperience(int trainerExperience) {
+		this.trainerExperience = trainerExperience;
 	}
-	public String getTrainer_email_id() {
-		return trainer_email_id;
+	public String getTrainerEmailId() {
+		return trainerEmailId;
 	}
-	public void setTrainer_email_id(String trainer_email_id) {
-		this.trainer_email_id = trainer_email_id;
+	public void setTrainerEmailId(String trainerEmailId) {
+		this.trainerEmailId = trainerEmailId;
 	}
 
 }
