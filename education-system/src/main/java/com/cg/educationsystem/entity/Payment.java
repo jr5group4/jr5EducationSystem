@@ -17,64 +17,68 @@ import javax.persistence.Table;
 public class Payment {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int payment_id;
-	
-	//@Column(length=30)
-	//private int student_branch;
-	
-	//@Column(length=30)
-	//private int course_id;
+	private int paymentId;
 	
 	@Column
-	private Date payment_date;
+	private Date paymentDate;
 	
 	@Column
-	private Date payment_due;
+	private Date paymentDue;
 	
 	@Column(length=30)
-	private double fee_paid;
+	private double feePaid;
 	
 	@Column(length=30)
-	private String fee_status;
+	private String feeStatus;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="student_id")
+	@JoinColumn(name="studentId")
 	private StudentDetails studentdetails;
-	
-	public int getPayment_id() {
-		return payment_id;
+
+	public int getPaymentId() {
+		return paymentId;
 	}
-	public void setPayment_id(int payment_id) {
-		this.payment_id = payment_id;
+
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
 	}
-	
-	public Date getPayment_date() {
-		return payment_date;
+
+	public Date getPaymentDate() {
+		return paymentDate;
 	}
-	public void setPayment_date(Date payment_date) {
-		this.payment_date = payment_date;
+
+	public void setPaymentDate(Date paymentDate) {
+		this.paymentDate = paymentDate;
 	}
-	public Date getPayment_due() {
-		return payment_due;
+
+	public Date getPaymentDue() {
+		return paymentDue;
 	}
-	public void setPayment_due(Date payment_due) {
-		this.payment_due = payment_due;
+
+	public void setPaymentDue(Date paymentDue) {
+		this.paymentDue = paymentDue;
 	}
-	public double getFee_paid() {
-		return fee_paid;
+
+	public double getFeePaid() {
+		return feePaid;
 	}
-	public void setFee_paid(double fee_paid) {
-		this.fee_paid = fee_paid;
+
+	public void setFeePaid(double feePaid) {
+		this.feePaid = feePaid;
 	}
-	public String getFee_status() {
-		return fee_status;
+
+	public String getFeeStatus() {
+		return feeStatus;
 	}
-	public void setFee_status(String fee_status) {
-		this.fee_status = fee_status;
+
+	public void setFeeStatus(String feeStatus) {
+		this.feeStatus = feeStatus;
 	}
+
 	public StudentDetails getStudentdetails() {
 		return studentdetails;
 	}
+
 	public void setStudentdetails(StudentDetails studentdetails) {
 		this.studentdetails = studentdetails;
 	}

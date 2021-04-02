@@ -12,42 +12,47 @@ import javax.persistence.Table;
 public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int login_id;
+	private int loginId;
 	
 	@Column(length = 30)
-	private String user_id;
+	private String userId;
 	
 	@Column(length = 30)
-	private String user_password;
+	private String userPassword;
 	
 	@Column(length = 30)
 	private String role;
-	
-	//private Registration registration;
-	
-	public int getLogin_id() {
-		return login_id;
+
+	public int getLoginId() {
+		return loginId;
 	}
-	public void setLogin_id(int login_id) {
-		this.login_id = login_id;
+
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
 	}
-	public String getUser_id() {
-		return user_id;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setUser_id(String user_id) {
-		this.user_id = user_id;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getUser_password() {
-		return user_password;
+
+	public String getUserPassword() {
+		return userPassword;
 	}
-	public void setUser_password(String user_password) {
-		this.user_password = user_password;
+
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
 	}
+
 	public String getRole() {
 		return role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
-
+	
 }
