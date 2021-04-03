@@ -18,7 +18,9 @@ import com.cg.educationsystem.entity.Trainer;
 public class TrainerService implements ITrainerService{
 	@Autowired
 	ITrainerRepository trainerRepository;
+	@Autowired
 	ICourseRepository courseRepository;
+	@Autowired
 	IStudentDetailsRepository studentRepository;
 	
 	@Override
@@ -51,5 +53,15 @@ public class TrainerService implements ITrainerService{
 			trainerRepository.save(trainer);
 		}
 		return null;
+	}
+
+	@Override
+	public List<Trainer> getAllTrainer() {
+		return trainerRepository.findAll();
+	}
+
+	@Override
+	public Trainer getTrainerById(int trainerId) {
+		return trainerRepository.getTrainerById(trainerId);
 	}
 }

@@ -1,5 +1,7 @@
 package com.cg.educationsystem.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import com.cg.educationsystem.entity.StudentDetails;
 public class CourseService implements ICourseService {
 	@Autowired
 	ICourseRepository courseRepository;
+	@Autowired
 	IStudentDetailsRepository studentDetailsRepository;
 	
 	@Override
@@ -29,5 +32,20 @@ public class CourseService implements ICourseService {
 	@Override
 	public void addCourseDetails(Course course) {
 		courseRepository.save(course);
+	}
+
+	@Override
+	public void deleteCourse(int courseId) {
+		courseRepository.delete(courseRepository.findById(courseId).get());
+	}
+
+	@Override
+	public List<Course> getAllCourse() {
+		return courseRepository.findAll();
+	}
+
+	@Override
+	public Course getCourseById(int courseId) {
+		return courseRepository.getCourseById(courseId);
 	}
 }

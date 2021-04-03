@@ -1,5 +1,7 @@
 package com.cg.educationsystem.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +17,7 @@ import com.cg.educationsystem.entity.Payment;
 public class PaymentService implements IPaymentService{
 	@Autowired
 	IPaymentRepository paymentRepository;
+	@Autowired
 	ICourseRepository courseRepository;
 	@Override
 	public void addPayment(PaymentDto paymentDto) {
@@ -33,6 +36,10 @@ public class PaymentService implements IPaymentService{
 	public Payment getPaymentById(int paymentId) {
 		
 		return paymentRepository.getPaymentById(paymentId);
+	}
+	@Override
+	public List<Payment> getAllPayment() {
+		return paymentRepository.findAll();
 	}
 
 

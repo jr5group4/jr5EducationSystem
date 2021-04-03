@@ -16,6 +16,7 @@ import com.cg.educationsystem.entity.ProgressReport;
 public class ProgressReportService implements IProgressReportService {
 	@Autowired
 	IProgressReportRepository progressRepository;
+	@Autowired
 	ICourseRepository courseRepository;
 
 	@Override
