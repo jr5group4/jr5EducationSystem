@@ -7,7 +7,7 @@ import com.cg.educationsystem.entity.StudentDetails;
 
 
 public interface IStudentDetailsService {
-	public  String addStudentDetails(StudentDetails student);
+	public void addStudentDetails(StudentDetails student);
 	public List<StudentDetails> getAllStudentDetails();
 	public StudentDetails getStudentDetailsById(int studentId);
 	

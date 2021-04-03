@@ -8,7 +8,7 @@ import com.cg.educationsystem.entity.StudentDetails;
 
 @Repository
 public interface IStudentDetailsRepository extends JpaRepository<StudentDetails, Integer> {
-	@Query(value = "from studentdetails std where std.studentId=?1")
+	@Query(value = "from StudentDetails std where std.studentId=?1")
 	public StudentDetails getStudentDetailsById(int studentId);
 
 }

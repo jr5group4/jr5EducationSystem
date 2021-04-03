@@ -9,20 +9,24 @@ import com.cg.educationsystem.dao.IStudentDetailsRepository;
 import com.cg.educationsystem.entity.StudentDetails;
 
 @Service
-public class StudentDetailsService {
+public class StudentDetailsService implements IStudentDetailsService {
 	@Autowired
 	IStudentDetailsRepository dao;
-	
+
+	@Override
 	public void addStudentDetails(StudentDetails student) {
-		dao.save(student);
+		 dao.save(student);
 	}
-	public List<StudentDetails> getAllStudentDetails(){
+
+	@Override
+	public List<StudentDetails> getAllStudentDetails() {
 		List<StudentDetails> studentList=dao.findAll();
 		return studentList;
 	}
-	
+
+	@Override
 	public StudentDetails getStudentDetailsById(int studentId) {
 		return dao.getStudentDetailsById(studentId);
 	}
-
 }
+	
