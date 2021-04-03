@@ -15,7 +15,6 @@ import com.cg.educationsystem.entity.StudentDetails;
 import com.cg.educationsystem.entity.Trainer;
 
 @Service
-@Transactional
 public class TrainerService implements ITrainerService{
 	@Autowired
 	ITrainerRepository trainerRepository;
