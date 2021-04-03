@@ -27,7 +27,7 @@ public class PaymentService implements IPaymentService{
 		payment.setPaymentDue(paymentDto.getPaymentDue());
 		payment.setFeePaid(paymentDto.getFeePaid());
 		payment.setFeeStatus(paymentDto.getFeeStatus());
-		 
+		
 		Course course = courseRepository.findById(paymentDto.getCourseId()).get();
 		payment.setCourse(course);
 		paymentRepository.save(payment);
