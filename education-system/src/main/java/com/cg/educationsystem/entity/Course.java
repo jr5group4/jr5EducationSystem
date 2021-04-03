@@ -38,12 +38,6 @@ public class Course {
 	@JoinColumn(name = "studentId")
 	private StudentDetails studentdetails;
 	
-	@ManyToMany(targetEntity = Trainer.class, cascade = { CascadeType.ALL }) 
-	@JoinTable(name = "course_trainer",   
-    joinColumns = { @JoinColumn(name = "courseId") },   
-    inverseJoinColumns = { @JoinColumn(name = "trainerId") })
-	private List<Trainer> trainer;
-	
 	public int getCourseId() {
 		return courseId;
 	}
@@ -80,11 +74,4 @@ public class Course {
 	public void setStudentdetails(StudentDetails studentdetails) {
 		this.studentdetails = studentdetails;
 	}
-	public List<Trainer> getTrainer() {
-		return trainer;
-	}
-	public void setTrainer(List<Trainer> trainer) {
-		this.trainer = trainer;
-	}
-
 }
