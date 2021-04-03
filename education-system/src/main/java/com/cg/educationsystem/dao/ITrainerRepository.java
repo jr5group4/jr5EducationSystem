@@ -7,5 +7,4 @@ import com.cg.educationsystem.entity.Trainer;
 
 @Repository
 public interface ITrainerRepository extends JpaRepository<Trainer,Integer>{
-
 }

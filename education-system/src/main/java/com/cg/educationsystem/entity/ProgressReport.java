@@ -32,9 +32,13 @@ public class ProgressReport {
 	@Column(length = 5)
 	private String studentResult;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	/*@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="studentId")
-	private StudentDetails studentDetails;
+	private StudentDetails studentdetails;*/
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="courseId")
+	private Course course;
 	
 	public int getProgressReportId() {
 		return progressReportId;
@@ -72,11 +76,10 @@ public class ProgressReport {
 	public void setStudentResult(String studentResult) {
 		this.studentResult = studentResult;
 	}
-	public StudentDetails getStudentDetails() {
-		return studentDetails;
+	public Course getCourse() {
+		return course;
 	}
-	public void setStudentDetails(StudentDetails studentDetails) {
-		this.studentDetails = studentDetails;
+	public void setCourse(Course course) {
+		this.course = course;
 	}
-	
 }

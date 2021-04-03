@@ -35,6 +35,9 @@ public class StudentDetails {
 	
 	@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
 	private List<Course> courses;
+	
+	@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
+	private List<Trainer> trainers;
 
 	public int getStudentId() {
 		return studentId;
