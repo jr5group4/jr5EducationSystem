@@ -7,14 +7,18 @@ import com.cg.educationsystem.dao.IPaymentRepository;
 import com.cg.educationsystem.entity.Payment;
 
 @Service
-public class PaymentService {
+public class PaymentService implements IPaymentService{
 	@Autowired
 	IPaymentRepository dao;
+
+	@Override
 	public void addPayment(Payment payment) {
 		dao.save(payment);
-	}
-	public Payment getPaymentById(int studentId) {
-		return dao.getPaymentById(studentId);
 		
+	}
+
+	@Override
+	public Payment getPaymentById(int paymentId) {
+		return dao.getPaymentById(paymentId);
 	}
 }

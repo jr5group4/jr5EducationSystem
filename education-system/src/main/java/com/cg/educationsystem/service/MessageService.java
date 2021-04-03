@@ -7,13 +7,18 @@ import com.cg.educationsystem.dao.IMessageRepository;
 import com.cg.educationsystem.entity.Message;
 
 @Service
-public class MessageService {
+public class MessageService implements IMessageService{
 	@Autowired
 	IMessageRepository dao;
+	
+	@Override
 	public void addMessage(Message message) {
 		dao.save(message);
+		
 	}
-	public Message viewMessageById(int studentId) {
-		return dao.viewMessageById(studentId);
+
+	@Override
+	public Message viewMessageById(int messageId) {
+		return dao.viewMessageById(messageId);
 	}
 }

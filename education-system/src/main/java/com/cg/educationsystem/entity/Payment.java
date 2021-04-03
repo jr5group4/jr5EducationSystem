@@ -31,9 +31,21 @@ public class Payment {
 	@Column(length=30)
 	private String feeStatus;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	/*@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="studentId")
-	private StudentDetails studentdetails;
+	private StudentDetails studentdetails;*/
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "courseId")
+	private Course course;
+	
+	public Course getCourse() {
+		return course;
+	}
+
+	public void setCourse(Course course) {
+		this.course = course;
+	}
 
 	public int getPaymentId() {
 		return paymentId;
@@ -75,12 +87,12 @@ public class Payment {
 		this.feeStatus = feeStatus;
 	}
 
-	public StudentDetails getStudentdetails() {
+	/*public StudentDetails getStudentdetails() {
 		return studentdetails;
 	}
 
 	public void setStudentdetails(StudentDetails studentdetails) {
 		this.studentdetails = studentdetails;
-	}
+	}*/
 	
 }
