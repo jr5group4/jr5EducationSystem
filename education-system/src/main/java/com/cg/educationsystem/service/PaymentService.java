@@ -2,23 +2,42 @@ package com.cg.educationsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IPaymentRepository;
+import com.cg.educationsystem.dto.PaymentDto;
+import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.entity.Payment;
 
 @Service
+@Transactional
 public class PaymentService implements IPaymentService{
 	@Autowired
-	IPaymentRepository dao;
-
+	IPaymentRepository paymentRepository;
+	ICourseRepository courseRepository;
 	@Override
-	public void addPayment(Payment payment) {
-		dao.save(payment);
-		
-	}
+	public void addPayment(PaymentDto paymentDto) {
+		Payment payment = new Payment();
+		payment.setPaymentId(paymentDto.getPaymentId());
+		payment.setPaymentDate(paymentDto.getPaymentDate());
+		payment.setPaymentDue(paymentDto.getPaymentDue());
+		payment.setFeePaid(paymentDto.getFeePaid());
+		payment.setFeeStatus(paymentDto.getFeeStatus());
+		 
+		Course course = courseRepository.findById(paymentDto.getCourseId()).get();
+		payment.setCourse(course);
+		paymentRepository.save(payment);
 
+	}
 	@Override
 	public Payment getPaymentById(int paymentId) {
-		return dao.getPaymentById(paymentId);
+		return paymentRepository.getPaymentById(paymentId);
 	}
+
+
+
+	
+
+	
 }
