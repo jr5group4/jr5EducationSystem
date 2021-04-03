@@ -31,12 +31,10 @@ public class PaymentService implements IPaymentService{
 	}
 	@Override
 	public Payment getPaymentById(int paymentId) {
+		
 		return paymentRepository.getPaymentById(paymentId);
 	}
 
-
-
-	
 
 	
 }

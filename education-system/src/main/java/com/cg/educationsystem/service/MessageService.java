@@ -21,7 +21,6 @@ public class MessageService implements IMessageService{
 		message.setMessageDescription(messageDto.getMessageDescription());
 		messageRepository.save(message);	
 	}
-
 	@Override
 	public Message viewMessageById(int messageId) {
 		return messageRepository.viewMessageById(messageId);
