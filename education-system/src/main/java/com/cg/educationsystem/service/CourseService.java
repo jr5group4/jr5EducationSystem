@@ -16,18 +16,18 @@ public class CourseService implements ICourseService {
 	IStudentDetailsRepository studentDetailsRepository;
 	
 	@Override
-	public String registerCourse(CourseDto courseDto, StudentDetails student) {
+	public String registerCourse(CourseDto courseDto) {
 		if(courseRepository.existsById(courseDto.getCourseId())) {
-			CourseDto newCourse=courseRepository.findById(courseDto.getCourseId()).get();
-			newCourse.setStudentdetails(student);
-			courseRepository.save(newCourse);
+			Course course=courseRepository.findById(courseDto.getCourseId()).get();
+			StudentDetails student=studentDetailsRepository.findById(courseDto.getStudentId()).get();
+			course.setStudentdetails(student);
+			courseRepository.save(course);
 		}
 		return null;
 	}
 
 	@Override
 	public void addCourseDetails(Course course) {
-		// TODO Auto-generated method stub
 		courseRepository.save(course);
 	}
 }

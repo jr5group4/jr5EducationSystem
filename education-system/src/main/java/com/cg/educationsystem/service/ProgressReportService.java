@@ -13,7 +13,6 @@ import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.entity.ProgressReport;
 
 @Service
-@Transactional
 public class ProgressReportService implements IProgressReportService {
 	@Autowired
 	IProgressReportRepository progressRepository;
