@@ -7,5 +7,5 @@ import com.cg.educationsystem.entity.Course;
 
 @Repository
 public interface ICourseRepository extends JpaRepository<Course, Integer> {
-
+	
 }
