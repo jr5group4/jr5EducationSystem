@@ -2,12 +2,14 @@ package com.cg.educationsystem.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.educationsystem.dao.IMessageRepository;
 import com.cg.educationsystem.dto.MessageDto;
 import com.cg.educationsystem.entity.Message;
 
 @Service
+@Transactional
 public class MessageService implements IMessageService{
 	@Autowired
 	IMessageRepository messageRepository;

@@ -28,7 +28,6 @@ public class PaymentService implements IPaymentService{
 		Course course = courseRepository.findById(paymentDto.getCourseId()).get();
 		payment.setCourse(course);
 		paymentRepository.save(payment);
-
 	}
 	@Override
 	public Payment getPaymentById(int paymentId) {

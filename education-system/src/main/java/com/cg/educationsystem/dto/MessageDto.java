@@ -1,6 +1,5 @@
 package com.cg.educationsystem.dto;
 
-
 public class MessageDto {
 	private int messageId;
 	private String messageDescription;

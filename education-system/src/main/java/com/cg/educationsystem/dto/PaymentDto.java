@@ -1,7 +1,6 @@
 package com.cg.educationsystem.dto;
 
 import java.sql.Date;
-
 public class PaymentDto {
 	private int paymentId;
 	private Date paymentDate;
