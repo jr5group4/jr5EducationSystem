@@ -51,8 +51,11 @@ public class ProgressReportService implements IProgressReportService {
 	}
 
 	@Override
-	public String deleteReport(int reportId) {
-		progressRepository.deleteById(reportId);
-		return null;
+	public int deleteReport(int reportId) {
+		if(progressRepository.existsById(reportId)) {
+			progressRepository.deleteById(reportId);
+			return 1;
+		}
+		return 0;
 	}
 }

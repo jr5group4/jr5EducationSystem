@@ -7,7 +7,7 @@ import com.cg.educationsystem.entity.Trainer;
 
 public interface ITrainerService {
 	public String addTrainer(TrainerDto trainerdto);
-	public String selectTrainer(TrainerDto trainerdto);
+	public int selectTrainer(TrainerDto trainerdto);
 	public List<Trainer> getAllTrainer();
 	public Trainer getTrainerById(int trainerId);
 }

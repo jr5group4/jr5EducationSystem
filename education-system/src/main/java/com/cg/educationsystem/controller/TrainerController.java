@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.educationsystem.dto.TrainerDto;
 import com.cg.educationsystem.entity.Trainer;
 import com.cg.educationsystem.service.TrainerService;
+import com.cg.educationsystem.utils.TrainerNotFoundException;
 
 @RestController
 @RequestMapping("/trainer")
@@ -33,19 +34,28 @@ public class TrainerController {
 	
 	@PutMapping("/selecttrainer")
 	public ResponseEntity<String> selectTrainer(@RequestBody TrainerDto trainerdto){
-		String string=trainerService.selectTrainer(trainerdto);
+		int number=trainerService.selectTrainer(trainerdto);
+		if(number==0) {
+			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerdto.getTrainerId());
+		}
 		return new ResponseEntity<String>("Trainer Selected",HttpStatus.OK);
 	}
 	
 	@GetMapping("/alltrainer")
 	public ResponseEntity<List<Trainer>> getAllTrainer(){
 		List<Trainer> trainerList=trainerService.getAllTrainer();
+		if(trainerList.isEmpty()) {
+			throw new TrainerNotFoundException("No Trainer found ");
+		}
 		return new ResponseEntity<List<Trainer>>(trainerList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/gettrainer/{trainerId}")
 	public ResponseEntity<Trainer> getTrainerById(@PathVariable int trainerId){
 		Trainer trainer=trainerService.getTrainerById(trainerId);
+		if(trainer==null) {
+			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerId);
+		}
 		return new ResponseEntity<Trainer>(trainer,HttpStatus.OK);
 	}
 }

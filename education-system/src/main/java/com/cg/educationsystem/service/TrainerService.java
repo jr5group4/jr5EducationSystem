@@ -44,15 +44,16 @@ public class TrainerService implements ITrainerService{
 	}
 
 	@Override
-	public String selectTrainer(TrainerDto trainerdto) {
+	public int selectTrainer(TrainerDto trainerdto) {
 		if(trainerRepository.existsById(trainerdto.getTrainerId())) {
 			Trainer trainer=trainerRepository.findById(trainerdto.getTrainerId()).get();
 			StudentDetails student=studentRepository.findById(trainerdto.getStudentId()).get();
 			trainer.setStudentdetails(student);
 			
 			trainerRepository.save(trainer);
+			return 1;
 		}
-		return null;
+		return 0;
 	}
 
 	@Override
