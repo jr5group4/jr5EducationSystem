@@ -10,4 +10,5 @@ public interface IProgressReportService {
 	public List<ProgressReport> viewAllPreviousProgressReport();
 	public List<ProgressReport> viewAllCurrentProgressReport();
 	public ProgressReport viewProgressReportById(int progressId);
+	public String deleteReport(int reportId);
 }

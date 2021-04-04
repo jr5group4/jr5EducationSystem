@@ -21,21 +21,22 @@ import com.cg.educationsystem.service.MessageService;
 public class MessageController {
 	@Autowired
 	MessageService messageService;
-	@PostMapping
+	
+	@PostMapping("/addmessage")
 	public ResponseEntity<String> addMessage(@RequestBody MessageDto message){
 		messageService.addMessage(message);
 		return new ResponseEntity<String>("Message added", HttpStatus.OK);
 	}
-	@GetMapping
+	@GetMapping("/getallmessage")
 	public ResponseEntity<List<Message>> viewAllMessage(){
 		List<Message> messageList = messageService.viewAllMessages();
 		return new ResponseEntity<List<Message>>(messageList, HttpStatus.OK);
 	}
-	/*@GetMapping("/viewmessagebyid")
+	@GetMapping("/viewmessagebyid")
 	public ResponseEntity<Message> viewMessageById(@RequestBody int messageId){
-		Message messageList = messageService.viewMessageById(messageId);
-		return new ResponseEntity<Message>(, HttpStatus.OK);
+		Message message = messageService.viewMessageById(messageId);
+		return new ResponseEntity<Message>(message, HttpStatus.OK);
 		
-	}*/
+	}
 
 }

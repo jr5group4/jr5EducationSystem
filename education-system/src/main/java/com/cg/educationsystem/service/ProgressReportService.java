@@ -49,4 +49,10 @@ public class ProgressReportService implements IProgressReportService {
 	public ProgressReport viewProgressReportById(int progressId) {
 		return progressRepository.viewReportById(progressId);
 	}
+
+	@Override
+	public String deleteReport(int reportId) {
+		progressRepository.deleteById(reportId);
+		return null;
+	}
 }
