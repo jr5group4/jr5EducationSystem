@@ -30,4 +30,10 @@ public class StockExceptionController extends ResponseEntityExceptionHandler {
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
 		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(StudentDetailsNotFoundException.class)
+	public ResponseEntity<ErrorDetails> studentDetailsNotFound(StudentDetailsNotFoundException exception,WebRequest request){
+		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
+		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
+	}
 }
