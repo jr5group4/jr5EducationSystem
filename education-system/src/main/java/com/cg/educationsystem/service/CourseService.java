@@ -1,5 +1,6 @@
 package com.cg.educationsystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,21 @@ public class CourseService implements ICourseService {
 		if(courseRepository.existsById(courseDto.getCourseId())) {
 			Course course=courseRepository.findById(courseDto.getCourseId()).get();
 			StudentDetails student=studentDetailsRepository.findById(courseDto.getStudentId()).get();
-			course.setStudentdetails(student);
+			course.setStudent(student);
 			courseRepository.save(course);
 			return 1;
 		}
 		return 0;
+		/*List<Course> courseList=new ArrayList<Course>();
+		List<Integer> courseId=courseDto.getCourseIdList();
+		for(Integer id:courseId) {
+			Course course=courseRepository.findById(id).get();
+			courseList.add(course);
+		}
+		StudentDetails student=studentDetailsRepository.findById(courseDto.getStudentId()).get();
+		student.setCourses(courseList);
+		studentDetailsRepository.save(student);
+		return 1;*/
 	}
 
 	@Override

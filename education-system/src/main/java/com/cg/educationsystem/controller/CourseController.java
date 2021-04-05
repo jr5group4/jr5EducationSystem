@@ -29,7 +29,7 @@ public class CourseController {
 	public ResponseEntity<String> registerCourse(@RequestBody CourseDto courseDto){
 		int number=courseService.registerCourse(courseDto);
 		if(number==0) {
-			throw new CourseNotFoundException("No course found for course Id : "+courseDto.getCourseId());
+			throw new CourseNotFoundException("No course found for course Id : ");
 		}
 		return new ResponseEntity<String>("Course registered successfully",HttpStatus.OK);
 	}
