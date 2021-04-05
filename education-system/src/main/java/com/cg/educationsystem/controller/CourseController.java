@@ -20,7 +20,6 @@ import com.cg.educationsystem.utils.CourseNotFoundException;
 @RestController
 @RequestMapping("/course")
 public class CourseController {
-	
 	@Autowired
 	CourseService courseService;
 	
