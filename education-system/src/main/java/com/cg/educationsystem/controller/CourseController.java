@@ -27,8 +27,11 @@ public class CourseController {
 	
 	@PostMapping("/registercourse")
 	public ResponseEntity<String> registerCourse(@RequestBody CourseDto courseDto){
-		String string=courseService.registerCourse(courseDto);
-		return new ResponseEntity<String>(string,HttpStatus.OK);
+		int number=courseService.registerCourse(courseDto);
+		if(number==0) {
+			throw new CourseNotFoundException("No course found for course Id : "+courseDto.getCourseId());
+		}
+		return new ResponseEntity<String>("Course registered successfully",HttpStatus.OK);
 	}
 	
 	@PostMapping("/addcourse")
@@ -39,13 +42,19 @@ public class CourseController {
 	
 	@DeleteMapping("/deletecourse/{courseId}")
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId){
-		courseService.deleteCourse(courseId);
+		int number=courseService.deleteCourse(courseId);
+		if(number==0) {
+			throw new CourseNotFoundException("No course found for course Id : "+courseId);
+		}
 		return new ResponseEntity<String>("Course deleted",HttpStatus.OK);
 	}
 	
 	@GetMapping("/getallcourses")
 	public ResponseEntity<List<Course>> getAllCourse(){
 		List<Course> courseList=courseService.getAllCourse();
+		if(courseList.isEmpty()) {
+			throw new CourseNotFoundException("No course available ");
+		}
 		return new ResponseEntity<List<Course>>(courseList,HttpStatus.OK);
 	}
 	
