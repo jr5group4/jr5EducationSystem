@@ -32,6 +32,9 @@ public class PaymentController {
 	@GetMapping("/getallpayment")
 	public ResponseEntity<List<Payment>> getAllPayment(){
 		List<Payment> paymentList = paymentService.getAllPayment();
+		if(paymentList.isEmpty()) {
+			throw new PaymentNotFoundException("No payment available");
+		}
 		return new ResponseEntity<List<Payment>>(paymentList, HttpStatus.OK);
 	}
 	@GetMapping("/getpaymentbyid/{paymentId}")

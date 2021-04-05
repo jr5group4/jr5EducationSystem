@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,8 +27,11 @@ public class CourseController {
 	
 	@PostMapping("/registercourse")
 	public ResponseEntity<String> registerCourse(@RequestBody CourseDto courseDto){
-		String string=courseService.registerCourse(courseDto);
-		return new ResponseEntity<String>(string,HttpStatus.OK);
+		int number=courseService.registerCourse(courseDto);
+		if(number==0) {
+			throw new CourseNotFoundException("No course found for course Id : "+courseDto.getCourseId());
+		}
+		return new ResponseEntity<String>("Course registered successfully",HttpStatus.OK);
 	}
 	
 	@PostMapping("/addcourse")
@@ -36,20 +40,26 @@ public class CourseController {
 		return new ResponseEntity<String>("Course added",HttpStatus.OK);
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<String> deleteCourse(@RequestBody int courseId){
-		courseService.deleteCourse(courseId);
+	@DeleteMapping("/deletecourse/{courseId}")
+	public ResponseEntity<String> deleteCourse(@PathVariable int courseId){
+		int number=courseService.deleteCourse(courseId);
+		if(number==0) {
+			throw new CourseNotFoundException("No course found for course Id : "+courseId);
+		}
 		return new ResponseEntity<String>("Course deleted",HttpStatus.OK);
 	}
 	
 	@GetMapping("/getallcourses")
 	public ResponseEntity<List<Course>> getAllCourse(){
 		List<Course> courseList=courseService.getAllCourse();
+		if(courseList.isEmpty()) {
+			throw new CourseNotFoundException("No course available ");
+		}
 		return new ResponseEntity<List<Course>>(courseList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getcoursebyid")
-	public ResponseEntity<Course> getCourseById(@RequestBody int courseId){
+	@GetMapping("/getcoursebyid/{courseId}")
+	public ResponseEntity<Course> getCourseById(@PathVariable int courseId){
 		Course course=courseService.getCourseById(courseId);
 		if(course==null) {
 			throw new CourseNotFoundException("No course found for course Id : "+courseId);

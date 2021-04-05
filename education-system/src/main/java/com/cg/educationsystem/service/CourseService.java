@@ -19,14 +19,15 @@ public class CourseService implements ICourseService {
 	IStudentDetailsRepository studentDetailsRepository;
 	
 	@Override
-	public String registerCourse(CourseDto courseDto) {
+	public int registerCourse(CourseDto courseDto) {
 		if(courseRepository.existsById(courseDto.getCourseId())) {
 			Course course=courseRepository.findById(courseDto.getCourseId()).get();
 			StudentDetails student=studentDetailsRepository.findById(courseDto.getStudentId()).get();
 			course.setStudentdetails(student);
 			courseRepository.save(course);
+			return 1;
 		}
-		return null;
+		return 0;
 	}
 
 	@Override
@@ -35,8 +36,12 @@ public class CourseService implements ICourseService {
 	}
 
 	@Override
-	public void deleteCourse(int courseId) {
-		courseRepository.delete(courseRepository.findById(courseId).get());
+	public int deleteCourse(int courseId) {
+		if(courseRepository.existsById(courseId)) {
+			courseRepository.delete(courseRepository.findById(courseId).get());
+			return 1;
+		}
+		return 0;
 	}
 
 	@Override
