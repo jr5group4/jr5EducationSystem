@@ -16,6 +16,7 @@ import com.cg.educationsystem.service.LoginService;
 public class LoginController {
 	@Autowired
 	LoginService loginService;
+	
 	@PostMapping("/validate")
 	public ResponseEntity<String> loginValidation(@RequestBody Login login){
 		String str=loginService.loginValidation(login);
