@@ -21,7 +21,6 @@ public class ProgressReportService implements IProgressReportService {
 
 	@Override
 	public String addProgressReport(ProgressReportDto progressreportdto) {
-		
 		ProgressReport report=new ProgressReport();
 		report.setProgressReportId(progressreportdto.getProgressReportId());
 		report.setStudentMarks(progressreportdto.getStudentMarks());
