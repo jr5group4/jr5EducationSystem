@@ -24,6 +24,7 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 	
+	@PostMapping("/registercourse")
 	public ResponseEntity<String> registerCourse(@RequestBody CourseDto courseDto){
 		String string=courseService.registerCourse(courseDto);
 		return new ResponseEntity<String>(string,HttpStatus.OK);
