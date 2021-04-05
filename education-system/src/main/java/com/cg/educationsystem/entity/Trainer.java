@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,15 +35,23 @@ public class Trainer {
 	@Column(length=30)
 	private String trainerEmailId;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "studentId")
-	private StudentDetails studentdetails;
+	private StudentDetails studentdetails;*/
 	
-	@ManyToMany(targetEntity = Course.class, cascade = { CascadeType.ALL }) 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="studentId")
+	private StudentDetails student;
+	
+	/*@ManyToMany(targetEntity = Course.class, cascade = { CascadeType.ALL }) 
 	@JoinTable(name = "trainer_course",   
     joinColumns = { @JoinColumn(name = "trainerId") },   
     inverseJoinColumns = { @JoinColumn(name = "courseId") })
-	private List<Course> courseList;
+	private List<Course> courseList;*/
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="courseId")
+	private Course course;
 	
 	public String getTrainerName() {
 		return trainerName;
@@ -74,17 +83,24 @@ public class Trainer {
 	public void setTrainerEmailId(String trainerEmailId) {
 		this.trainerEmailId = trainerEmailId;
 	}
-	public StudentDetails getStudentdetails() {
+	/*public StudentDetails getStudentdetails() {
 		return studentdetails;
 	}
 	public void setStudentdetails(StudentDetails studentdetails) {
 		this.studentdetails = studentdetails;
+	}*/
+	
+	public StudentDetails getStudent() {
+		return student;
 	}
-	public List<Course> getCourseList() {
-		return courseList;
+	public void setStudent(StudentDetails student) {
+		this.student = student;
 	}
-	public void setCourseList(List<Course> courseList) {
-		this.courseList = courseList;
+	public Course getCourse() {
+		return course;
+	}
+	public void setCourse(Course course) {
+		this.course = course;
 	}
 	
 }

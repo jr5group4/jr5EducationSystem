@@ -9,7 +9,7 @@ public class TrainerDto {
 	private int trainerExperience;
 	private String trainerEmailId;
 	private int studentId;
-	private List<Integer> courseIdList;
+	private int courseId;
 	public int getTrainerId() {
 		return trainerId;
 	}
@@ -46,11 +46,12 @@ public class TrainerDto {
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
-	public List<Integer> getCourseIdList() {
-		return courseIdList;
+	public int getCourseId() {
+		return courseId;
 	}
-	public void setCourseIdList(List<Integer> courseIdList) {
-		this.courseIdList = courseIdList;
+	public void setCourseId(int courseId) {
+		this.courseId = courseId;
 	}
+	
 	
 }

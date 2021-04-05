@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -34,9 +35,13 @@ public class Course {
 	@Column
 	private Date endDate;
 	
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name = "studentId")
-	private StudentDetails studentdetails;
+	private StudentDetails studentdetails;*/
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="studentId")
+	private StudentDetails student;
 	
 	public int getCourseId() {
 		return courseId;
@@ -68,10 +73,18 @@ public class Course {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	public StudentDetails getStudentdetails() {
+	/*public StudentDetails getStudentdetails() {
 		return studentdetails;
 	}
 	public void setStudentdetails(StudentDetails studentdetails) {
 		this.studentdetails = studentdetails;
+	}*/
+	public StudentDetails getStudent() {
+		return student;
 	}
+	public void setStudent(StudentDetails student) {
+		this.student = student;
+	}
+	
+	
 }

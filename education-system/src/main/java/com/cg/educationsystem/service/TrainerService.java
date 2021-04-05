@@ -32,13 +32,9 @@ public class TrainerService implements ITrainerService{
 		trainer.setPhoneNumber(trainerdto.getPhoneNumber());
 		trainer.setTrainerExperience(trainerdto.getTrainerExperience());
 		
-		List<Course> courseList=new ArrayList<Course>();
-		List<Integer> courseIdList=trainerdto.getCourseIdList();
-		for(Integer courseId:courseIdList) {
-			Course course=courseRepository.findById(courseId).get();
-			courseList.add(course);
-		}
-		trainer.setCourseList(courseList);
+		//List<Course> courseList=new ArrayList<Course>();
+		Course course=courseRepository.getCourseById(trainerdto.getCourseId());
+		trainer.setCourse(course);
 		trainerRepository.save(trainer);
 		return null;
 	}
@@ -47,8 +43,8 @@ public class TrainerService implements ITrainerService{
 	public int selectTrainer(TrainerDto trainerdto) {
 		if(trainerRepository.existsById(trainerdto.getTrainerId())) {
 			Trainer trainer=trainerRepository.findById(trainerdto.getTrainerId()).get();
-			StudentDetails student=studentRepository.findById(trainerdto.getStudentId()).get();
-			trainer.setStudentdetails(student);
+			StudentDetails student=studentRepository.getStudentDetailsById(trainerdto.getStudentId());
+			trainer.setStudent(student);
 			
 			trainerRepository.save(trainer);
 			return 1;

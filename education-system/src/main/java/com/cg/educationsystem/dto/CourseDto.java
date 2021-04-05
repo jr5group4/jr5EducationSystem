@@ -1,10 +1,27 @@
 package com.cg.educationsystem.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.cg.educationsystem.entity.StudentDetails;
 
 public class CourseDto {
+	/*private List<Integer> courseIdList;
+	private int studentId;
+	public List<Integer> getCourseIdList() {
+		return courseIdList;
+	}
+	public void setCourseIdList(List<Integer> courseIdList) {
+		this.courseIdList = courseIdList;
+	}
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}*/
+	
+	
 	private int courseId;
 	private String courseName;
 	private int duration;
