@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.educationsystem.dto.MessageDto;
 import com.cg.educationsystem.entity.Message;
 import com.cg.educationsystem.service.MessageService;
+import com.cg.educationsystem.utils.MessageNotFoundException;
 
 @RestController
 @RequestMapping("/message")
@@ -27,7 +28,7 @@ public class MessageController {
 		messageService.addMessage(message);
 		return new ResponseEntity<String>("Message added", HttpStatus.OK);
 	}
-	@GetMapping("/getallmessage")
+	@GetMapping("/viewallmessage")
 	public ResponseEntity<List<Message>> viewAllMessage(){
 		List<Message> messageList = messageService.viewAllMessages();
 		return new ResponseEntity<List<Message>>(messageList, HttpStatus.OK);
@@ -35,6 +36,9 @@ public class MessageController {
 	@GetMapping("/viewmessagebyid")
 	public ResponseEntity<Message> viewMessageById(@RequestBody int messageId){
 		Message message = messageService.viewMessageById(messageId);
+		if(message==null) {
+			throw new MessageNotFoundException("No message found for message id: "+messageId);
+		}
 		return new ResponseEntity<Message>(message, HttpStatus.OK);
 		
 	}

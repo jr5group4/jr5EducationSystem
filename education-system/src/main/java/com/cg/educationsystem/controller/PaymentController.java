@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.educationsystem.dto.PaymentDto;
 import com.cg.educationsystem.entity.Payment;
 import com.cg.educationsystem.service.PaymentService;
+import com.cg.educationsystem.utils.PaymentNotFoundException;
+import com.cg.educationsystem.utils.StudentDetailsNotFoundException;
 
 @RestController
 @RequestMapping("/payment")
@@ -35,6 +37,9 @@ public class PaymentController {
 	@GetMapping("/getpaymentbyid/{paymentId}")
 	public ResponseEntity<Payment> getPaymentById(@PathVariable int paymentId){
 		Payment payment =paymentService.getPaymentById(paymentId);
+		if(payment==null) {
+			throw new PaymentNotFoundException("No payment found for payment id: "+paymentId);
+		}
 		return new ResponseEntity<Payment>(payment, HttpStatus.OK);
 	}
 
