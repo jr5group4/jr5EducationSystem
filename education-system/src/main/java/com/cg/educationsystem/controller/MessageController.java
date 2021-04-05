@@ -36,7 +36,7 @@ public class MessageController {
 		}
 		return new ResponseEntity<List<Message>>(messageList, HttpStatus.OK);
 	}
-	@GetMapping("/viewmessagebyid/messageId}")
+	@GetMapping("/viewmessagebyid/{messageId}")
 	public ResponseEntity<Message> viewMessageById(@PathVariable int messageId){
 		Message message = messageService.viewMessageById(messageId);
 		if(message==null) {
