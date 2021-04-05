@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,8 +36,8 @@ public class CourseController {
 		return new ResponseEntity<String>("Course added",HttpStatus.OK);
 	}
 	
-	@DeleteMapping
-	public ResponseEntity<String> deleteCourse(@RequestBody int courseId){
+	@DeleteMapping("/deletecourse/{courseId}")
+	public ResponseEntity<String> deleteCourse(@PathVariable int courseId){
 		courseService.deleteCourse(courseId);
 		return new ResponseEntity<String>("Course deleted",HttpStatus.OK);
 	}
@@ -47,8 +48,8 @@ public class CourseController {
 		return new ResponseEntity<List<Course>>(courseList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getcoursebyid")
-	public ResponseEntity<Course> getCourseById(@RequestBody int courseId){
+	@GetMapping("/getcoursebyid/{courseId}")
+	public ResponseEntity<Course> getCourseById(@PathVariable int courseId){
 		Course course=courseService.getCourseById(courseId);
 		if(course==null) {
 			throw new CourseNotFoundException("No course found for course Id : "+courseId);
