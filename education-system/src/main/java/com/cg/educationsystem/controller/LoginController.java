@@ -14,7 +14,6 @@ import com.cg.educationsystem.service.LoginService;
 @RestController
 @RequestMapping("/login")
 public class LoginController {
-	
 	@Autowired
 	LoginService loginService;
 	
