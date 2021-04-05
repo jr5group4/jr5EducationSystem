@@ -36,6 +36,7 @@ public class StudentDetailsController {
 		return new ResponseEntity<List<StudentDetails>>(studentDetailsList,HttpStatus.OK);
 	}
 	
+	@GetMapping("/getstudentdetailsbyid")
 	public ResponseEntity<StudentDetails> getStudentDetailsById(@RequestBody int studentId) {
 		StudentDetails studentDetails=studentDetailsService.getStudentDetailsById(studentId);
 		if(studentDetails==null) {
