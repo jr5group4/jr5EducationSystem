@@ -87,6 +87,7 @@ public class StudentDetails {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	
 	public List<Course> getCourses() {
 		return courses;
 	}
