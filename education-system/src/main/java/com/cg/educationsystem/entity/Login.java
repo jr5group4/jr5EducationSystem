@@ -11,10 +11,6 @@ import javax.persistence.Table;
 @Table(name="login")
 public class Login {
 	@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int loginId;
-	
-	@Column(length = 30)
 	private String userId;
 	
 	@Column(length = 30)
@@ -22,14 +18,6 @@ public class Login {
 	
 	@Column(length = 30)
 	private String role;
-
-	public int getLoginId() {
-		return loginId;
-	}
-
-	public void setLoginId(int loginId) {
-		this.loginId = loginId;
-	}
 
 	public String getUserId() {
 		return userId;
