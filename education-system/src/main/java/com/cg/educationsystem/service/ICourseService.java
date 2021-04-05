@@ -7,9 +7,9 @@ import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.entity.StudentDetails;
 
 public interface ICourseService {
-	public String registerCourse(CourseDto courseDto);
+	public int registerCourse(CourseDto courseDto);
 	public void addCourseDetails(Course course);
-	public void deleteCourse(int courseId);
+	public int deleteCourse(int courseId);
 	public Course getCourseById(int courseId);
 	public List<Course> getAllCourse();
 }

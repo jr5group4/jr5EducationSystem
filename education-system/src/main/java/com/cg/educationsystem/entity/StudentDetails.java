@@ -18,20 +18,20 @@ public class StudentDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int studentId;
 	
-	@Column(length = 30)
+	@Column(name = "firstName")
 	private String firstName;
 	
-	@Column(length = 30)
+	@Column(name = "lastName")
 	private String lastName;
 	
-	@Column(length = 30)
+	@Column(name = "phoneNumber")
 	private long phoneNumber;
 	
-	@Column(length = 30)
+	@Column(name = "studentEmailId")
 	private String studentEmailId;
 	
-	@Column
-	private Date date;
+	@Column(name = "dateOfBirth")
+	private Date dateOfBirth;
 	
 	@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
 	private List<Course> courses;
@@ -79,14 +79,15 @@ public class StudentDetails {
 		this.studentEmailId = studentEmailId;
 	}
 
-	public Date getDate() {
-		return date;
+	public Date getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
+	
 	public List<Course> getCourses() {
 		return courses;
 	}

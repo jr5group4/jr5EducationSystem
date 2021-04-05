@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +32,14 @@ public class StudentDetailsController {
 	@GetMapping("/getallstudentdetails")
 	public ResponseEntity<List<StudentDetails>> getAllStudentDetails(){
 		List<StudentDetails> studentDetailsList=studentDetailsService.getAllStudentDetails();
+		if(studentDetailsList.isEmpty()) {
+			throw new StudentDetailsNotFoundException("No student details available");
+		}
 		return new ResponseEntity<List<StudentDetails>>(studentDetailsList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getstudentdetailsbyid")
-	public ResponseEntity<StudentDetails> getStudentDetailsById(@RequestBody int studentId) {
+	@GetMapping("/getstudentdetailsbyid/{studentId}")
+	public ResponseEntity<StudentDetails> getStudentDetailsById(@PathVariable int studentId) {
 		StudentDetails studentDetails=studentDetailsService.getStudentDetailsById(studentId);
 		if(studentDetails==null) {
 			throw new StudentDetailsNotFoundException("No student found for student id: "+studentId);

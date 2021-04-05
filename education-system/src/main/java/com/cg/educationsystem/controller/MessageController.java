@@ -31,10 +31,13 @@ public class MessageController {
 	@GetMapping("/viewallmessage")
 	public ResponseEntity<List<Message>> viewAllMessage(){
 		List<Message> messageList = messageService.viewAllMessages();
+		if(messageList.isEmpty()) {
+			throw new MessageNotFoundException("No message available");
+		}
 		return new ResponseEntity<List<Message>>(messageList, HttpStatus.OK);
 	}
-	@GetMapping("/viewmessagebyid")
-	public ResponseEntity<Message> viewMessageById(@RequestBody int messageId){
+	@GetMapping("/viewmessagebyid/messageId}")
+	public ResponseEntity<Message> viewMessageById(@PathVariable int messageId){
 		Message message = messageService.viewMessageById(messageId);
 		if(message==null) {
 			throw new MessageNotFoundException("No message found for message id: "+messageId);
