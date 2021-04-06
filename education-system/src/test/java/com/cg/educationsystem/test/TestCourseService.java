@@ -43,21 +43,6 @@ public class TestCourseService {
 		//MockitoAnnotations.initMocks(this);
 	}
 	
-	/*@Test
-	public void testRegisterCourse() {
-		
-	}
-	
-	@Test
-	public void testAddCourseDetails() {
-		
-	}
-	
-	@Test
-	public void testDeleteCourse() {
-		
-	}*/
-	
 	@Test
 	public void testGetAllCourse() {
 		List<Course> courseList=new ArrayList<>();

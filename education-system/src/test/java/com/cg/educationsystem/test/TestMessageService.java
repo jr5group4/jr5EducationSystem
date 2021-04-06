@@ -37,11 +37,6 @@ public class TestMessageService {
 	@Mock
 	IStudentDetailsRepository studentDetailsDao;
 	
-	/*@Test
-	public void testAddMessage() {
-		
-	}*/
-	
 	@Test
 	public void testViewMessageById() {
 		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
