@@ -16,7 +16,6 @@ import com.cg.educationsystem.dto.PaymentDto;
 import com.cg.educationsystem.entity.Payment;
 import com.cg.educationsystem.service.PaymentService;
 import com.cg.educationsystem.utils.PaymentNotFoundException;
-import com.cg.educationsystem.utils.StudentDetailsNotFoundException;
 
 @RestController
 @RequestMapping("/payment")
