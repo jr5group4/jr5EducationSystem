@@ -79,8 +79,11 @@ public class Payment {
 	public String getFeeStatus() {
 		return feeStatus;
 	}
-
+	
 	public void setFeeStatus(String feeStatus) {
 		this.feeStatus = feeStatus;
 	}
+
+
+	
 }

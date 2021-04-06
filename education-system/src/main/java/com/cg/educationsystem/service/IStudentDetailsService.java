@@ -5,7 +5,6 @@ import java.util.List;
 import com.cg.educationsystem.entity.StudentDetails;
 
 
-
 public interface IStudentDetailsService {
 	public void addStudentDetails(StudentDetails student);
 	public List<StudentDetails> getAllStudentDetails();

@@ -2,8 +2,6 @@ package com.cg.educationsystem.controller;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +26,7 @@ public class TrainerController {
 	
 	@PostMapping("/addtrainer")
 	public ResponseEntity<String> addTrainer(@RequestBody TrainerDto trainerdto){
-		String string=trainerService.addTrainer(trainerdto);
+		trainerService.addTrainer(trainerdto);
 		return new ResponseEntity<String>("Trainer details added",HttpStatus.OK);
 	}
 	

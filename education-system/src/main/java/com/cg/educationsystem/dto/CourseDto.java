@@ -1,9 +1,6 @@
 package com.cg.educationsystem.dto;
 
 import java.sql.Date;
-import java.util.List;
-
-import com.cg.educationsystem.entity.StudentDetails;
 
 public class CourseDto {
 	private int courseId;

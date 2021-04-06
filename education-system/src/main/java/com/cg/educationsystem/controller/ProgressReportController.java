@@ -26,7 +26,7 @@ public class ProgressReportController {
 	
 	@PostMapping("/addreport")
 	public ResponseEntity<String> addProgressReport(@RequestBody ProgressReportDto reportDto){
-		String string=reportService.addProgressReport(reportDto);
+		reportService.addProgressReport(reportDto);
 		return new ResponseEntity<String>("Progress Report Added",HttpStatus.OK);
 	}
 	

@@ -2,7 +2,6 @@ package com.cg.educationsystem.service;
 import java.util.List;
 
 import com.cg.educationsystem.dto.TrainerDto;
-import com.cg.educationsystem.entity.StudentDetails;
 import com.cg.educationsystem.entity.Trainer;
 
 public interface ITrainerService {

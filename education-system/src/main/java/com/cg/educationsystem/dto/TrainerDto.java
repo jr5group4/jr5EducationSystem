@@ -1,6 +1,5 @@
 package com.cg.educationsystem.dto;
 
-import java.util.List;
 
 public class TrainerDto {
 	private int trainerId;
