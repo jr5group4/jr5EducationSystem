@@ -36,6 +36,10 @@ public class Course {
 	@JoinColumn(name="studentId")
 	private StudentDetails student;
 	
+	public Course() {
+		
+	}
+	
 	public int getCourseId() {
 		return courseId;
 	}
