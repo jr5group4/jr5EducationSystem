@@ -29,16 +29,6 @@ public class CourseService implements ICourseService {
 			return 1;
 		}
 		return 0;
-		/*List<Course> courseList=new ArrayList<Course>();
-		List<Integer> courseId=courseDto.getCourseIdList();
-		for(Integer id:courseId) {
-			Course course=courseRepository.findById(id).get();
-			courseList.add(course);
-		}
-		StudentDetails student=studentDetailsRepository.findById(courseDto.getStudentId()).get();
-		student.setCourses(courseList);
-		studentDetailsRepository.save(student);
-		return 1;*/
 	}
 
 	@Override

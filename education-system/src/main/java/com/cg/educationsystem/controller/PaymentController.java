@@ -29,7 +29,7 @@ public class PaymentController {
 		paymentService.addPayment(paymentdto);
 		return new ResponseEntity<String>("Payment inserted", HttpStatus.OK);
 	}
-	@GetMapping("/getallpayment")
+	@GetMapping("/getallpayments")
 	public ResponseEntity<List<Payment>> getAllPayment(){
 		List<Payment> paymentList = paymentService.getAllPayment();
 		if(paymentList.isEmpty()) {

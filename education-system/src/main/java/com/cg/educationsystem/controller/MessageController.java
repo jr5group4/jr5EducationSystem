@@ -28,7 +28,7 @@ public class MessageController {
 		messageService.addMessage(message);
 		return new ResponseEntity<String>("Message added", HttpStatus.OK);
 	}
-	@GetMapping("/viewallmessage")
+	@GetMapping("/getallmessages")
 	public ResponseEntity<List<Message>> viewAllMessage(){
 		List<Message> messageList = messageService.viewAllMessages();
 		if(messageList.isEmpty()) {

@@ -73,12 +73,6 @@ public class Course {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	/*public StudentDetails getStudentdetails() {
-		return studentdetails;
-	}
-	public void setStudentdetails(StudentDetails studentdetails) {
-		this.studentdetails = studentdetails;
-	}*/
 	public StudentDetails getStudent() {
 		return student;
 	}

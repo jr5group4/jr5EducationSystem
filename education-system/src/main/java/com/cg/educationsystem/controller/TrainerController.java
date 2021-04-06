@@ -41,7 +41,7 @@ public class TrainerController {
 		return new ResponseEntity<String>("Trainer Selected",HttpStatus.OK);
 	}
 	
-	@GetMapping("/alltrainer")
+	@GetMapping("/getalltrainers")
 	public ResponseEntity<List<Trainer>> getAllTrainer(){
 		List<Trainer> trainerList=trainerService.getAllTrainer();
 		if(trainerList.isEmpty()) {
@@ -50,7 +50,7 @@ public class TrainerController {
 		return new ResponseEntity<List<Trainer>>(trainerList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/gettrainer/{trainerId}")
+	@GetMapping("/gettrainerbyid/{trainerId}")
 	public ResponseEntity<Trainer> getTrainerById(@PathVariable int trainerId){
 		Trainer trainer=trainerService.getTrainerById(trainerId);
 		if(trainer==null) {
