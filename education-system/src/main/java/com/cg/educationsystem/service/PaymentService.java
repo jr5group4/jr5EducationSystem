@@ -1,6 +1,7 @@
 package com.cg.educationsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,8 @@ public class PaymentService implements IPaymentService{
 	
 	@Override
 	public void addPayment(PaymentDto paymentDto) {
-		if(courseRepository.existsById(paymentDto.getCourseId())) {
+		Optional<Course> courseOptional=courseRepository.findById(paymentDto.getCourseId());
+		if(courseOptional.isPresent()) {
 			Payment payment = new Payment();
 			payment.setPaymentId(paymentDto.getPaymentId());
 			payment.setPaymentDate(paymentDto.getPaymentDate());
@@ -34,7 +36,7 @@ public class PaymentService implements IPaymentService{
 			payment.setFeePaid(paymentDto.getFeePaid());
 			payment.setFeeStatus(paymentDto.getFeeStatus());
 			
-			Course course = courseRepository.findById(paymentDto.getCourseId()).get();
+			Course course = courseOptional.get();
 			payment.setCourse(course);
 			paymentRepository.save(payment);
 		}

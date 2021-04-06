@@ -26,7 +26,7 @@ public class PaymentController {
 	@PostMapping("/addpayment")
 	public ResponseEntity<String> addPayment(@RequestBody PaymentDto paymentdto){
 		paymentService.addPayment(paymentdto);
-		return new ResponseEntity<String>("Payment inserted", HttpStatus.OK);
+		return new ResponseEntity<>("Payment inserted", HttpStatus.OK);
 	}
 	@GetMapping("/getallpayments")
 	public ResponseEntity<List<Payment>> getAllPayment(){
@@ -34,7 +34,7 @@ public class PaymentController {
 		if(paymentList.isEmpty()) {
 			throw new PaymentNotFoundException("No payment available");
 		}
-		return new ResponseEntity<List<Payment>>(paymentList, HttpStatus.OK);
+		return new ResponseEntity<>(paymentList, HttpStatus.OK);
 	}
 	@GetMapping("/getpaymentbyid/{paymentId}")
 	public ResponseEntity<Payment> getPaymentById(@PathVariable int paymentId){
@@ -42,7 +42,7 @@ public class PaymentController {
 		if(payment==null) {
 			throw new PaymentNotFoundException("No payment found for payment id: "+paymentId);
 		}
-		return new ResponseEntity<Payment>(payment, HttpStatus.OK);
+		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
 
 }

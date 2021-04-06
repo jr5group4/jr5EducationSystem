@@ -26,7 +26,7 @@ public class StudentDetailsController {
 	@PostMapping("/addstudentdetails")
 	public ResponseEntity<String> addStudentDetails(@RequestBody StudentDetails student){
 		studentDetailsService.addStudentDetails(student);
-		return new ResponseEntity<String>("Student details added",HttpStatus.OK);
+		return new ResponseEntity<>("Student details added",HttpStatus.OK);
 	}
 	
 	@GetMapping("/getallstudentdetails")
@@ -35,7 +35,7 @@ public class StudentDetailsController {
 		if(studentDetailsList.isEmpty()) {
 			throw new StudentDetailsNotFoundException("No student details available");
 		}
-		return new ResponseEntity<List<StudentDetails>>(studentDetailsList,HttpStatus.OK);
+		return new ResponseEntity<>(studentDetailsList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getstudentdetailsbyid/{studentId}")
@@ -44,7 +44,7 @@ public class StudentDetailsController {
 		if(studentDetails==null) {
 			throw new StudentDetailsNotFoundException("No student found for student id: "+studentId);
 		}
-		return new ResponseEntity<StudentDetails>(studentDetails,HttpStatus.OK);
+		return new ResponseEntity<>(studentDetails,HttpStatus.OK);
 	}
 }
 

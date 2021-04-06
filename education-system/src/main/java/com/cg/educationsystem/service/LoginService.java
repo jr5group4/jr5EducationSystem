@@ -1,5 +1,7 @@
 package com.cg.educationsystem.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,9 @@ public class LoginService implements ILoginService {
 	ILoginRepository loginRepository;
 	@Override
 	public String loginValidation(Login login) {
-		if(loginRepository.existsById(login.getUserId())) {
-			Login newLogin=loginRepository.findById(login.getUserId()).get();
+		Optional<Login> loginOptional=loginRepository.findById(login.getUserId());
+		if(loginOptional.isPresent()) {
+			Login newLogin=loginOptional.get();
 			if(newLogin.getUserId().contentEquals(login.getUserId())&&
 					newLogin.getUserPassword().contentEquals(login.getUserPassword())&&
 					newLogin.getRole().contentEquals(login.getRole())) {

@@ -27,7 +27,7 @@ public class TrainerController {
 	@PostMapping("/addtrainer")
 	public ResponseEntity<String> addTrainer(@RequestBody TrainerDto trainerdto){
 		trainerService.addTrainer(trainerdto);
-		return new ResponseEntity<String>("Trainer details added",HttpStatus.OK);
+		return new ResponseEntity<>("Trainer details added",HttpStatus.OK);
 	}
 	
 	@PutMapping("/selecttrainer")
@@ -36,7 +36,7 @@ public class TrainerController {
 		if(number==0) {
 			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerdto.getTrainerId());
 		}
-		return new ResponseEntity<String>("Trainer Selected",HttpStatus.OK);
+		return new ResponseEntity<>("Trainer Selected",HttpStatus.OK);
 	}
 	
 	@GetMapping("/getalltrainers")
@@ -45,7 +45,7 @@ public class TrainerController {
 		if(trainerList.isEmpty()) {
 			throw new TrainerNotFoundException("No Trainer found ");
 		}
-		return new ResponseEntity<List<Trainer>>(trainerList,HttpStatus.OK);
+		return new ResponseEntity<>(trainerList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/gettrainerbyid/{trainerId}")
@@ -54,6 +54,6 @@ public class TrainerController {
 		if(trainer==null) {
 			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerId);
 		}
-		return new ResponseEntity<Trainer>(trainer,HttpStatus.OK);
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 }

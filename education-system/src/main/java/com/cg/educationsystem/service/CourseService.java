@@ -1,6 +1,7 @@
 package com.cg.educationsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,11 @@ public class CourseService implements ICourseService {
 	
 	@Override
 	public int registerCourse(CourseDto courseDto) {
-		if(courseRepository.existsById(courseDto.getCourseId())) {
-			Course course=courseRepository.findById(courseDto.getCourseId()).get();
-			StudentDetails student=studentDetailsRepository.findById(courseDto.getStudentId()).get();
+		Optional<Course> courseOptional=courseRepository.findById(courseDto.getCourseId());
+		Optional<StudentDetails> studentOptional=studentDetailsRepository.findById(courseDto.getStudentId());
+		if(courseOptional.isPresent()&&studentOptional.isPresent()) {
+			Course course=courseOptional.get();
+			StudentDetails student=studentOptional.get();
 			course.setStudent(student);
 			courseRepository.save(course);
 			return 1;
@@ -37,8 +40,10 @@ public class CourseService implements ICourseService {
 
 	@Override
 	public int deleteCourse(int courseId) {
-		if(courseRepository.existsById(courseId)) {
-			courseRepository.delete(courseRepository.findById(courseId).get());
+		Optional<Course> courseOptional=courseRepository.findById(courseId);
+		if(courseOptional.isPresent()) {
+			Course course=courseOptional.get();
+			courseRepository.delete(course);
 			return 1;
 		}
 		return 0;

@@ -21,6 +21,7 @@ import com.cg.educationsystem.utils.CourseNotFoundException;
 @RestController
 @RequestMapping("/course")
 public class CourseController {
+	String string="No course found for course Id : ";
 	
 	@Autowired
 	CourseService courseService;
@@ -29,24 +30,24 @@ public class CourseController {
 	public ResponseEntity<String> registerCourse(@RequestBody CourseDto courseDto){
 		int number=courseService.registerCourse(courseDto);
 		if(number==0) {
-			throw new CourseNotFoundException("No course found for course Id : "+courseDto.getCourseId());
+			throw new CourseNotFoundException(string+courseDto.getCourseId());
 		}
-		return new ResponseEntity<String>("Course registered successfully",HttpStatus.OK);
+		return new ResponseEntity<>("Course registered successfully",HttpStatus.OK);
 	}
 	
 	@PostMapping("/addcourse")
 	public ResponseEntity<String> addCourseDetails(@RequestBody Course course){
 		courseService.addCourseDetails(course);
-		return new ResponseEntity<String>("Course added",HttpStatus.OK);
+		return new ResponseEntity<>("Course added",HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deletecourse/{courseId}")
 	public ResponseEntity<String> deleteCourse(@PathVariable int courseId){
 		int number=courseService.deleteCourse(courseId);
 		if(number==0) {
-			throw new CourseNotFoundException("No course found for course Id : "+courseId);
+			throw new CourseNotFoundException(string+courseId);
 		}
-		return new ResponseEntity<String>("Course deleted",HttpStatus.OK);
+		return new ResponseEntity<>("Course deleted",HttpStatus.OK);
 	}
 	
 	@GetMapping("/getallcourses")
@@ -55,15 +56,15 @@ public class CourseController {
 		if(courseList.isEmpty()) {
 			throw new CourseNotFoundException("No course available ");
 		}
-		return new ResponseEntity<List<Course>>(courseList,HttpStatus.OK);
+		return new ResponseEntity<>(courseList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getcoursebyid/{courseId}")
 	public ResponseEntity<Course> getCourseById(@PathVariable int courseId){
 		Course course=courseService.getCourseById(courseId);
 		if(course==null) {
-			throw new CourseNotFoundException("No course found for course Id : "+courseId);
+			throw new CourseNotFoundException(string+courseId);
 		}
-		return new ResponseEntity<Course>(course,HttpStatus.OK);
+		return new ResponseEntity<>(course,HttpStatus.OK);
 	}
 }

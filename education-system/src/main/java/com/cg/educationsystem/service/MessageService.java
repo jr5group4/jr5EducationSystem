@@ -1,6 +1,7 @@
 package com.cg.educationsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,12 +23,15 @@ public class MessageService implements IMessageService{
 	
 	@Override
 	public void addMessage(MessageDto messageDto) {
+		Optional<StudentDetails> studentOptional=studentRepository.findById(messageDto.getStudentId());
 		Message message = new Message();
-		message.setMessageId(messageDto.getMessageId());
-		message.setMessageDescription(messageDto.getMessageDescription());
-		StudentDetails student=studentRepository.findById(messageDto.getStudentId()).get();
-		message.setStudentDetails(student);
-		messageRepository.save(message);	
+		if(studentOptional.isPresent()) {
+			message.setMessageId(messageDto.getMessageId());
+			message.setMessageDescription(messageDto.getMessageDescription());
+			StudentDetails student=studentOptional.get();
+			message.setStudentDetails(student);
+			messageRepository.save(message);
+		}	
 	}
 	@Override
 	public Message viewMessageById(int messageId) {

@@ -1,6 +1,7 @@
 package com.cg.educationsystem.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class ProgressReportService implements IProgressReportService {
 
 	@Override
 	public String addProgressReport(ProgressReportDto progressreportdto) {
-		if(courseRepository.existsById(progressreportdto.getCourseId())) {
+		Optional<Course> courseOptional=courseRepository.findById(progressreportdto.getCourseId());
+		if(courseOptional.isPresent()) {
 			ProgressReport report=new ProgressReport();
 			report.setProgressReportId(progressreportdto.getProgressReportId());
 			report.setStudentMarks(progressreportdto.getStudentMarks());
@@ -29,7 +31,7 @@ public class ProgressReportService implements IProgressReportService {
 			report.setStudentPercentage(progressreportdto.getStudentPercentage());
 			report.setStudentResult(progressreportdto.getStudentResult());
 			
-			Course course=courseRepository.findById(progressreportdto.getCourseId()).get();
+			Course course=courseOptional.get();
 			report.setCourse(course);
 			progressRepository.save(report);
 		}

@@ -1,5 +1,6 @@
 package com.cg.educationsystem.service;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,8 +39,9 @@ public class TrainerService implements ITrainerService{
 
 	@Override
 	public int selectTrainer(TrainerDto trainerdto) {
-		if(trainerRepository.existsById(trainerdto.getTrainerId())) {
-			Trainer trainer=trainerRepository.findById(trainerdto.getTrainerId()).get();
+		Optional<Trainer> trainerOptional=trainerRepository.findById(trainerdto.getTrainerId());
+		if(trainerOptional.isPresent()) {
+			Trainer trainer=trainerOptional.get();
 			StudentDetails student=studentRepository.getStudentDetailsById(trainerdto.getStudentId());
 			trainer.setStudent(student);
 			

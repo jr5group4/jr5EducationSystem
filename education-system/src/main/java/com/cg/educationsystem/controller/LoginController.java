@@ -20,6 +20,6 @@ public class LoginController {
 	@PostMapping("/validate")
 	public ResponseEntity<String> loginValidation(@RequestBody Login login){
 		String str=loginService.loginValidation(login);
-		return new ResponseEntity<String>(str,HttpStatus.OK);
+		return new ResponseEntity<>(str,HttpStatus.OK);
 	}
 }

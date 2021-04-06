@@ -15,30 +15,30 @@ public class StockExceptionController extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(ProgressReportNotFoundException.class)
 	public ResponseEntity<ErrorDetails> reportNotFoundException(ProgressReportNotFoundException exception, WebRequest request) {
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
-		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(TrainerNotFoundException.class)
 	public ResponseEntity<ErrorDetails> trainerNotFound(TrainerNotFoundException exception,WebRequest request){
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
-		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(CourseNotFoundException.class)
 	public ResponseEntity<ErrorDetails> courseNotFoundException(CourseNotFoundException exception, WebRequest request) {
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
-		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
 	}
 	
 	@ExceptionHandler(StudentDetailsNotFoundException.class)
 	public ResponseEntity<ErrorDetails> studentDetailsNotFound(StudentDetailsNotFoundException exception,WebRequest request){
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
-		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
 	}
 	@ExceptionHandler(MessageNotFoundException.class)
 	public ResponseEntity<ErrorDetails> messageNotFound(MessageNotFoundException exception,WebRequest request){
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
-		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
 	}
 	@ExceptionHandler(PaymentNotFoundException.class)
 	public ResponseEntity<ErrorDetails> paymentNotFound(PaymentNotFoundException exception,WebRequest request){

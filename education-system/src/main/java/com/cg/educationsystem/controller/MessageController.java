@@ -26,7 +26,7 @@ public class MessageController {
 	@PostMapping("/addmessage")
 	public ResponseEntity<String> addMessage(@RequestBody MessageDto message){
 		messageService.addMessage(message);
-		return new ResponseEntity<String>("Message added", HttpStatus.OK);
+		return new ResponseEntity<>("Message added", HttpStatus.OK);
 	}
 	@GetMapping("/getallmessages")
 	public ResponseEntity<List<Message>> viewAllMessage(){
@@ -34,7 +34,7 @@ public class MessageController {
 		if(messageList.isEmpty()) {
 			throw new MessageNotFoundException("No message available");
 		}
-		return new ResponseEntity<List<Message>>(messageList, HttpStatus.OK);
+		return new ResponseEntity<>(messageList, HttpStatus.OK);
 	}
 	@GetMapping("/viewmessagebyid/{messageId}")
 	public ResponseEntity<Message> viewMessageById(@PathVariable int messageId){
@@ -42,7 +42,7 @@ public class MessageController {
 		if(message==null) {
 			throw new MessageNotFoundException("No message found for message id: "+messageId);
 		}
-		return new ResponseEntity<Message>(message, HttpStatus.OK);
+		return new ResponseEntity<>(message, HttpStatus.OK);
 		
 	}
 
