@@ -31,9 +31,6 @@ public class Payment {
 	@Column(length=30)
 	private String feeStatus;
 	
-	/*@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="studentId")
-	private StudentDetails studentdetails;*/
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "courseId")
@@ -86,13 +83,4 @@ public class Payment {
 	public void setFeeStatus(String feeStatus) {
 		this.feeStatus = feeStatus;
 	}
-
-	/*public StudentDetails getStudentdetails() {
-		return studentdetails;
-	}
-
-	public void setStudentdetails(StudentDetails studentdetails) {
-		this.studentdetails = studentdetails;
-	}*/
-	
 }

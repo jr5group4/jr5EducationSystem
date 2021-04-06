@@ -32,10 +32,6 @@ public class ProgressReport {
 	@Column(length = 5)
 	private String studentResult;
 	
-	/*@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="studentId")
-	private StudentDetails studentdetails;*/
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="courseId")
 	private Course course;

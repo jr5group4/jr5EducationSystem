@@ -35,9 +35,6 @@ public class Course {
 	@Column
 	private Date endDate;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "studentId")
-	private StudentDetails studentdetails;*/
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="studentId")
