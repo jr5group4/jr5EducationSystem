@@ -20,8 +20,7 @@ public class StudentDetailsService implements IStudentDetailsService {
 
 	@Override
 	public List<StudentDetails> getAllStudentDetails() {
-		List<StudentDetails> studentList=dao.findAll();
-		return studentList;
+		return dao.findAll();
 	}
 
 	@Override
