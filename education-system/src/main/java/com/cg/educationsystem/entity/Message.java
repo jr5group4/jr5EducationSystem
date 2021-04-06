@@ -24,6 +24,15 @@ public class Message {
 	@JoinColumn(name="studentId")
 	private StudentDetails studentDetails;
 	
+	public Message(int messageId, String messageDescription, StudentDetails studentDetails) {
+		this.messageId = messageId;
+		this.messageDescription = messageDescription;
+		this.studentDetails = studentDetails;
+	}
+	public Message() {
+		
+	}
+	
 	public int getMessageId() {
 		return messageId;
 	}
@@ -42,5 +51,4 @@ public class Message {
 	public void setStudentDetails(StudentDetails studentDetails) {
 		this.studentDetails = studentDetails;
 	}
-	
 }
