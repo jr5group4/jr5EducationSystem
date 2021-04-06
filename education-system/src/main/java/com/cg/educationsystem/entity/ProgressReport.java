@@ -78,4 +78,18 @@ public class ProgressReport {
 	public void setCourse(Course course) {
 		this.course = course;
 	}
+	public ProgressReport(int progressReportId, int studentMarks, String studentGrade, String presentForTest,
+			double studentPercentage, String studentResult, Course course) {
+		super();
+		this.progressReportId = progressReportId;
+		this.studentMarks = studentMarks;
+		this.studentGrade = studentGrade;
+		this.presentForTest = presentForTest;
+		this.studentPercentage = studentPercentage;
+		this.studentResult = studentResult;
+		this.course = course;
+	}
+	public ProgressReport() {
+		
+	}
 }
