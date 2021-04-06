@@ -29,6 +29,10 @@ public class StudentDetails {
 	
 	@Column(name = "dateOfBirth")
 	private Date dateOfBirth;
+	
+	public StudentDetails() {
+		
+	}
 
 	public int getStudentId() {
 		return studentId;
