@@ -43,6 +43,6 @@ public class StockExceptionController extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(PaymentNotFoundException.class)
 	public ResponseEntity<ErrorDetails> paymentNotFound(PaymentNotFoundException exception,WebRequest request){
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
-		return new ResponseEntity<ErrorDetails>(details, HttpStatus.NOT_FOUND);
+		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
 	}
 }

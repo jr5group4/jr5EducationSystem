@@ -1,6 +1,5 @@
 package com.cg.educationsystem.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +26,18 @@ public class PaymentService implements IPaymentService{
 	
 	@Override
 	public void addPayment(PaymentDto paymentDto) {
-		Payment payment = new Payment();
-		payment.setPaymentId(paymentDto.getPaymentId());
-		payment.setPaymentDate(paymentDto.getPaymentDate());
-		payment.setPaymentDue(paymentDto.getPaymentDue());
-		payment.setFeePaid(paymentDto.getFeePaid());
-		payment.setFeeStatus(paymentDto.getFeeStatus());
-		
-		/*StudentDetails studentDetails = studentRepository.findById(paymentDto.getStudentId()).get();
-		payment.setStudentDetails(studentDetails);
-		paymentRepository.save(payment);*/
-		Course course = courseRepository.findById(paymentDto.getCourseId()).get();
-		payment.setCourse(course);
-		paymentRepository.save(payment);
+		if(courseRepository.existsById(paymentDto.getCourseId())) {
+			Payment payment = new Payment();
+			payment.setPaymentId(paymentDto.getPaymentId());
+			payment.setPaymentDate(paymentDto.getPaymentDate());
+			payment.setPaymentDue(paymentDto.getPaymentDue());
+			payment.setFeePaid(paymentDto.getFeePaid());
+			payment.setFeeStatus(paymentDto.getFeeStatus());
+			
+			Course course = courseRepository.findById(paymentDto.getCourseId()).get();
+			payment.setCourse(course);
+			paymentRepository.save(payment);
+		}
 	}
 	@Override
 	public Payment getPaymentById(int paymentId) {

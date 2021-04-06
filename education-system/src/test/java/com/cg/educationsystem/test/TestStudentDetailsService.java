@@ -36,7 +36,6 @@ public class TestStudentDetailsService {
 	public void testAddStudent() {
 		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",9870543212l,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		studentService.addStudentDetails(student);
-		Assert.assertNotNull(student.getStudentId());
 		Mockito.verify(studentDao,Mockito.times(1)).save(student);
 	}
 	

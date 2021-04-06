@@ -20,17 +20,19 @@ public class ProgressReportService implements IProgressReportService {
 
 	@Override
 	public String addProgressReport(ProgressReportDto progressreportdto) {
-		ProgressReport report=new ProgressReport();
-		report.setProgressReportId(progressreportdto.getProgressReportId());
-		report.setStudentMarks(progressreportdto.getStudentMarks());
-		report.setStudentGrade(progressreportdto.getStudentGrade());
-		report.setPresentForTest(progressreportdto.getPresentForTest());
-		report.setStudentPercentage(progressreportdto.getStudentPercentage());
-		report.setStudentResult(progressreportdto.getStudentResult());
-		
-		Course course=courseRepository.findById(progressreportdto.getCourseId()).get();
-		report.setCourse(course);
-		progressRepository.save(report);
+		if(courseRepository.existsById(progressreportdto.getCourseId())) {
+			ProgressReport report=new ProgressReport();
+			report.setProgressReportId(progressreportdto.getProgressReportId());
+			report.setStudentMarks(progressreportdto.getStudentMarks());
+			report.setStudentGrade(progressreportdto.getStudentGrade());
+			report.setPresentForTest(progressreportdto.getPresentForTest());
+			report.setStudentPercentage(progressreportdto.getStudentPercentage());
+			report.setStudentResult(progressreportdto.getStudentResult());
+			
+			Course course=courseRepository.findById(progressreportdto.getCourseId()).get();
+			report.setCourse(course);
+			progressRepository.save(report);
+		}
 		return null;
 	}
 

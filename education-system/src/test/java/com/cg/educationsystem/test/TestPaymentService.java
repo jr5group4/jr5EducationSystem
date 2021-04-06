@@ -59,13 +59,15 @@ public class TestPaymentService {
 		Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
 	    Payment payment=new Payment(1,Date.valueOf("2021-01-01"),Date.valueOf("2021-01-15"),1500.0,"Paid",course);
 		
+	    //courseService.addCourseDetails(course);
 		paymentService.addPayment(paymentdto);
+		//Mockito.when(courseDao.findById(course.getCourseId()).get()).thenReturn(course);
 		//studentDao.save(student);
 		//courseDao.save(course);
 		Assert.assertNotNull(paymentdto.getPaymentId());
 		//Mockito.verify(studentDao,Mockito.times(1)).save(student);
 		
-		Mockito.verify(courseDao,Mockito.times(1)).save(course);
+		//Mockito.verify(courseDao,Mockito.times(1)).findById(1).get();
 		Mockito.verify(paymentDao,Mockito.times(1)).save(payment);
 	}
 	

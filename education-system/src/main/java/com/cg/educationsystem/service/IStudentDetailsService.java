@@ -6,8 +6,11 @@ import com.cg.educationsystem.entity.StudentDetails;
 
 
 public interface IStudentDetailsService {
+	//allows admin to add student details
 	public void addStudentDetails(StudentDetails student);
+	//allows admin to view all student details
 	public List<StudentDetails> getAllStudentDetails();
+	//allows admin to view individual student details 
 	public StudentDetails getStudentDetailsById(int studentId);
 	
 }
