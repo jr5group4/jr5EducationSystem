@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -24,28 +26,34 @@ public class TestStudentDetailsService {
 	@Mock
 	IStudentDetailsRepository studentDao;
 	
-	@Test
-	public void testGetAllStudents() {
-		List<StudentDetails> studentList=new ArrayList<StudentDetails>();
-		studentList.add(new StudentDetails(1,"Ram","Kumar",123456789,"ram123@gmail.com",Date.valueOf("1994-01-22")));
-		Mockito.when(studentDao.findAll()).thenReturn(studentList);
-		List<StudentDetails> newStudentList=studentService.getAllStudentDetails();
-		Mockito.verify(studentDao,Mockito.times(1)).findAll();
-	}
-	
-	@Test
-	public void testGetStudentById() {
-		StudentDetails student=new StudentDetails(1,"Ram","Kumar",123456789,"ram123@gmail.com",Date.valueOf("1994-01-22"));
-		Mockito.when(studentDao.getStudentDetailsById(1)).thenReturn(student);
-		StudentDetails newStudent=studentService.getStudentDetailsById(1);
-		Mockito.verify(studentDao,Mockito.times(1)).getStudentDetailsById(1);
+	@Before
+	public void init() {
+		System.out.println("** before method ***");
+		//MockitoAnnotations.initMocks(this); 
 	}
 	
 	@Test
 	public void testAddStudent() {
-		StudentDetails student=new StudentDetails(1,"Ram","Kumar",123456789,"ram123@gmail.com",Date.valueOf("1994-01-22"));
+		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		studentService.addStudentDetails(student);
 		Assert.assertNotNull(student.getStudentId());
 		Mockito.verify(studentDao,Mockito.times(1)).save(student);
+	}
+	
+	@Test
+	public void testGetAllStudent() {
+		List<StudentDetails> student=new ArrayList<StudentDetails>();
+		student.add(new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01")));
+		Mockito.when(studentDao.findAll()).thenReturn(student);
+		List<StudentDetails> newStudent=studentService.getAllStudentDetails();
+		Assertions.assertEquals(1,newStudent.size());
+		Mockito.verify(studentDao,Mockito.times(1)).findAll();
+	}
+	@Test
+	public void testGetStudentById() {
+		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
+		Mockito.when(studentDao.getStudentDetailsById(1)).thenReturn(student);
+		StudentDetails newStudent=studentService.getStudentDetailsById(1);
+		Mockito.verify(studentDao,Mockito.times(1)).getStudentDetailsById(1);
 	}
 }
