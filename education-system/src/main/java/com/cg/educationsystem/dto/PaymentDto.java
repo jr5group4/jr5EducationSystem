@@ -44,5 +44,15 @@ public class PaymentDto {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+	public PaymentDto(int paymentId, Date paymentDate, Date paymentDue, double feePaid, String feeStatus,
+			int courseId) {
+		super();
+		this.paymentId = paymentId;
+		this.paymentDate = paymentDate;
+		this.paymentDue = paymentDue;
+		this.feePaid = feePaid;
+		this.feeStatus = feeStatus;
+		this.courseId = courseId;
+	}
 	
 }

@@ -72,6 +72,14 @@ public class Course {
 	public void setStudent(StudentDetails student) {
 		this.student = student;
 	}
-	
+	public Course(int courseId, String courseName, int duration, Date startDate, Date endDate, StudentDetails student) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.duration = duration;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.student = student;
+	}
 	
 }

@@ -77,4 +77,16 @@ public class StudentDetails {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
+
+	public StudentDetails(int studentId, String firstName, String lastName, long phoneNumber, String studentEmailId,
+			Date dateOfBirth) {
+		super();
+		this.studentId = studentId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.studentEmailId = studentEmailId;
+		this.dateOfBirth = dateOfBirth;
+	}
+	
 }

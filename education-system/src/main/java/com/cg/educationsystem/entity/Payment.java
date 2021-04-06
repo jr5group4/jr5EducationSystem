@@ -84,6 +84,16 @@ public class Payment {
 		this.feeStatus = feeStatus;
 	}
 
-
-	
+	public Payment(int paymentId, Date paymentDate, Date paymentDue, double feePaid, String feeStatus, Course course) {
+		super();
+		this.paymentId = paymentId;
+		this.paymentDate = paymentDate;
+		this.paymentDue = paymentDue;
+		this.feePaid = feePaid;
+		this.feeStatus = feeStatus;
+		this.course = course;
+	}
+	public Payment() {
+		
+	}
 }
