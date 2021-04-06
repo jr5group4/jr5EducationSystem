@@ -35,9 +35,6 @@ public class Course {
 	@Column
 	private Date endDate;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "studentId")
-	private StudentDetails studentdetails;*/
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="studentId")
@@ -73,12 +70,6 @@ public class Course {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
-	/*public StudentDetails getStudentdetails() {
-		return studentdetails;
-	}
-	public void setStudentdetails(StudentDetails studentdetails) {
-		this.studentdetails = studentdetails;
-	}*/
 	public StudentDetails getStudent() {
 		return student;
 	}

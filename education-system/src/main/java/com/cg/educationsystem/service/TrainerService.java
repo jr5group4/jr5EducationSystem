@@ -32,7 +32,6 @@ public class TrainerService implements ITrainerService{
 		trainer.setPhoneNumber(trainerdto.getPhoneNumber());
 		trainer.setTrainerExperience(trainerdto.getTrainerExperience());
 		
-		//List<Course> courseList=new ArrayList<Course>();
 		Course course=courseRepository.getCourseById(trainerdto.getCourseId());
 		trainer.setCourse(course);
 		trainerRepository.save(trainer);

@@ -47,7 +47,7 @@ public class ProgressReportController {
 		return new ResponseEntity<List<ProgressReport>>(reportList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getreport/{reportId}")
+	@GetMapping("/getreportbyid/{reportId}")
 	public ResponseEntity<ProgressReport> viewReportById(@PathVariable int reportId){
 		ProgressReport report=reportService.viewProgressReportById(reportId);
 		if(report==null) {

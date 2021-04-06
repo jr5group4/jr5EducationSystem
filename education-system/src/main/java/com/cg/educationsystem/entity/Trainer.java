@@ -35,19 +35,9 @@ public class Trainer {
 	@Column(length=30)
 	private String trainerEmailId;
 	
-	/*@ManyToOne
-	@JoinColumn(name = "studentId")
-	private StudentDetails studentdetails;*/
-	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="studentId")
 	private StudentDetails student;
-	
-	/*@ManyToMany(targetEntity = Course.class, cascade = { CascadeType.ALL }) 
-	@JoinTable(name = "trainer_course",   
-    joinColumns = { @JoinColumn(name = "trainerId") },   
-    inverseJoinColumns = { @JoinColumn(name = "courseId") })
-	private List<Course> courseList;*/
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="courseId")
@@ -83,12 +73,6 @@ public class Trainer {
 	public void setTrainerEmailId(String trainerEmailId) {
 		this.trainerEmailId = trainerEmailId;
 	}
-	/*public StudentDetails getStudentdetails() {
-		return studentdetails;
-	}
-	public void setStudentdetails(StudentDetails studentdetails) {
-		this.studentdetails = studentdetails;
-	}*/
 	
 	public StudentDetails getStudent() {
 		return student;

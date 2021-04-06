@@ -29,12 +29,6 @@ public class StudentDetails {
 	
 	@Column(name = "dateOfBirth")
 	private Date dateOfBirth;
-	
-	/*@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
-	private List<Course> courses;
-	
-	@OneToMany(mappedBy = "studentdetails",cascade = CascadeType.ALL)
-	private List<Trainer> trainers;*/
 
 	public int getStudentId() {
 		return studentId;
@@ -83,15 +77,4 @@ public class StudentDetails {
 	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-
-	
-	/*public List<Course> getCourses() {
-		return courses;
-	}
-
-	public void setCourses(List<Course> courses) {
-		this.courses = courses;
-	}*/
-	
-	
 }
