@@ -38,6 +38,22 @@ public class Trainer {
 	@JoinColumn(name="courseId")
 	private Course course;
 	
+	public Trainer() {
+		
+	}
+	
+	public Trainer(int trainerId, String trainerName, long phoneNumber, int trainerExperience, String trainerEmailId,
+			StudentDetails student, Course course) {
+		super();
+		this.trainerId = trainerId;
+		this.trainerName = trainerName;
+		this.phoneNumber = phoneNumber;
+		this.trainerExperience = trainerExperience;
+		this.trainerEmailId = trainerEmailId;
+		this.student = student;
+		this.course = course;
+	}
+
 	public String getTrainerName() {
 		return trainerName;
 	}
