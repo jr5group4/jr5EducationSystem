@@ -30,7 +30,6 @@ public class TestStudentDetailsService {
 	
 	@Mock
 	IStudentDetailsRepository studentDetailsDao;
-	
 	@Before
 	public void init() {
 		System.out.println("** before method **");
