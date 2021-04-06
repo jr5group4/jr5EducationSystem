@@ -59,7 +59,7 @@ public class TestCourseService {
 	}*/
 	
 	@Test
-	public void getAllCourse() {
+	public void testGetAllCourse() {
 		List<Course> courseList=new ArrayList<>();
 		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		courseList.add(new Course(1,"Java",5,Date.valueOf("2020-10-10"),Date.valueOf("2021-03-10"),student));
@@ -71,7 +71,7 @@ public class TestCourseService {
 	} 
 	
 	@Test
-	public void getCourseById() {
+	public void testGetCourseById() {
 		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		Course course=new Course(1,"Java",5,Date.valueOf("2020-10-10"),Date.valueOf("2021-03-10"),student);
 		

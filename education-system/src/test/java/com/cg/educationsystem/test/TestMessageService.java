@@ -43,7 +43,7 @@ public class TestMessageService {
 	}*/
 	
 	@Test
-	public void TestviewMessageById() {
+	public void testViewMessageById() {
 		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		Message message=new Message(1,"Welcome to the course",student);
 		
@@ -53,7 +53,7 @@ public class TestMessageService {
 	}
 	
 	@Test
-	public void viewAllMessages() {
+	public void testViewAllMessages() {
 		List<Message> messageList=new ArrayList<>();
 		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		messageList.add(new Message(1,"Welcome to the course",student));
