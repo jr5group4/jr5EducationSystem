@@ -27,8 +27,7 @@ public class PaymentService implements IPaymentService{
 	
 	@Override
 	public void addPayment(PaymentDto paymentDto) {
-		Optional<Course> courseOptional=courseRepository.findById(paymentDto.getCourseId());
-		if(courseOptional.isPresent()) {
+		//Optional<Course> courseOptional=courseRepository.findById(paymentDto.getCourseId());
 			Payment payment = new Payment();
 			payment.setPaymentId(paymentDto.getPaymentId());
 			payment.setPaymentDate(paymentDto.getPaymentDate());
@@ -36,10 +35,9 @@ public class PaymentService implements IPaymentService{
 			payment.setFeePaid(paymentDto.getFeePaid());
 			payment.setFeeStatus(paymentDto.getFeeStatus());
 			
-			Course course = courseOptional.get();
+			Course course = courseRepository.getCourseById(paymentDto.getCourseId());
 			payment.setCourse(course);
 			paymentRepository.save(payment);
-		}
 	}
 	@Override
 	public Payment getPaymentById(int paymentId) {

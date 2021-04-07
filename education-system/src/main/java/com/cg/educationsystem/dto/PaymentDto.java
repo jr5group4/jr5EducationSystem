@@ -44,7 +44,7 @@ public class PaymentDto {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
-	public PaymentDto(int paymentId, Date paymentDate, Date paymentDue, double feePaid, String feeStatus,
+	/*public PaymentDto(int paymentId, Date paymentDate, Date paymentDue, double feePaid, String feeStatus,
 			int courseId) {
 		super();
 		this.paymentId = paymentId;
@@ -53,6 +53,6 @@ public class PaymentDto {
 		this.feePaid = feePaid;
 		this.feeStatus = feeStatus;
 		this.courseId = courseId;
-	}
+	}*/
 	
 }
