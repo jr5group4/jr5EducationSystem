@@ -1,5 +1,6 @@
 package com.cg.educationsystem.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.educationsystem.entity.StudentDetails;
@@ -24,7 +26,17 @@ public class StudentDetailsController {
 	StudentDetailsService studentDetailsService;
 	
 	@PostMapping("/addstudentdetails")
-	public ResponseEntity<String> addStudentDetails(@RequestBody StudentDetails student){
+	public ResponseEntity<String> addStudentDetails(@RequestParam("studentId") int studentId,
+			@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
+			@RequestParam("phoneNumber") long phoneNumber,@RequestParam("studentEmailId") String studentEmailId,
+			@RequestParam("dateOfBirth") Date dateOfBirth){
+		StudentDetails student=new StudentDetails();
+		student.setStudentId(studentId);
+		student.setFirstName(firstName);
+		student.setLastName(lastName);
+		student.setPhoneNumber(phoneNumber);
+		student.setStudentEmailId(studentEmailId);
+		student.setDateOfBirth(dateOfBirth);
 		studentDetailsService.addStudentDetails(student);
 		return new ResponseEntity<>("Student details added",HttpStatus.OK);
 	}
