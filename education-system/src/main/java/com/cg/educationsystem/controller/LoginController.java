@@ -18,8 +18,8 @@ public class LoginController {
 	LoginService loginService;
 	
 	@PostMapping("/validate")
-	public ResponseEntity<String> loginValidation(@RequestBody Login login){
-		String str=loginService.loginValidation(login);
-		return new ResponseEntity<>(str,HttpStatus.OK);
+	public ResponseEntity<Login> loginValidation(@RequestBody Login login){
+		Login newLogin=loginService.loginValidation(login.getUserId(),login.getUserPassword());
+		return new ResponseEntity<>(newLogin,HttpStatus.OK);
 	}
 }
