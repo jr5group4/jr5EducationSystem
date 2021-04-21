@@ -13,8 +13,8 @@ public class LoginService implements ILoginService {
 	@Autowired
 	ILoginRepository loginRepository;
 	@Override
-	public Login loginValidation(String userId,String userPassword) {
-		Login login=loginRepository.validate(userId, userPassword);
+	public Login loginValidation(String userId,String userPassword,String role) {
+		Login login=loginRepository.validate(userId, userPassword,role);
 		return login;
 	}
 

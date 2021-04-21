@@ -19,7 +19,7 @@ public class LoginController {
 	
 	@PostMapping("/validate")
 	public ResponseEntity<Login> loginValidation(@RequestBody Login login){
-		Login newLogin=loginService.loginValidation(login.getUserId(),login.getUserPassword());
+		Login newLogin=loginService.loginValidation(login.getUserId(),login.getUserPassword(),login.getRole());
 		return new ResponseEntity<>(newLogin,HttpStatus.OK);
 	}
 }
