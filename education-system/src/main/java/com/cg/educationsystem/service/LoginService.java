@@ -13,22 +13,9 @@ public class LoginService implements ILoginService {
 	@Autowired
 	ILoginRepository loginRepository;
 	@Override
-	public String loginValidation(Login login) {
-		Optional<Login> loginOptional=loginRepository.findById(login.getUserId());
-		if(loginOptional.isPresent()) {
-			Login newLogin=loginOptional.get();
-			if(newLogin.getUserId().contentEquals(login.getUserId())&&
-					newLogin.getUserPassword().contentEquals(login.getUserPassword())&&
-					newLogin.getRole().contentEquals(login.getRole())) {
-				return "Logged in successfully";	
-			}
-			else {
-				return "Please enter correct UserId or Password";
-			}
-		}
-		else {
-			return "Please enter correct UserId or Password";
-		}
+	public Login loginValidation(String userId,String userPassword,String role) {
+		Login login=loginRepository.validate(userId, userPassword,role);
+		return login;
 	}
 
 }
