@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.educationsystem.dto.ProgressReportDto;
 import com.cg.educationsystem.entity.ProgressReport;
 import com.cg.educationsystem.service.ProgressReportService;
+import com.cg.educationsystem.utils.CourseNotFoundException;
 import com.cg.educationsystem.utils.ProgressReportNotFoundException;
 
 @RestController
@@ -26,9 +27,12 @@ public class ProgressReportController {
 	ProgressReportService reportService;
 	
 	@PostMapping("/addreport")
-	public ResponseEntity<String> addProgressReport(@RequestBody ProgressReportDto reportDto){
-		reportService.addProgressReport(reportDto);
-		return new ResponseEntity<>("Progress Report Added",HttpStatus.OK);
+	public ResponseEntity<List<ProgressReport>> addProgressReport(@RequestBody ProgressReportDto reportDto){
+		List<ProgressReport> report= reportService.addProgressReport(reportDto);
+		if(report==null) {
+			throw new CourseNotFoundException("Course not available for Id: "+reportDto.getCourseId());
+		}
+		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
 	
 	@GetMapping("/previousreport")
@@ -58,21 +62,21 @@ public class ProgressReportController {
 	}
 	
 	@DeleteMapping("/deletereport/{reportId}")
-	public ResponseEntity<String> deleteReport(@PathVariable int reportId){
-		int number=reportService.deleteReport(reportId);
-		if(number==0) {
+	public ResponseEntity<List<ProgressReport>> deleteReport(@PathVariable int reportId){
+		List<ProgressReport> report=reportService.deleteReport(reportId);
+		if(report==null) {
 			throw new ProgressReportNotFoundException("No Progress Report Found for Report Id : "+reportId);
 		}
-		return new ResponseEntity<>("Progress Report Deleted",HttpStatus.OK);
+		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
 	
 	@PutMapping("/updatereport")
-	public ResponseEntity<String> updateReport(@RequestBody ProgressReportDto reportDto){
-		int number=reportService.updateReport(reportDto);
-		if(number==0) {
+	public ResponseEntity<List<ProgressReport>> updateReport(@RequestBody ProgressReportDto reportDto){
+		List<ProgressReport> report=reportService.updateReport(reportDto);
+		if(report==null) {
 			throw new ProgressReportNotFoundException("No Progress Report Found for Report Id : "+reportDto.getProgressReportId());
 		}
-		return new ResponseEntity<>("Progress Report Updated",HttpStatus.OK);
+		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
 	
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.educationsystem.dto.PaymentDto;
 import com.cg.educationsystem.entity.Payment;
 import com.cg.educationsystem.service.PaymentService;
+import com.cg.educationsystem.utils.CourseNotFoundException;
 import com.cg.educationsystem.utils.PaymentNotFoundException;
 
 @RestController
@@ -26,9 +27,12 @@ public class PaymentController {
 	PaymentService paymentService;
 	
 	@PostMapping("/addpayment")
-	public ResponseEntity<String> addPayment(@RequestBody PaymentDto paymentdto){
-		paymentService.addPayment(paymentdto);
-		return new ResponseEntity<>("Payment inserted", HttpStatus.OK);
+	public ResponseEntity<List<Payment>> addPayment(@RequestBody PaymentDto paymentdto){
+		List<Payment> payment=paymentService.addPayment(paymentdto);
+		if(payment==null) {
+			throw new CourseNotFoundException("Course not available for Id: "+paymentdto.getCourseId());
+		}
+		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
 	@GetMapping("/getallpayments")
 	public ResponseEntity<List<Payment>> getAllPayment(){
@@ -48,21 +52,21 @@ public class PaymentController {
 	}
 	
 	@DeleteMapping("/deletepayment/{paymentId}")
-	public ResponseEntity<String> deletePayment(@PathVariable int paymentId){
-		int number=paymentService.deletePayment(paymentId);
-		if(number==0) {
+	public ResponseEntity<List<Payment>> deletePayment(@PathVariable int paymentId){
+		List<Payment> payment=paymentService.deletePayment(paymentId);
+		if(payment==null) {
 			throw new PaymentNotFoundException("No payment found for payment id: "+paymentId);
 		}
-		return new ResponseEntity<>("Payment Deleted", HttpStatus.OK);
+		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
 	
 	@PutMapping("/updatepayment")
-	public ResponseEntity<String> updatePayment(@RequestBody PaymentDto paymentDto){
-		int number=paymentService.updatePayment(paymentDto);
-		if(number==0) {
+	public ResponseEntity<List<Payment>> updatePayment(@RequestBody PaymentDto paymentDto){
+		List<Payment> payment=paymentService.updatePayment(paymentDto);
+		if(payment==null) {
 			throw new PaymentNotFoundException("No payment found for payment id: "+paymentDto.getPaymentId());
 		}
-		return new ResponseEntity<>("Payment Updated", HttpStatus.OK);
+		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
 
 }

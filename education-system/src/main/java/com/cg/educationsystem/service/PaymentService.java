@@ -26,8 +26,9 @@ public class PaymentService implements IPaymentService{
 	IStudentDetailsRepository studentRepository;
 	
 	@Override
-	public void addPayment(PaymentDto paymentDto) {
-		//Optional<Course> courseOptional=courseRepository.findById(paymentDto.getCourseId());
+	public List<Payment> addPayment(PaymentDto paymentDto) {
+		Course course = courseRepository.getCourseById(paymentDto.getCourseId());
+		if(course!=null) {
 			Payment payment = new Payment();
 			payment.setPaymentId(paymentDto.getPaymentId());
 			payment.setPaymentDate(paymentDto.getPaymentDate());
@@ -35,9 +36,11 @@ public class PaymentService implements IPaymentService{
 			payment.setFeePaid(paymentDto.getFeePaid());
 			payment.setFeeStatus(paymentDto.getFeeStatus());
 			
-			Course course = courseRepository.getCourseById(paymentDto.getCourseId());
 			payment.setCourse(course);
 			paymentRepository.save(payment);
+			return paymentRepository.findAll();
+		}
+		return null;
 	}
 	@Override
 	public Payment getPaymentById(int paymentId) {
@@ -49,16 +52,16 @@ public class PaymentService implements IPaymentService{
 		return paymentRepository.findAll();
 	}
 	@Override
-	public int deletePayment(int paymentId) {
+	public List<Payment> deletePayment(int paymentId) {
 		Payment payment=paymentRepository.getPaymentById(paymentId);
 		if(payment!=null) {
 			paymentRepository.deleteById(paymentId);
-			return 1;
+			return paymentRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 	@Override
-	public int updatePayment(PaymentDto paymentDto) {
+	public List<Payment> updatePayment(PaymentDto paymentDto) {
 		Payment payment=paymentRepository.getPaymentById(paymentDto.getPaymentId());
 		Course course=courseRepository.getCourseById(paymentDto.getCourseId());
 		if(payment!=null&&course!=null) {
@@ -67,9 +70,9 @@ public class PaymentService implements IPaymentService{
 			payment.setFeePaid(paymentDto.getFeePaid());
 			payment.setFeeStatus(paymentDto.getFeeStatus());
 			payment.setCourse(course);
-			return 1;
+			return paymentRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 
 
