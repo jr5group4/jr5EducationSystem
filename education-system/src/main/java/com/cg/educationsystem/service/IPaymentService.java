@@ -11,4 +11,8 @@ public interface IPaymentService {
 	public Payment getPaymentById(int paymentId);
 	//allows admin to view all payment details
 	public List<Payment> getAllPayment();
+	
+	public int deletePayment(int paymentId);
+	
+	public int updatePayment(PaymentDto paymentDto);
 }
