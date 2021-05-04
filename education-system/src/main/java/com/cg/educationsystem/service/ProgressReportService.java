@@ -61,4 +61,20 @@ public class ProgressReportService implements IProgressReportService {
 		}
 		return 0;
 	}
+
+	@Override
+	public int updateReport(ProgressReportDto reportDto) {
+		ProgressReport progressReport=progressRepository.viewReportById(reportDto.getProgressReportId());
+		Course course=courseRepository.getCourseById(reportDto.getCourseId());
+		if(progressReport!=null&&course!=null) {
+			progressReport.setStudentMarks(reportDto.getStudentMarks());
+			progressReport.setStudentGrade(reportDto.getStudentGrade());
+			progressReport.setPresentForTest(reportDto.getPresentForTest());
+			progressReport.setStudentPercentage(reportDto.getStudentPercentage());
+			progressReport.setStudentResult(reportDto.getStudentResult());
+			progressReport.setCourse(course);
+			return 1;
+		}
+		return 0;
+	}
 }

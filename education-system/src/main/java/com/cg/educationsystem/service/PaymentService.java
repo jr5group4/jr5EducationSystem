@@ -48,6 +48,29 @@ public class PaymentService implements IPaymentService{
 	public List<Payment> getAllPayment() {
 		return paymentRepository.findAll();
 	}
+	@Override
+	public int deletePayment(int paymentId) {
+		Payment payment=paymentRepository.getPaymentById(paymentId);
+		if(payment!=null) {
+			paymentRepository.deleteById(paymentId);
+			return 1;
+		}
+		return 0;
+	}
+	@Override
+	public int updatePayment(PaymentDto paymentDto) {
+		Payment payment=paymentRepository.getPaymentById(paymentDto.getPaymentId());
+		Course course=courseRepository.getCourseById(paymentDto.getCourseId());
+		if(payment!=null&&course!=null) {
+			payment.setPaymentDate(paymentDto.getPaymentDate());
+			payment.setPaymentDue(paymentDto.getPaymentDue());
+			payment.setFeePaid(paymentDto.getFeePaid());
+			payment.setFeeStatus(paymentDto.getFeeStatus());
+			payment.setCourse(course);
+			return 1;
+		}
+		return 0;
+	}
 
 
 	

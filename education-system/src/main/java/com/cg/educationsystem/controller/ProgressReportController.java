@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -64,4 +65,14 @@ public class ProgressReportController {
 		}
 		return new ResponseEntity<>("Progress Report Deleted",HttpStatus.OK);
 	}
+	
+	@PutMapping("/updatereport")
+	public ResponseEntity<String> updateReport(@RequestBody ProgressReportDto reportDto){
+		int number=reportService.updateReport(reportDto);
+		if(number==0) {
+			throw new ProgressReportNotFoundException("No Progress Report Found for Report Id : "+reportDto.getProgressReportId());
+		}
+		return new ResponseEntity<>("Progress Report Updated",HttpStatus.OK);
+	}
+	
 }
