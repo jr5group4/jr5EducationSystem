@@ -45,5 +45,14 @@ public class CourseDto {
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
+	public CourseDto(int courseId, String courseName, int duration, Date startDate, Date endDate, int studentId) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.duration = duration;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.studentId = studentId;
+	}
 	
 }
