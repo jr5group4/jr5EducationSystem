@@ -16,4 +16,6 @@ public interface ICourseService {
 	public Course getCourseById(int courseId);
 	//allows admin and student to view all the courses
 	public List<Course> getAllCourse();
+	//allows admin to update course details
+	public int updateCourse(CourseDto courseDto);
 }

@@ -13,4 +13,8 @@ public interface ITrainerService {
 	public List<Trainer> getAllTrainer();
 	//allows admin to view individual trainer details
 	public Trainer getTrainerById(int trainerId);
+	//allows admin to delete trainer details
+	public int deleteTrainer(int trainerId);
+	//allows admin to update trainer details
+	public int updateTrainer(TrainerDto trainerDto);
 }

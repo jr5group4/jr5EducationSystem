@@ -9,14 +9,17 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.educationsystem.dto.CourseDto;
+import com.cg.educationsystem.dto.ProgressReportDto;
 import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.service.CourseService;
 import com.cg.educationsystem.utils.CourseNotFoundException;
+import com.cg.educationsystem.utils.ProgressReportNotFoundException;
 
 @RestController
 @RequestMapping("/course")
@@ -66,5 +69,14 @@ public class CourseController {
 			throw new CourseNotFoundException(string+courseId);
 		}
 		return new ResponseEntity<>(course,HttpStatus.OK);
+	}
+	
+	@PutMapping("/updatecourse")
+	public ResponseEntity<String> updateCourse(@RequestBody CourseDto courseDto){
+		int number=courseService.updateCourse(courseDto);
+		if(number==0) {
+			throw new CourseNotFoundException("No Course Found for Course Id : "+courseDto.getCourseId());
+		}
+		return new ResponseEntity<>("Course Updated",HttpStatus.OK);
 	}
 }
