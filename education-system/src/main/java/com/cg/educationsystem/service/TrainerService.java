@@ -10,6 +10,7 @@ import com.cg.educationsystem.dao.IStudentDetailsRepository;
 import com.cg.educationsystem.dao.ITrainerRepository;
 import com.cg.educationsystem.dto.TrainerDto;
 import com.cg.educationsystem.entity.Course;
+import com.cg.educationsystem.entity.ProgressReport;
 import com.cg.educationsystem.entity.StudentDetails;
 import com.cg.educationsystem.entity.Trainer;
 
@@ -23,7 +24,7 @@ public class TrainerService implements ITrainerService{
 	IStudentDetailsRepository studentRepository;
 	
 	@Override
-	public String addTrainer(TrainerDto trainerdto) {
+	public List<Trainer> addTrainer(TrainerDto trainerdto) {
 		Trainer trainer=new Trainer();
 		trainer.setTrainerId(trainerdto.getTrainerId());
 		trainer.setTrainerName(trainerdto.getTrainerName());
@@ -34,11 +35,11 @@ public class TrainerService implements ITrainerService{
 		Course course=courseRepository.getCourseById(trainerdto.getCourseId());
 		trainer.setCourse(course);
 		trainerRepository.save(trainer);
-		return null;
+		return trainerRepository.findAll();
 	}
 
 	@Override
-	public int selectTrainer(TrainerDto trainerdto) {
+	public List<Trainer> selectTrainer(TrainerDto trainerdto) {
 		Optional<Trainer> trainerOptional=trainerRepository.findById(trainerdto.getTrainerId());
 		if(trainerOptional.isPresent()) {
 			Trainer trainer=trainerOptional.get();
@@ -46,9 +47,9 @@ public class TrainerService implements ITrainerService{
 			trainer.setStudent(student);
 			
 			trainerRepository.save(trainer);
-			return 1;
+			return trainerRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
@@ -59,5 +60,35 @@ public class TrainerService implements ITrainerService{
 	@Override
 	public Trainer getTrainerById(int trainerId) {
 		return trainerRepository.getTrainerById(trainerId);
+	}
+
+	@Override
+	public List<Trainer> deleteTrainer(int trainerId) {
+		// TODO Auto-generated method stub
+		Optional<Trainer> trainerOptional=trainerRepository.findById(trainerId);
+		if(trainerOptional.isPresent()) {
+			Trainer trainer=trainerOptional.get();
+			trainerRepository.delete(trainer);
+			return trainerRepository.findAll();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Trainer> updateTrainer(TrainerDto trainerDto) {
+		// TODO Auto-generated method stub
+		Trainer trainer=trainerRepository.getTrainerById(trainerDto.getTrainerId());
+		StudentDetails studentDetails=studentRepository.getStudentDetailsById(trainerDto.getStudentId());
+		Course course=courseRepository.getCourseById(trainerDto.getCourseId());
+		if(trainer!=null) {
+			trainer.setTrainerName(trainerDto.getTrainerName());
+			trainer.setPhoneNumber(trainerDto.getPhoneNumber());
+			trainer.setTrainerExperience(trainerDto.getTrainerExperience());
+			trainer.setTrainerEmailId(trainerDto.getTrainerEmailId());
+			trainer.setStudent(studentDetails);
+			trainer.setCourse(course);
+			return trainerRepository.findAll();
+		}
+		return null;
 	}
 }

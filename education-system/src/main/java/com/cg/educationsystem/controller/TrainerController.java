@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cg.educationsystem.dto.CourseDto;
 import com.cg.educationsystem.dto.TrainerDto;
 import com.cg.educationsystem.entity.Trainer;
 import com.cg.educationsystem.service.TrainerService;
+import com.cg.educationsystem.utils.CourseNotFoundException;
 import com.cg.educationsystem.utils.TrainerNotFoundException;
 
 @RestController
@@ -25,18 +28,21 @@ public class TrainerController {
 	TrainerService trainerService;
 	
 	@PostMapping("/addtrainer")
-	public ResponseEntity<String> addTrainer(@RequestBody TrainerDto trainerdto){
-		trainerService.addTrainer(trainerdto);
-		return new ResponseEntity<>("Trainer details added",HttpStatus.OK);
+	public ResponseEntity<List<Trainer>> addTrainer(@RequestBody TrainerDto trainerdto){
+		List<Trainer> trainer=trainerService.addTrainer(trainerdto);
+		if(trainer==null) {
+			throw new TrainerNotFoundException("Trainer not available for Id: "+trainerdto.getTrainerId());
+		}
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
 	@PutMapping("/selecttrainer")
-	public ResponseEntity<String> selectTrainer(@RequestBody TrainerDto trainerdto){
-		int number=trainerService.selectTrainer(trainerdto);
-		if(number==0) {
+	public ResponseEntity<List<Trainer>> selectTrainer(@RequestBody TrainerDto trainerdto){
+		List<Trainer> trainer=trainerService.selectTrainer(trainerdto);
+		if(trainer==null) {
 			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerdto.getTrainerId());
 		}
-		return new ResponseEntity<>("Trainer Selected",HttpStatus.OK);
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getalltrainers")
@@ -53,6 +59,24 @@ public class TrainerController {
 		Trainer trainer=trainerService.getTrainerById(trainerId);
 		if(trainer==null) {
 			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerId);
+		}
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/deletetrainer/{trainerId}")
+	public ResponseEntity<List<Trainer>> deleteTrainer(@PathVariable int trainerId){
+		List<Trainer> trainer=trainerService.deleteTrainer(trainerId);
+		if(trainer==null) {
+			throw new TrainerNotFoundException("No trainer found with the specified trainer id "+trainerId);
+		}
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
+	}
+	
+	@PutMapping("/updatetrainer")
+	public ResponseEntity<List<Trainer>> updateTrainer(@RequestBody TrainerDto trainerDto){
+		List<Trainer> trainer=trainerService.updateTrainer(trainerDto);
+		if(trainer==null) {
+			throw new TrainerNotFoundException("No Trainer Found for Trainer Id : "+trainerDto.getTrainerId());
 		}
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}

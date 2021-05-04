@@ -41,4 +41,23 @@ public class MessageService implements IMessageService{
 	public List<Message> viewAllMessages() {
 		return messageRepository.findAll();
 	}
+	@Override
+	public List<Message> deleteMessage(int messageId) {
+		if(messageRepository.existsById(messageId)) {
+			messageRepository.deleteById(messageId);
+			return messageRepository.findAll();
+		}
+		return null;
+	}
+	@Override
+	public List<Message> updateMessage(MessageDto messageDto) {
+		Message message = messageRepository.viewMessageById(messageDto.getMessageId());
+		StudentDetails studentDetails = studentRepository.getStudentDetailsById(messageDto.getStudentId());
+		if(message!=null && studentDetails!=null) {
+			message.setMessageDescription(messageDto.getMessageDescription());
+			message.setStudentDetails(studentDetails);
+			return messageRepository.findAll();
+		}
+		return null;
+	}
 }

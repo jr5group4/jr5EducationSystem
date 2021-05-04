@@ -10,6 +10,7 @@ import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IStudentDetailsRepository;
 import com.cg.educationsystem.dto.CourseDto;
 import com.cg.educationsystem.entity.Course;
+import com.cg.educationsystem.entity.ProgressReport;
 import com.cg.educationsystem.entity.StudentDetails;
 
 @Service
@@ -20,31 +21,32 @@ public class CourseService implements ICourseService {
 	IStudentDetailsRepository studentDetailsRepository;
 	
 	@Override
-	public int registerCourse(CourseDto courseDto) {
+	public List<Course> registerCourse(CourseDto courseDto) {
 		Course course=courseRepository.getCourseById(courseDto.getCourseId());
 		StudentDetails student=studentDetailsRepository.getStudentDetailsById(courseDto.getStudentId());
 		if(course!=null&&student!=null) {
 			course.setStudent(student);
 			courseRepository.save(course);
-			return 1;
+			return courseRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	public void addCourseDetails(Course course) {
+	public List<Course> addCourseDetails(Course course) {
 		courseRepository.save(course);
+		return courseRepository.findAll();
 	}
 
 	@Override
-	public int deleteCourse(int courseId) {
+	public List<Course> deleteCourse(int courseId) {
 		Optional<Course> courseOptional=courseRepository.findById(courseId);
 		if(courseOptional.isPresent()) {
 			Course course=courseOptional.get();
 			courseRepository.delete(course);
-			return 1;
+			return courseRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
@@ -55,5 +57,20 @@ public class CourseService implements ICourseService {
 	@Override
 	public Course getCourseById(int courseId) {
 		return courseRepository.getCourseById(courseId);
+	}
+
+	@Override
+	public List<Course> updateCourse(CourseDto courseDto) {
+		Course course=courseRepository.getCourseById(courseDto.getCourseId());
+		StudentDetails studentDetails=studentDetailsRepository.getStudentDetailsById(courseDto.getCourseId());
+		if(course!=null) {
+			course.setCourseName(courseDto.getCourseName());
+			course.setDuration(courseDto.getDuration());
+			course.setStartDate(courseDto.getStartDate());
+			course.setEndDate(courseDto.getEndDate());
+			course.setStudent(studentDetails);
+			return courseRepository.findAll();
+		}
+		return null;
 	}
 }

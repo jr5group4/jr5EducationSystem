@@ -12,4 +12,8 @@ public interface IMessageService {
 	public Message viewMessageById(int messageId);
 	//allows admin and student to view all messages
 	public List<Message> viewAllMessages();
+	
+	public List<Message> deleteMessage(int messageId);
+	
+	public List<Message> updateMessage(MessageDto messageDto);
 }
