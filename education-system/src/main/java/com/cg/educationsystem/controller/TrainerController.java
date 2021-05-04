@@ -28,18 +28,21 @@ public class TrainerController {
 	TrainerService trainerService;
 	
 	@PostMapping("/addtrainer")
-	public ResponseEntity<String> addTrainer(@RequestBody TrainerDto trainerdto){
-		trainerService.addTrainer(trainerdto);
-		return new ResponseEntity<>("Trainer details added",HttpStatus.OK);
+	public ResponseEntity<List<Trainer>> addTrainer(@RequestBody TrainerDto trainerdto){
+		List<Trainer> trainer=trainerService.addTrainer(trainerdto);
+		if(trainer==null) {
+			throw new TrainerNotFoundException("Trainer not available for Id: "+trainerdto.getTrainerId());
+		}
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
 	@PutMapping("/selecttrainer")
-	public ResponseEntity<String> selectTrainer(@RequestBody TrainerDto trainerdto){
-		int number=trainerService.selectTrainer(trainerdto);
-		if(number==0) {
+	public ResponseEntity<List<Trainer>> selectTrainer(@RequestBody TrainerDto trainerdto){
+		List<Trainer> trainer=trainerService.selectTrainer(trainerdto);
+		if(trainer==null) {
 			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerdto.getTrainerId());
 		}
-		return new ResponseEntity<>("Trainer Selected",HttpStatus.OK);
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getalltrainers")
@@ -61,20 +64,20 @@ public class TrainerController {
 	}
 	
 	@DeleteMapping("/deletetrainer/{trainerId}")
-	public ResponseEntity<String> deleteTrainer(@PathVariable int trainerId){
-		int number=trainerService.deleteTrainer(trainerId);
-		if(number==0) {
+	public ResponseEntity<List<Trainer>> deleteTrainer(@PathVariable int trainerId){
+		List<Trainer> trainer=trainerService.deleteTrainer(trainerId);
+		if(trainer==null) {
 			throw new TrainerNotFoundException("No trainer found with the specified trainer id "+trainerId);
 		}
-		return new ResponseEntity<>("Trainer deleted",HttpStatus.OK);
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
 	@PutMapping("/updatetrainer")
-	public ResponseEntity<String> updateTrainer(@RequestBody TrainerDto trainerDto){
-		int number=trainerService.updateTrainer(trainerDto);
-		if(number==0) {
+	public ResponseEntity<List<Trainer>> updateTrainer(@RequestBody TrainerDto trainerDto){
+		List<Trainer> trainer=trainerService.updateTrainer(trainerDto);
+		if(trainer==null) {
 			throw new TrainerNotFoundException("No Trainer Found for Trainer Id : "+trainerDto.getTrainerId());
 		}
-		return new ResponseEntity<>("Trainer Updated",HttpStatus.OK);
+		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 }

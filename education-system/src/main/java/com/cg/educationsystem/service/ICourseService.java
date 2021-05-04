@@ -7,15 +7,15 @@ import com.cg.educationsystem.entity.Course;
 
 public interface ICourseService {
 	//allows student/user to register a course
-	public int registerCourse(CourseDto courseDto);
+	public List<Course> registerCourse(CourseDto courseDto);
 	//allows admin to add course details
-	public void addCourseDetails(Course course);
+	public List<Course> addCourseDetails(Course course);
 	//allows admin to delete course details
-	public int deleteCourse(int courseId);
+	public List<Course> deleteCourse(int courseId);
 	//allows admin and student to view perticular course
 	public Course getCourseById(int courseId);
 	//allows admin and student to view all the courses
 	public List<Course> getAllCourse();
 	//allows admin to update course details
-	public int updateCourse(CourseDto courseDto);
+	public List<Course> updateCourse(CourseDto courseDto);
 }

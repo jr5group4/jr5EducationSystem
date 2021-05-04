@@ -24,7 +24,7 @@ public class TrainerService implements ITrainerService{
 	IStudentDetailsRepository studentRepository;
 	
 	@Override
-	public String addTrainer(TrainerDto trainerdto) {
+	public List<Trainer> addTrainer(TrainerDto trainerdto) {
 		Trainer trainer=new Trainer();
 		trainer.setTrainerId(trainerdto.getTrainerId());
 		trainer.setTrainerName(trainerdto.getTrainerName());
@@ -35,11 +35,11 @@ public class TrainerService implements ITrainerService{
 		Course course=courseRepository.getCourseById(trainerdto.getCourseId());
 		trainer.setCourse(course);
 		trainerRepository.save(trainer);
-		return null;
+		return trainerRepository.findAll();
 	}
 
 	@Override
-	public int selectTrainer(TrainerDto trainerdto) {
+	public List<Trainer> selectTrainer(TrainerDto trainerdto) {
 		Optional<Trainer> trainerOptional=trainerRepository.findById(trainerdto.getTrainerId());
 		if(trainerOptional.isPresent()) {
 			Trainer trainer=trainerOptional.get();
@@ -47,9 +47,9 @@ public class TrainerService implements ITrainerService{
 			trainer.setStudent(student);
 			
 			trainerRepository.save(trainer);
-			return 1;
+			return trainerRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
@@ -63,19 +63,19 @@ public class TrainerService implements ITrainerService{
 	}
 
 	@Override
-	public int deleteTrainer(int trainerId) {
+	public List<Trainer> deleteTrainer(int trainerId) {
 		// TODO Auto-generated method stub
 		Optional<Trainer> trainerOptional=trainerRepository.findById(trainerId);
 		if(trainerOptional.isPresent()) {
 			Trainer trainer=trainerOptional.get();
 			trainerRepository.delete(trainer);
-			return 1;
+			return trainerRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	public int updateTrainer(TrainerDto trainerDto) {
+	public List<Trainer> updateTrainer(TrainerDto trainerDto) {
 		// TODO Auto-generated method stub
 		Trainer trainer=trainerRepository.getTrainerById(trainerDto.getTrainerId());
 		StudentDetails studentDetails=studentRepository.getStudentDetailsById(trainerDto.getStudentId());
@@ -87,8 +87,8 @@ public class TrainerService implements ITrainerService{
 			trainer.setTrainerEmailId(trainerDto.getTrainerEmailId());
 			trainer.setStudent(studentDetails);
 			trainer.setCourse(course);
-			return 1;
+			return trainerRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 }
