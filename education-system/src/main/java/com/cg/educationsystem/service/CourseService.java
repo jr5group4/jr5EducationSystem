@@ -21,11 +21,9 @@ public class CourseService implements ICourseService {
 	
 	@Override
 	public int registerCourse(CourseDto courseDto) {
-		Optional<Course> courseOptional=courseRepository.findById(courseDto.getCourseId());
-		Optional<StudentDetails> studentOptional=studentDetailsRepository.findById(courseDto.getStudentId());
-		if(courseOptional.isPresent()&&studentOptional.isPresent()) {
-			Course course=courseOptional.get();
-			StudentDetails student=studentOptional.get();
+		Course course=courseRepository.getCourseById(courseDto.getCourseId());
+		StudentDetails student=studentDetailsRepository.getStudentDetailsById(courseDto.getStudentId());
+		if(course!=null&&student!=null) {
 			course.setStudent(student);
 			courseRepository.save(course);
 			return 1;

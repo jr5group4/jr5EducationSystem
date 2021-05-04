@@ -26,17 +26,7 @@ public class StudentDetailsController {
 	StudentDetailsService studentDetailsService;
 	
 	@PostMapping("/addstudentdetails")
-	public ResponseEntity<String> addStudentDetails(@RequestParam("studentId") int studentId,
-			@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName,
-			@RequestParam("phoneNumber") long phoneNumber,@RequestParam("studentEmailId") String studentEmailId,
-			@RequestParam("dateOfBirth") Date dateOfBirth){
-		StudentDetails student=new StudentDetails();
-		student.setStudentId(studentId);
-		student.setFirstName(firstName);
-		student.setLastName(lastName);
-		student.setPhoneNumber(phoneNumber);
-		student.setStudentEmailId(studentEmailId);
-		student.setDateOfBirth(dateOfBirth);
+	public ResponseEntity<String> addStudentDetails(@RequestBody StudentDetails student){
 		studentDetailsService.addStudentDetails(student);
 		return new ResponseEntity<>("Student details added",HttpStatus.OK);
 	}

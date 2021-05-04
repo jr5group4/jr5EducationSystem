@@ -16,6 +16,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IStudentDetailsRepository;
+import com.cg.educationsystem.dto.CourseDto;
 import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.entity.Payment;
 import com.cg.educationsystem.entity.StudentDetails;
@@ -41,6 +42,24 @@ public class TestCourseService {
 	public void init() {
 		System.out.println("***before method***");
 		//MockitoAnnotations.initMocks(this);
+	}
+	@Test
+	public void testAddCourse() {
+		Course course=new Course(1,"Java",5,Date.valueOf("2020-10-10"),Date.valueOf("2021-03-10"));
+		courseService.addCourseDetails(course);
+		Mockito.verify(courseDao,Mockito.times(1)).save(course);
+	}
+	
+	@Test
+	public void testRegisterCourse() {
+		Course course=new Course(1,"Java",5,Date.valueOf("2020-10-10"),Date.valueOf("2021-03-10"));
+		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
+		CourseDto courseDto= new CourseDto(1,"Java",5,Date.valueOf("2020-10-10"),Date.valueOf("2021-03-10"),1);
+		
+		courseService.registerCourse(courseDto);
+		Mockito.when(courseDao.save(course)).thenReturn(course);
+		//Mockito.when(studentDao.getStudentDetailsById(1)).thenReturn(student);
+		Mockito.verify(courseDao,Mockito.times(1)).save(course);
 	}
 	
 	@Test
