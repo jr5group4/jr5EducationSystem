@@ -11,21 +11,44 @@ import com.cg.educationsystem.entity.StudentDetails;
 @Service
 public class StudentDetailsService implements IStudentDetailsService {
 	@Autowired
-	IStudentDetailsRepository dao;
+	IStudentDetailsRepository studentRepository;
 
 	@Override
 	public void addStudentDetails(StudentDetails student) {
-		 dao.save(student);
+		 studentRepository.save(student);
 	}
 
 	@Override
 	public List<StudentDetails> getAllStudentDetails() {
-		return dao.findAll();
+		return studentRepository.findAll();
 	}
 
 	@Override
 	public StudentDetails getStudentDetailsById(int studentId) {
-		return dao.getStudentDetailsById(studentId);
+		return studentRepository.getStudentDetailsById(studentId);
+	}
+
+	@Override
+	public List<StudentDetails> deleteStudentDetails(int studentId) {
+		if(studentRepository.existsById(studentId)) {
+			studentRepository.deleteById(studentId);
+			return studentRepository.findAll();
+		}
+		return null;
+	}
+
+	@Override
+	public List<StudentDetails> updateStudentDetails(StudentDetails studentDetails) {
+		StudentDetails student = studentRepository.getStudentDetailsById(studentDetails.getStudentId());
+		if(student!=null) {
+			student.setFirstName(studentDetails.getFirstName());
+			student.setLastName(studentDetails.getLastName());
+			student.setDateOfBirth(studentDetails.getDateOfBirth());
+			student.setPhoneNumber(studentDetails.getPhoneNumber());
+			student.setStudentEmailId(studentDetails.getStudentEmailId());
+			return studentRepository.findAll();
+		}
+		return null;
 	}
 }
 	

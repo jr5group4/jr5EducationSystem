@@ -13,4 +13,9 @@ public interface IStudentDetailsService {
 	//allows admin to view individual student details 
 	public StudentDetails getStudentDetailsById(int studentId);
 	
+	public List<StudentDetails> deleteStudentDetails(int studentId);
+	
+	public List<StudentDetails> updateStudentDetails(StudentDetails studentDetails);
+	
+	
 }

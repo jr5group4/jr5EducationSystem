@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.educationsystem.entity.Login;
 import com.cg.educationsystem.service.LoginService;
+import com.cg.educationsystem.utils.InvalidUserIdOrPasswordException;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -22,6 +23,9 @@ public class LoginController {
 	@PostMapping("/validate")
 	public ResponseEntity<Login> loginValidation(@RequestBody Login login){
 		Login newLogin=loginService.loginValidation(login.getUserId(),login.getUserPassword(),login.getRole());
+		if(newLogin==null) {
+			throw new InvalidUserIdOrPasswordException("Invalid username or password");
+		}
 		return new ResponseEntity<>(newLogin,HttpStatus.OK);
 	}
 	
