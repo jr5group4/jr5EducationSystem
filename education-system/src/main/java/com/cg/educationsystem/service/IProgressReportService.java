@@ -7,7 +7,7 @@ import com.cg.educationsystem.entity.ProgressReport;
 
 public interface IProgressReportService {
 	//allows admin to add progress report of a student based on course
-	public String addProgressReport(ProgressReportDto progressreportdto);
+	public List<ProgressReport> addProgressReport(ProgressReportDto progressreportdto);
 	//allows student/user to view progress reports of completed courses
 	public List<ProgressReport> viewAllPreviousProgressReport();
 	//allows student/user to view progress reports of ongoing courses
@@ -15,7 +15,7 @@ public interface IProgressReportService {
 	//allows student/user to view perticular report based on course
 	public ProgressReport viewProgressReportById(int progressId);
 	//allows admin to delete progress report
-	public int deleteReport(int reportId);
+	public List<ProgressReport> deleteReport(int reportId);
 	
-	public int updateReport(ProgressReportDto reportDto);
+	public List<ProgressReport> updateReport(ProgressReportDto reportDto);
 }

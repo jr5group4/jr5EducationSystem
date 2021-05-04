@@ -20,9 +20,9 @@ public class ProgressReportService implements IProgressReportService {
 	ICourseRepository courseRepository;
 
 	@Override
-	public String addProgressReport(ProgressReportDto progressreportdto) {
-		Optional<Course> courseOptional=courseRepository.findById(progressreportdto.getCourseId());
-		if(courseOptional.isPresent()) {
+	public List<ProgressReport> addProgressReport(ProgressReportDto progressreportdto) {
+		Course course=courseRepository.getCourseById(progressreportdto.getCourseId());
+		if(course!=null) {
 			ProgressReport report=new ProgressReport();
 			report.setProgressReportId(progressreportdto.getProgressReportId());
 			report.setStudentMarks(progressreportdto.getStudentMarks());
@@ -31,9 +31,9 @@ public class ProgressReportService implements IProgressReportService {
 			report.setStudentPercentage(progressreportdto.getStudentPercentage());
 			report.setStudentResult(progressreportdto.getStudentResult());
 			
-			Course course=courseOptional.get();
 			report.setCourse(course);
 			progressRepository.save(report);
+			return progressRepository.findAll();
 		}
 		return null;
 	}
@@ -54,16 +54,16 @@ public class ProgressReportService implements IProgressReportService {
 	}
 
 	@Override
-	public int deleteReport(int reportId) {
+	public List<ProgressReport> deleteReport(int reportId) {
 		if(progressRepository.existsById(reportId)) {
 			progressRepository.deleteById(reportId);
-			return 1;
+			return progressRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 
 	@Override
-	public int updateReport(ProgressReportDto reportDto) {
+	public List<ProgressReport> updateReport(ProgressReportDto reportDto) {
 		ProgressReport progressReport=progressRepository.viewReportById(reportDto.getProgressReportId());
 		Course course=courseRepository.getCourseById(reportDto.getCourseId());
 		if(progressReport!=null&&course!=null) {
@@ -73,8 +73,8 @@ public class ProgressReportService implements IProgressReportService {
 			progressReport.setStudentPercentage(reportDto.getStudentPercentage());
 			progressReport.setStudentResult(reportDto.getStudentResult());
 			progressReport.setCourse(course);
-			return 1;
+			return progressRepository.findAll();
 		}
-		return 0;
+		return null;
 	}
 }
