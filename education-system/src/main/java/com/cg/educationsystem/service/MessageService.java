@@ -29,7 +29,6 @@ public class MessageService implements IMessageService{
 			message.setMessageId(messageDto.getMessageId());
 			message.setMessageDescription(messageDto.getMessageDescription());
 			message.setStudentDetails(studentDetails);
-			messageRepository.save(message);
 			return messageRepository.findAll();
 		}
 		return null;
