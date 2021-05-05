@@ -51,4 +51,5 @@ public class Message {
 	public void setStudentDetails(StudentDetails studentDetails) {
 		this.studentDetails = studentDetails;
 	}
+	
 }
