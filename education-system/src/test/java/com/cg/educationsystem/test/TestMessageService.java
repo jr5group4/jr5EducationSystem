@@ -54,7 +54,7 @@ public class TestMessageService {
 		Message message=new Message(1,"Welcome to the course",student);
 		
 		Mockito.when(messageDao.viewMessageById(1)).thenReturn(message);
-		Message newMessage=messageService.viewMessageById(1);
+		messageService.viewMessageById(1);
 		Mockito.verify(messageDao,Mockito.times(1)).viewMessageById(1);
 	}
 	
