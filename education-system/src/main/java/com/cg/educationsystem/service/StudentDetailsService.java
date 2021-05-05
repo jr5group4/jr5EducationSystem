@@ -14,8 +14,9 @@ public class StudentDetailsService implements IStudentDetailsService {
 	IStudentDetailsRepository studentRepository;
 
 	@Override
-	public void addStudentDetails(StudentDetails student) {
+	public List<StudentDetails> addStudentDetails(StudentDetails student) {
 		 studentRepository.save(student);
+		 return studentRepository.findAll();
 	}
 
 	@Override

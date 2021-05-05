@@ -26,7 +26,7 @@ public class ProgressReportController {
 	@Autowired
 	ProgressReportService reportService;
 	
-	@PostMapping("/addreport")
+	@PostMapping("/add")
 	public ResponseEntity<List<ProgressReport>> addProgressReport(@RequestBody ProgressReportDto reportDto){
 		List<ProgressReport> report= reportService.addProgressReport(reportDto);
 		if(report==null) {
@@ -35,7 +35,7 @@ public class ProgressReportController {
 		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
 	
-	@GetMapping("/previousreport")
+	@GetMapping("/getprevious")
 	public ResponseEntity<List<ProgressReport>> viewPreviousReport(){
 		List<ProgressReport> reportList=reportService.viewAllPreviousProgressReport();
 		if(reportList.isEmpty()) {
@@ -43,7 +43,7 @@ public class ProgressReportController {
 		}
 		return new ResponseEntity<>(reportList,HttpStatus.OK);
 	}
-	@GetMapping("/currentreport")
+	@GetMapping("/getcurrent")
 	public ResponseEntity<List<ProgressReport>> viewCurrentReport(){
 		List<ProgressReport> reportList=reportService.viewAllCurrentProgressReport();
 		if(reportList.isEmpty()) {
@@ -52,7 +52,7 @@ public class ProgressReportController {
 		return new ResponseEntity<>(reportList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getreportbyid/{reportId}")
+	@GetMapping("/getbyid/{reportId}")
 	public ResponseEntity<ProgressReport> viewReportById(@PathVariable int reportId){
 		ProgressReport report=reportService.viewProgressReportById(reportId);
 		if(report==null) {
@@ -61,7 +61,7 @@ public class ProgressReportController {
 		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deletereport/{reportId}")
+	@DeleteMapping("/delete/{reportId}")
 	public ResponseEntity<List<ProgressReport>> deleteReport(@PathVariable int reportId){
 		List<ProgressReport> report=reportService.deleteReport(reportId);
 		if(report==null) {
@@ -70,7 +70,7 @@ public class ProgressReportController {
 		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
 	
-	@PutMapping("/updatereport")
+	@PutMapping("/update")
 	public ResponseEntity<List<ProgressReport>> updateReport(@RequestBody ProgressReportDto reportDto){
 		List<ProgressReport> report=reportService.updateReport(reportDto);
 		if(report==null) {

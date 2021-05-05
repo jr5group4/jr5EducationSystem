@@ -22,16 +22,17 @@ public class MessageService implements IMessageService{
 	IStudentDetailsRepository studentRepository;
 	
 	@Override
-	public void addMessage(MessageDto messageDto) {
-		Optional<StudentDetails> studentOptional=studentRepository.findById(messageDto.getStudentId());
-		Message message = new Message();
-		if(studentOptional.isPresent()) {
+	public List<Message> addMessage(MessageDto messageDto) {
+		StudentDetails studentDetails = studentRepository.getStudentDetailsById(messageDto.getStudentId());
+		if(studentDetails!=null) {
+			Message message = new Message();
 			message.setMessageId(messageDto.getMessageId());
 			message.setMessageDescription(messageDto.getMessageDescription());
-			StudentDetails student=studentOptional.get();
-			message.setStudentDetails(student);
+			message.setStudentDetails(studentDetails);
 			messageRepository.save(message);
-		}	
+			return messageRepository.findAll();
+		}
+		return null;
 	}
 	@Override
 	public Message viewMessageById(int messageId) {
@@ -43,7 +44,7 @@ public class MessageService implements IMessageService{
 	}
 	@Override
 	public List<Message> deleteMessage(int messageId) {
-		if(messageRepository.existsById(messageId)) {
+		if(messageRepository.viewMessageById(messageId)!=null) {
 			messageRepository.deleteById(messageId);
 			return messageRepository.findAll();
 		}

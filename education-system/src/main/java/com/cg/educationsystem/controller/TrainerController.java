@@ -27,7 +27,7 @@ public class TrainerController {
 	@Autowired
 	TrainerService trainerService;
 	
-	@PostMapping("/addtrainer")
+	@PostMapping("/add")
 	public ResponseEntity<List<Trainer>> addTrainer(@RequestBody TrainerDto trainerdto){
 		List<Trainer> trainer=trainerService.addTrainer(trainerdto);
 		if(trainer==null) {
@@ -36,7 +36,7 @@ public class TrainerController {
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
-	@PutMapping("/selecttrainer")
+	@PutMapping("/register")
 	public ResponseEntity<List<Trainer>> selectTrainer(@RequestBody TrainerDto trainerdto){
 		List<Trainer> trainer=trainerService.selectTrainer(trainerdto);
 		if(trainer==null) {
@@ -45,7 +45,7 @@ public class TrainerController {
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getalltrainers")
+	@GetMapping("/getall")
 	public ResponseEntity<List<Trainer>> getAllTrainer(){
 		List<Trainer> trainerList=trainerService.getAllTrainer();
 		if(trainerList.isEmpty()) {
@@ -54,7 +54,7 @@ public class TrainerController {
 		return new ResponseEntity<>(trainerList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/gettrainerbyid/{trainerId}")
+	@GetMapping("/getbyid/{trainerId}")
 	public ResponseEntity<Trainer> getTrainerById(@PathVariable int trainerId){
 		Trainer trainer=trainerService.getTrainerById(trainerId);
 		if(trainer==null) {
@@ -63,7 +63,7 @@ public class TrainerController {
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deletetrainer/{trainerId}")
+	@DeleteMapping("/delete/{trainerId}")
 	public ResponseEntity<List<Trainer>> deleteTrainer(@PathVariable int trainerId){
 		List<Trainer> trainer=trainerService.deleteTrainer(trainerId);
 		if(trainer==null) {
@@ -72,7 +72,7 @@ public class TrainerController {
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
 	}
 	
-	@PutMapping("/updatetrainer")
+	@PutMapping("/update")
 	public ResponseEntity<List<Trainer>> updateTrainer(@RequestBody TrainerDto trainerDto){
 		List<Trainer> trainer=trainerService.updateTrainer(trainerDto);
 		if(trainer==null) {

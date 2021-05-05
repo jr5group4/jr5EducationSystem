@@ -29,7 +29,7 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 	
-	@PostMapping("/registercourse")
+	@PostMapping("/register")
 	public ResponseEntity<List<Course>> registerCourse(@RequestBody CourseDto courseDto){
 		List<Course> course=courseService.registerCourse(courseDto);
 		if(course==null) {
@@ -38,13 +38,13 @@ public class CourseController {
 		return new ResponseEntity<>(course,HttpStatus.OK);
 	}
 	
-	@PostMapping("/addcourse")
+	@PostMapping("/add")
 	public ResponseEntity<List<Course>> addCourseDetails(@RequestBody Course courseNew){
 		List<Course> course=courseService.addCourseDetails(courseNew);
 		return new ResponseEntity<>(course,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deletecourse/{courseId}")
+	@DeleteMapping("/delete/{courseId}")
 	public ResponseEntity<List<Course>> deleteCourse(@PathVariable int courseId){
 		List<Course> course=courseService.deleteCourse(courseId);
 		if(course==null) {
@@ -53,7 +53,7 @@ public class CourseController {
 		return new ResponseEntity<>(course,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getallcourses")
+	@GetMapping("/getall")
 	public ResponseEntity<List<Course>> getAllCourse(){
 		List<Course> courseList=courseService.getAllCourse();
 		if(courseList.isEmpty()) {
@@ -62,7 +62,7 @@ public class CourseController {
 		return new ResponseEntity<>(courseList,HttpStatus.OK);
 	}
 	
-	@GetMapping("/getcoursebyid/{courseId}")
+	@GetMapping("/getbyid/{courseId}")
 	public ResponseEntity<Course> getCourseById(@PathVariable int courseId){
 		Course course=courseService.getCourseById(courseId);
 		if(course==null) {
@@ -71,7 +71,7 @@ public class CourseController {
 		return new ResponseEntity<>(course,HttpStatus.OK);
 	}
 	
-	@PutMapping("/updatecourse")
+	@PutMapping("/update")
 	public ResponseEntity<List<Course>> updateCourse(@RequestBody CourseDto courseDto){
 		List<Course> course=courseService.updateCourse(courseDto);
 		if(course==null) {
