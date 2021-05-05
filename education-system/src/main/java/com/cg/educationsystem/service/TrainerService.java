@@ -40,12 +40,10 @@ public class TrainerService implements ITrainerService{
 
 	@Override
 	public List<Trainer> selectTrainer(TrainerDto trainerdto) {
-		Optional<Trainer> trainerOptional=trainerRepository.findById(trainerdto.getTrainerId());
-		if(trainerOptional.isPresent()) {
-			Trainer trainer=trainerOptional.get();
-			StudentDetails student=studentRepository.getStudentDetailsById(trainerdto.getStudentId());
+		Trainer trainer=trainerRepository.getTrainerById(trainerdto.getTrainerId());
+		StudentDetails student=studentRepository.getStudentDetailsById(trainerdto.getStudentId());
+		if(trainer!=null&&student!=null) {
 			trainer.setStudent(student);
-			
 			trainerRepository.save(trainer);
 			return trainerRepository.findAll();
 		}
@@ -64,10 +62,8 @@ public class TrainerService implements ITrainerService{
 
 	@Override
 	public List<Trainer> deleteTrainer(int trainerId) {
-		// TODO Auto-generated method stub
-		Optional<Trainer> trainerOptional=trainerRepository.findById(trainerId);
-		if(trainerOptional.isPresent()) {
-			Trainer trainer=trainerOptional.get();
+		Trainer trainer=trainerRepository.getTrainerById(trainerId);
+		if(trainer!=null) {
 			trainerRepository.delete(trainer);
 			return trainerRepository.findAll();
 		}

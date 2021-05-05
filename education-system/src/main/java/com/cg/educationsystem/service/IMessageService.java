@@ -7,7 +7,7 @@ import com.cg.educationsystem.entity.Message;
 
 public interface IMessageService {
 	//allows admin to send message to student
-	public void addMessage(MessageDto messageDto);
+	public List<Message> addMessage(MessageDto messageDto);
 	//allows student/user to view message
 	public Message viewMessageById(int messageId);
 	//allows admin and student to view all messages

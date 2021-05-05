@@ -45,4 +45,9 @@ public class StockExceptionController extends ResponseEntityExceptionHandler {
 		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
 		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
  	}
+	@ExceptionHandler(InvalidUserIdOrPasswordException.class)
+	public ResponseEntity<ErrorDetails> invalidUserIdOrPassword(InvalidUserIdOrPasswordException exception,WebRequest request){
+		ErrorDetails details = new ErrorDetails(exception.getMessage(), LocalDate.now(), request.getDescription(false));
+		return new ResponseEntity<>(details, HttpStatus.NOT_FOUND);
+	}
 }
