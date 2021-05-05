@@ -96,4 +96,14 @@ public class Payment {
 	public Payment() {
 		
 	}
+
+	public Payment(int paymentId, Date paymentDate, Date paymentDue, double feePaid, String feeStatus) {
+		super();
+		this.paymentId = paymentId;
+		this.paymentDate = paymentDate;
+		this.paymentDue = paymentDue;
+		this.feePaid = feePaid;
+		this.feeStatus = feeStatus;
+	}
+	
 }

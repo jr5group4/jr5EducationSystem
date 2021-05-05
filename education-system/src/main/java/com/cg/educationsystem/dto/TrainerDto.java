@@ -51,6 +51,17 @@ public class TrainerDto {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+	public TrainerDto(int trainerId, String trainerName, long phoneNumber, int trainerExperience, String trainerEmailId,
+			int studentId, int courseId) {
+		super();
+		this.trainerId = trainerId;
+		this.trainerName = trainerName;
+		this.phoneNumber = phoneNumber;
+		this.trainerExperience = trainerExperience;
+		this.trainerEmailId = trainerEmailId;
+		this.studentId = studentId;
+		this.courseId = courseId;
+	}
 	
 	
 }

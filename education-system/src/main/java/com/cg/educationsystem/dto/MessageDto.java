@@ -22,5 +22,11 @@ public class MessageDto {
 	public void setStudentId(int studentId) {
 		this.studentId = studentId;
 	}
+	public MessageDto(int messageId, String messageDescription, int studentId) {
+		super();
+		this.messageId = messageId;
+		this.messageDescription = messageDescription;
+		this.studentId = studentId;
+	}
 	
 }

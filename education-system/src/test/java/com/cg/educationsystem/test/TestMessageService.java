@@ -14,6 +14,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.cg.educationsystem.dao.IMessageRepository;
 import com.cg.educationsystem.dao.IStudentDetailsRepository;
+import com.cg.educationsystem.dto.MessageDto;
 import com.cg.educationsystem.entity.Message;
 
 import com.cg.educationsystem.entity.StudentDetails;
@@ -34,6 +35,18 @@ public class TestMessageService {
 	
 	@Mock
 	IStudentDetailsRepository studentDetailsDao;
+	
+	@Test
+	public void testAddMessage() {
+		MessageDto messageDto=new MessageDto(1,"Welcome to the course",1);
+		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
+		
+		Message message=new Message(1,"Welcome to the course",student);
+		
+		Mockito.when(studentDetailsDao.getStudentDetailsById(messageDto.getStudentId())).thenReturn(student);
+		messageService.addMessage(messageDto);
+		Mockito.verify(messageDao,Mockito.times(1)).save(message);
+	}
 	
 	@Test
 	public void testViewMessageById() {
