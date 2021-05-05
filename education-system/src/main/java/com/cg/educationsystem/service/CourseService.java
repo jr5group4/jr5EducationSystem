@@ -40,9 +40,8 @@ public class CourseService implements ICourseService {
 
 	@Override
 	public List<Course> deleteCourse(int courseId) {
-		Optional<Course> courseOptional=courseRepository.findById(courseId);
-		if(courseOptional.isPresent()) {
-			Course course=courseOptional.get();
+		Course course=courseRepository.getCourseById(courseId);
+		if(course!=null) {
 			courseRepository.delete(course);
 			return courseRepository.findAll();
 		}
@@ -63,7 +62,7 @@ public class CourseService implements ICourseService {
 	public List<Course> updateCourse(CourseDto courseDto) {
 		Course course=courseRepository.getCourseById(courseDto.getCourseId());
 		StudentDetails studentDetails=studentDetailsRepository.getStudentDetailsById(courseDto.getCourseId());
-		if(course!=null) {
+		if(course!=null&&studentDetails!=null) {
 			course.setCourseName(courseDto.getCourseName());
 			course.setDuration(courseDto.getDuration());
 			course.setStartDate(courseDto.getStartDate());

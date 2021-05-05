@@ -29,7 +29,7 @@ public class LoginController {
 		return new ResponseEntity<>(newLogin,HttpStatus.OK);
 	}
 	
-	@PostMapping
+	@PostMapping("/add")
 	public ResponseEntity<String> addUser(@RequestBody Login login){
 		loginService.addUser(login);
 		return new ResponseEntity<>("User added",HttpStatus.OK);

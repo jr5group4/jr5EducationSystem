@@ -14,8 +14,7 @@ public class LoginService implements ILoginService {
 	ILoginRepository loginRepository;
 	@Override
 	public Login loginValidation(String userId,String userPassword,String role) {
-		Login login=loginRepository.validate(userId, userPassword,role);
-		return login;
+		return loginRepository.validate(userId, userPassword,role);
 	}
 	@Override
 	public void addUser(Login login) {

@@ -26,7 +26,7 @@ public class PaymentController {
 	@Autowired
 	PaymentService paymentService;
 	
-	@PostMapping("/addpayment")
+	@PostMapping("/add")
 	public ResponseEntity<List<Payment>> addPayment(@RequestBody PaymentDto paymentdto){
 		List<Payment> payment=paymentService.addPayment(paymentdto);
 		if(payment==null) {
@@ -34,7 +34,7 @@ public class PaymentController {
 		}
 		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
-	@GetMapping("/getallpayments")
+	@GetMapping("/getall")
 	public ResponseEntity<List<Payment>> getAllPayment(){
 		List<Payment> paymentList = paymentService.getAllPayment();
 		if(paymentList.isEmpty()) {
@@ -42,7 +42,7 @@ public class PaymentController {
 		}
 		return new ResponseEntity<>(paymentList, HttpStatus.OK);
 	}
-	@GetMapping("/getpaymentbyid/{paymentId}")
+	@GetMapping("/getbyid/{paymentId}")
 	public ResponseEntity<Payment> getPaymentById(@PathVariable int paymentId){
 		Payment payment =paymentService.getPaymentById(paymentId);
 		if(payment==null) {
@@ -51,7 +51,7 @@ public class PaymentController {
 		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deletepayment/{paymentId}")
+	@DeleteMapping("/delete/{paymentId}")
 	public ResponseEntity<List<Payment>> deletePayment(@PathVariable int paymentId){
 		List<Payment> payment=paymentService.deletePayment(paymentId);
 		if(payment==null) {
@@ -60,7 +60,7 @@ public class PaymentController {
 		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
 	
-	@PutMapping("/updatepayment")
+	@PutMapping("/update")
 	public ResponseEntity<List<Payment>> updatePayment(@RequestBody PaymentDto paymentDto){
 		List<Payment> payment=paymentService.updatePayment(paymentDto);
 		if(payment==null) {
