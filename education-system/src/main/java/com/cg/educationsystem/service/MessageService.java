@@ -44,7 +44,10 @@ public class MessageService implements IMessageService{
 	}
 	@Override
 	public List<Message> deleteMessage(int messageId) {
-		if(messageRepository.viewMessageById(messageId)!=null) {
+		Message message=messageRepository.viewMessageById(messageId);
+		if(message!=null) {
+			message.setStudentDetails(null);
+			messageRepository.save(message);
 			messageRepository.deleteById(messageId);
 			return messageRepository.findAll();
 		}

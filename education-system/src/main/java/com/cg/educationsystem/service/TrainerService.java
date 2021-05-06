@@ -64,7 +64,10 @@ public class TrainerService implements ITrainerService{
 	public List<Trainer> deleteTrainer(int trainerId) {
 		Trainer trainer=trainerRepository.getTrainerById(trainerId);
 		if(trainer!=null) {
-			trainerRepository.delete(trainer);
+			trainer.setCourse(null);
+			trainer.setStudent(null);
+			trainerRepository.save(trainer);
+			trainerRepository.deleteById(trainerId);
 			return trainerRepository.findAll();
 		}
 		return null;

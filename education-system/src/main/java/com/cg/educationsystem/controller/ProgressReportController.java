@@ -34,6 +34,14 @@ public class ProgressReportController {
 		}
 		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
+	@GetMapping("/getall")
+	public ResponseEntity<List<ProgressReport>> viewAllReport(){
+		List<ProgressReport> reportList=reportService.viewAllProgressReport();
+		if(reportList.isEmpty()) {
+			throw new ProgressReportNotFoundException("No Progress Report Available ");
+		}
+		return new ResponseEntity<>(reportList,HttpStatus.OK);
+	}
 	
 	@GetMapping("/getprevious")
 	public ResponseEntity<List<ProgressReport>> viewPreviousReport(){

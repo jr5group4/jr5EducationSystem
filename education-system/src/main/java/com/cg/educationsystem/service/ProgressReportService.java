@@ -55,7 +55,10 @@ public class ProgressReportService implements IProgressReportService {
 
 	@Override
 	public List<ProgressReport> deleteReport(int reportId) {
-		if(progressRepository.existsById(reportId)) {
+		ProgressReport report=progressRepository.viewReportById(reportId);
+		if(report!=null) {
+			report.setCourse(null);
+			progressRepository.save(report);
 			progressRepository.deleteById(reportId);
 			return progressRepository.findAll();
 		}
@@ -76,5 +79,10 @@ public class ProgressReportService implements IProgressReportService {
 			return progressRepository.findAll();
 		}
 		return null;
+	}
+
+	@Override
+	public List<ProgressReport> viewAllProgressReport() {
+		return progressRepository.findAll();
 	}
 }

@@ -17,5 +17,7 @@ public interface IProgressReportService {
 	//allows admin to delete progress report
 	public List<ProgressReport> deleteReport(int reportId);
 	
+	public List<ProgressReport> viewAllProgressReport();
+	
 	public List<ProgressReport> updateReport(ProgressReportDto reportDto);
 }
