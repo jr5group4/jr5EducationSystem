@@ -96,6 +96,5 @@ public class Trainer {
 	}
 	public void setCourse(Course course) {
 		this.course = course;
-	}
-	
+	}	
 }

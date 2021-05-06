@@ -70,6 +70,7 @@ public class CourseService implements ICourseService {
 			course.setStartDate(courseDto.getStartDate());
 			course.setEndDate(courseDto.getEndDate());
 			course.setStudent(studentDetails);
+			courseRepository.save(course);
 			return courseRepository.findAll();
 		}
 		return null;

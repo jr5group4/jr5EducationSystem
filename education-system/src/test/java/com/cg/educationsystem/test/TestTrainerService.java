@@ -42,37 +42,35 @@ public class TestTrainerService {
 		System.out.println("** before method ***");
 		//MockitoAnnotations.initMocks(this); 
 	}
+	
+	TrainerDto trainerDto=new TrainerDto(1, "Kumar", 9875642315l, 5, "kumar@gmail.com",1,1);
+	StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
+	Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
+	Trainer trainer=new Trainer(1, "Kumar", 9875642315l, 5, "kumar@gmail.com", student, course);
+	
 	@Test
 	public void testAddTrainer() {
-		/*TrainerDto trainerDto=new TrainerDto(1, "Kumar", 9875642315l, 5, "kumar@gmail.com",0,1);
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
-		Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
-		Trainer trainer=new Trainer(1, "Kumar", 9875642315l, 5, "kumar@gmail.com",null, course);
-		
-		
 		Mockito.when(courseDao.getCourseById(trainerDto.getCourseId())).thenReturn(course);
 		trainerService.addTrainer(trainerDto);
-		Mockito.verify(trainerDao,Mockito.times(1)).save(trainer);*/
+		Mockito.verify(trainerDao,Mockito.times(1)).save(trainer);
 	}
 	@Test
 	public void testSelectTrainer() {
-		/*TrainerDto trainerDto=new TrainerDto(1, "Kumar", 9875642315l, 5, "kumar@gmail.com",1,1);
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
-		Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
-		Trainer trainer=new Trainer(1, "Kumar", 9875642315l, 5, "kumar@gmail.com", student, course);
-		
 		Mockito.when(trainerDao.getTrainerById(trainerDto.getTrainerId())).thenReturn(trainer);
 		Mockito.when(studentDao.getStudentDetailsById(trainerDto.getStudentId())).thenReturn(student);
-		
 		trainerService.selectTrainer(trainerDto);
-		Mockito.verify(trainerDao,Mockito.times(1)).save(trainer);*/
+		Mockito.verify(trainerDao,Mockito.times(1)).save(trainer);
+	}
+	@Test
+	public void testDeleteTrainer() {
+		Mockito.when(trainerDao.getTrainerById(1)).thenReturn(trainer);
+		trainerService.deleteTrainer(1);
+		Mockito.verify(trainerDao,Mockito.times(1)).deleteById(1);
 	}
 	
 	@Test
 	public void testGetAllTrainer() {
 		List<Trainer> trainerList=new ArrayList<>();
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
-		Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
 		trainerList.add(new Trainer(1, "Kumar", 9875642315l, 5, "kumar@gmail.com", student, course));
 		
 		Mockito.when(trainerDao.findAll()).thenReturn(trainerList);
@@ -82,12 +80,17 @@ public class TestTrainerService {
 	}
 	@Test
 	public void testGetTrainerById() {
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
-		Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
-	    Trainer trainer=new Trainer(1, "Kumar", 9875642315l, 5, "kumar@gmail.com", student, course);
-	    
 		Mockito.when(trainerDao.getTrainerById(1)).thenReturn(trainer);
 		trainerService.getTrainerById(1);
 		Mockito.verify(trainerDao,Mockito.times(1)).getTrainerById(1);
+	}
+	
+	@Test
+	public void testUpdateTrainer() {
+		Mockito.when(courseDao.getCourseById(trainerDto.getCourseId())).thenReturn(course);
+		Mockito.when(trainerDao.getTrainerById(trainerDto.getTrainerId())).thenReturn(trainer);
+		Mockito.when(studentDao.getStudentDetailsById(trainerDto.getStudentId())).thenReturn(student);
+		trainerService.updateTrainer(trainerDto);
+		Mockito.verify(trainerDao,Mockito.times(1)).save(trainer);
 	}
 }

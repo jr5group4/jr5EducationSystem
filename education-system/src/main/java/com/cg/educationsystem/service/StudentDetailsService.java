@@ -31,7 +31,8 @@ public class StudentDetailsService implements IStudentDetailsService {
 
 	@Override
 	public List<StudentDetails> deleteStudentDetails(int studentId) {
-		if(studentRepository.existsById(studentId)) {
+		StudentDetails student=studentRepository.getStudentDetailsById(studentId);
+		if(student!=null) {
 			studentRepository.deleteById(studentId);
 			return studentRepository.findAll();
 		}
@@ -47,6 +48,7 @@ public class StudentDetailsService implements IStudentDetailsService {
 			student.setDateOfBirth(studentDetails.getDateOfBirth());
 			student.setPhoneNumber(studentDetails.getPhoneNumber());
 			student.setStudentEmailId(studentDetails.getStudentEmailId());
+			studentRepository.save(student);
 			return studentRepository.findAll();
 		}
 		return null;

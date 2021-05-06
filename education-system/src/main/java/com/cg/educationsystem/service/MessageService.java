@@ -60,6 +60,7 @@ public class MessageService implements IMessageService{
 		if(message!=null && studentDetails!=null) {
 			message.setMessageDescription(messageDto.getMessageDescription());
 			message.setStudentDetails(studentDetails);
+			messageRepository.save(message);
 			return messageRepository.findAll();
 		}
 		return null;

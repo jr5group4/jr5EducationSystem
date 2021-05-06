@@ -76,6 +76,7 @@ public class ProgressReportService implements IProgressReportService {
 			progressReport.setStudentPercentage(reportDto.getStudentPercentage());
 			progressReport.setStudentResult(reportDto.getStudentResult());
 			progressReport.setCourse(course);
+			progressRepository.save(progressReport);
 			return progressRepository.findAll();
 		}
 		return null;
