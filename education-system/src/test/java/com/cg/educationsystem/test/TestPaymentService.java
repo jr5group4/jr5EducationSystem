@@ -62,6 +62,16 @@ public class TestPaymentService {
 	}
 	
 	@Test
+	public void testDeletePayment() {
+		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
+		Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
+		Payment payment=new Payment(1,Date.valueOf("2021-01-01"),Date.valueOf("2021-01-15"),1500.00,"Paid",course);
+		
+		Mockito.when(paymentDao.getPaymentById(1)).thenReturn(payment);
+		paymentService.deletePayment(1);
+		Mockito.verify(paymentDao,Mockito.times(1)).deleteById(1);
+	}
+	@Test
 	public void testGetAllPayment() {
 		List<Payment> paymentList=new ArrayList<>();
 		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));

@@ -47,6 +47,7 @@ public class StudentDetailsService implements IStudentDetailsService {
 			student.setDateOfBirth(studentDetails.getDateOfBirth());
 			student.setPhoneNumber(studentDetails.getPhoneNumber());
 			student.setStudentEmailId(studentDetails.getStudentEmailId());
+			studentRepository.save(student);
 			return studentRepository.findAll();
 		}
 		return null;
