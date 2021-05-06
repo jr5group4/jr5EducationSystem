@@ -29,7 +29,7 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 	
-	@PostMapping("/register")
+	@PutMapping("/register")
 	public ResponseEntity<List<Course>> registerCourse(@RequestBody CourseDto courseDto){
 		List<Course> course=courseService.registerCourse(courseDto);
 		if(course==null) {
