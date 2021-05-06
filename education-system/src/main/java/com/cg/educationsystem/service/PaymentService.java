@@ -55,6 +55,8 @@ public class PaymentService implements IPaymentService{
 	public List<Payment> deletePayment(int paymentId) {
 		Payment payment=paymentRepository.getPaymentById(paymentId);
 		if(payment!=null) {
+			payment.setCourse(null);
+			paymentRepository.save(payment);
 			paymentRepository.deleteById(paymentId);
 			return paymentRepository.findAll();
 		}

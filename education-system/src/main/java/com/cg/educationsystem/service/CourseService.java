@@ -42,7 +42,9 @@ public class CourseService implements ICourseService {
 	public List<Course> deleteCourse(int courseId) {
 		Course course=courseRepository.getCourseById(courseId);
 		if(course!=null) {
-			courseRepository.delete(course);
+			course.setStudent(null);
+			courseRepository.save(course);
+			courseRepository.deleteById(courseId);
 			return courseRepository.findAll();
 		}
 		return null;
