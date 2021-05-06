@@ -36,13 +36,12 @@ public class TestMessageService {
 	@Mock
 	IStudentDetailsRepository studentDetailsDao;
 	
+	StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
+	Message message=new Message(1,"Welcome to the course",student);
+	MessageDto messageDto=new MessageDto(1,"Welcome to the course",1);
+	
 	@Test
 	public void testAddMessage() {
-		MessageDto messageDto=new MessageDto(1,"Welcome to the course",1);
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
-		
-		Message message=new Message(1,"Welcome to the course",student);
-		
 		Mockito.when(studentDetailsDao.getStudentDetailsById(messageDto.getStudentId())).thenReturn(student);
 		messageService.addMessage(messageDto);
 		Mockito.verify(messageDao,Mockito.times(1)).save(message);
@@ -50,9 +49,6 @@ public class TestMessageService {
 	
 	@Test
 	public void testViewMessageById() {
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
-		Message message=new Message(1,"Welcome to the course",student);
-		
 		Mockito.when(messageDao.viewMessageById(1)).thenReturn(message);
 		messageService.viewMessageById(1);
 		Mockito.verify(messageDao,Mockito.times(1)).viewMessageById(1);
@@ -61,12 +57,25 @@ public class TestMessageService {
 	@Test
 	public void testViewAllMessages() {
 		List<Message> messageList=new ArrayList<>();
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",987054321,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		messageList.add(new Message(1,"Welcome to the course",student));
 
 		Mockito.when(messageDao.findAll()).thenReturn(messageList);
 	    List<Message> list=messageService.viewAllMessages();
 		Assertions.assertEquals(1,list.size());
 		Mockito.verify(messageDao,Mockito.times(1)).findAll();
+	}
+	@Test
+	public void testDeleteMessage() {
+		Mockito.when(messageDao.viewMessageById(1)).thenReturn(message);
+		messageService.deleteMessage(1);
+		Mockito.verify(messageDao,Mockito.times(1)).save(message);
+	}
+	
+	@Test
+	public void testUpdateMessage() {
+		Mockito.when(messageDao.viewMessageById(messageDto.getMessageId())).thenReturn(message);
+		Mockito.when(studentDetailsDao.getStudentDetailsById(messageDto.getStudentId())).thenReturn(student);
+		messageService.updateMessage(messageDto);
+		Mockito.verify(messageDao,Mockito.times(1)).save(message);
 	}
 }

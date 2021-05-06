@@ -29,6 +29,13 @@ public class Message {
 		this.messageDescription = messageDescription;
 		this.studentDetails = studentDetails;
 	}
+	
+	public Message(int messageId, String messageDescription) {
+		super();
+		this.messageId = messageId;
+		this.messageDescription = messageDescription;
+	}
+
 	public Message() {
 		
 	}

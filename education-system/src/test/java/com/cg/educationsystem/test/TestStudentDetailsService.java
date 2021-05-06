@@ -32,11 +32,18 @@ public class TestStudentDetailsService {
 		//MockitoAnnotations.initMocks(this); 
 	}
 	
+	StudentDetails student=new StudentDetails(1,"Ajay","Kumar",9870543212l,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
+	
 	@Test
 	public void testAddStudent() {
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",9870543212l,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		studentService.addStudentDetails(student);
 		Mockito.verify(studentDao,Mockito.times(1)).save(student);
+	}
+	@Test
+	public void testDeleteStudent() {
+		Mockito.when(studentDao.getStudentDetailsById(1)).thenReturn(student);
+		studentService.deleteStudentDetails(1);
+		Mockito.verify(studentDao,Mockito.times(1)).deleteById(1);
 	}
 	
 	@Test
@@ -50,9 +57,14 @@ public class TestStudentDetailsService {
 	}
 	@Test
 	public void testGetStudentById() {
-		StudentDetails student=new StudentDetails(1,"Ajay","Kumar",9870543215l,"ajay1234@gmail.com",Date.valueOf("1995-01-01"));
 		Mockito.when(studentDao.getStudentDetailsById(1)).thenReturn(student);
 		studentService.getStudentDetailsById(1);
 		Mockito.verify(studentDao,Mockito.times(1)).getStudentDetailsById(1);
+	}
+	@Test
+	public void testUpdateStudent() {
+		Mockito.when(studentDao.getStudentDetailsById(1)).thenReturn(student);
+		studentService.updateStudentDetails(student);
+		Mockito.verify(studentDao,Mockito.times(1)).save(student);
 	}
 }
