@@ -85,6 +85,7 @@ public class TrainerService implements ITrainerService{
 			trainer.setTrainerEmailId(trainerDto.getTrainerEmailId());
 			trainer.setStudent(studentDetails);
 			trainer.setCourse(course);
+			trainerRepository.save(trainer);
 			return trainerRepository.findAll();
 		}
 		return null;
