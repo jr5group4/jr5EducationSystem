@@ -50,5 +50,16 @@ public class ProgressReportDto {
 	public void setCourseId(int courseId) {
 		this.courseId = courseId;
 	}
+	public ProgressReportDto(int progressReportId, int studentMarks, String studentGrade, String presentForTest,
+			double studentPercentage, String studentResult, int courseId) {
+		super();
+		this.progressReportId = progressReportId;
+		this.studentMarks = studentMarks;
+		this.studentGrade = studentGrade;
+		this.presentForTest = presentForTest;
+		this.studentPercentage = studentPercentage;
+		this.studentResult = studentResult;
+		this.courseId = courseId;
+	}
 	
 }
