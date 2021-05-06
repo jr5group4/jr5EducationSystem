@@ -72,7 +72,6 @@ public class TrainerService implements ITrainerService{
 
 	@Override
 	public List<Trainer> updateTrainer(TrainerDto trainerDto) {
-		// TODO Auto-generated method stub
 		Trainer trainer=trainerRepository.getTrainerById(trainerDto.getTrainerId());
 		StudentDetails studentDetails=studentRepository.getStudentDetailsById(trainerDto.getStudentId());
 		Course course=courseRepository.getCourseById(trainerDto.getCourseId());

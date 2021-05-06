@@ -78,6 +78,15 @@ public class Course {
 	}
 	
 
+	public Course(int courseId, String courseName, int duration, Date startDate, Date endDate) {
+		super();
+		this.courseId = courseId;
+		this.courseName = courseName;
+		this.duration = duration;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
 	public Course(int courseId, String courseName, int duration, Date startDate, Date endDate, StudentDetails student) {
 		this.courseId = courseId;
 		this.courseName = courseName;

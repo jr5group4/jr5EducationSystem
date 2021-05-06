@@ -61,7 +61,7 @@ public class CourseService implements ICourseService {
 	@Override
 	public List<Course> updateCourse(CourseDto courseDto) {
 		Course course=courseRepository.getCourseById(courseDto.getCourseId());
-		StudentDetails studentDetails=studentDetailsRepository.getStudentDetailsById(courseDto.getCourseId());
+		StudentDetails studentDetails=studentDetailsRepository.getStudentDetailsById(courseDto.getStudentId());
 		if(course!=null&&studentDetails!=null) {
 			course.setCourseName(courseDto.getCourseName());
 			course.setDuration(courseDto.getDuration());

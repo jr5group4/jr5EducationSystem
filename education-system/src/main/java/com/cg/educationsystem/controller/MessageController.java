@@ -28,12 +28,12 @@ public class MessageController {
 	MessageService messageService;
 	
 	@PostMapping("/add")
-	public ResponseEntity<String> addMessage(@RequestBody MessageDto message){
+	public ResponseEntity<List<Message>> addMessage(@RequestBody MessageDto message){
 		List<Message> messageList = messageService.addMessage(message);
 		if(messageList==null) {
 			throw new StudentDetailsNotFoundException("No student available for id: "+message.getStudentId());
 		}
-		return new ResponseEntity<>("Message added", HttpStatus.OK);
+		return new ResponseEntity<>(messageList, HttpStatus.OK);
 	}
 	@GetMapping("/getall")
 	public ResponseEntity<List<Message>> viewAllMessage(){
