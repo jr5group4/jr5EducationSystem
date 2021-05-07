@@ -1,6 +1,5 @@
 package com.cg.educationsystem.controller;
 
-import java.rmi.StubNotFoundException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

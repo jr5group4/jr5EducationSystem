@@ -1,7 +1,6 @@
 package com.cg.educationsystem.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IStudentDetailsRepository;
 import com.cg.educationsystem.dto.CourseDto;
 import com.cg.educationsystem.entity.Course;
-import com.cg.educationsystem.entity.ProgressReport;
 import com.cg.educationsystem.entity.StudentDetails;
 
 @Service

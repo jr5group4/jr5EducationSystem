@@ -15,11 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.educationsystem.dto.CourseDto;
-import com.cg.educationsystem.dto.ProgressReportDto;
 import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.service.CourseService;
 import com.cg.educationsystem.utils.CourseNotFoundException;
-import com.cg.educationsystem.utils.ProgressReportNotFoundException;
 
 @RestController
 @RequestMapping("/course")

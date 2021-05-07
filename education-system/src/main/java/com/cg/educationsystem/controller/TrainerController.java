@@ -14,11 +14,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.educationsystem.dto.CourseDto;
 import com.cg.educationsystem.dto.TrainerDto;
 import com.cg.educationsystem.entity.Trainer;
 import com.cg.educationsystem.service.TrainerService;
-import com.cg.educationsystem.utils.CourseNotFoundException;
 import com.cg.educationsystem.utils.TrainerNotFoundException;
 
 @RestController
