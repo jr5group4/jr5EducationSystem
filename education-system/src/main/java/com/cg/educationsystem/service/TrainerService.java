@@ -1,4 +1,5 @@
 package com.cg.educationsystem.service;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class TrainerService implements ITrainerService{
 			trainerRepository.save(trainer);
 			return trainerRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class TrainerService implements ITrainerService{
 			trainerRepository.save(trainer);
 			return trainerRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class TrainerService implements ITrainerService{
 			trainerRepository.deleteById(trainerId);
 			return trainerRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -89,6 +90,6 @@ public class TrainerService implements ITrainerService{
 			trainerRepository.save(trainer);
 			return trainerRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 }

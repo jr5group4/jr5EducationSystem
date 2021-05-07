@@ -1,5 +1,6 @@
 package com.cg.educationsystem.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ public class ProgressReportService implements IProgressReportService {
 			progressRepository.save(report);
 			return progressRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class ProgressReportService implements IProgressReportService {
 			progressRepository.deleteById(reportId);
 			return progressRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -78,7 +79,7 @@ public class ProgressReportService implements IProgressReportService {
 			progressRepository.save(progressReport);
 			return progressRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override

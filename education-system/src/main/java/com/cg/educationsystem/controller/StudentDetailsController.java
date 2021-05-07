@@ -25,6 +25,8 @@ public class StudentDetailsController {
 	@Autowired
 	StudentDetailsService studentDetailsService;
 	
+	String string="No student details available";
+	
 	@PostMapping("/add")
 	public ResponseEntity<List<StudentDetails>> addStudentDetails(@RequestBody StudentDetails student){
 		List<StudentDetails> studentDetailsList=studentDetailsService.addStudentDetails(student);
@@ -35,7 +37,7 @@ public class StudentDetailsController {
 	public ResponseEntity<List<StudentDetails>> getAllStudentDetails(){
 		List<StudentDetails> studentDetailsList=studentDetailsService.getAllStudentDetails();
 		if(studentDetailsList.isEmpty()) {
-			throw new StudentDetailsNotFoundException("No student details available");
+			throw new StudentDetailsNotFoundException(string);
 		}
 		return new ResponseEntity<>(studentDetailsList,HttpStatus.OK);
 	}
@@ -44,23 +46,23 @@ public class StudentDetailsController {
 	public ResponseEntity<StudentDetails> getStudentDetailsById(@PathVariable int studentId) {
 		StudentDetails studentDetails=studentDetailsService.getStudentDetailsById(studentId);
 		if(studentDetails==null) {
-			throw new StudentDetailsNotFoundException("No student found for student id: "+studentId);
+			throw new StudentDetailsNotFoundException(string+"id :"+studentId);
 		}
 		return new ResponseEntity<>(studentDetails,HttpStatus.OK);
 	}
 	@DeleteMapping("/delete/{studentId}")
 	public ResponseEntity<List<StudentDetails>> deleteStudent(@PathVariable int studentId) {
 		List<StudentDetails> studentDetailsList=studentDetailsService.deleteStudentDetails(studentId);
-	if(studentDetailsList==null) {
-		throw new StudentDetailsNotFoundException("No student details available");
+	if(studentDetailsList.isEmpty()) {
+		throw new StudentDetailsNotFoundException(string);
 	}
 	return new ResponseEntity<>(studentDetailsList,HttpStatus.OK);
 	}
 	@PutMapping("/update")
 	public ResponseEntity<List<StudentDetails>> updateStudentDetails(@RequestBody StudentDetails student){
 		List<StudentDetails> studentDetailsList=studentDetailsService.addStudentDetails(student);
-		if(studentDetailsList==null) {
-			throw new StudentDetailsNotFoundException("No student details available");
+		if(studentDetailsList.isEmpty()) {
+			throw new StudentDetailsNotFoundException(string);
 		}
 		return new ResponseEntity<>(studentDetailsList,HttpStatus.OK);
 	}

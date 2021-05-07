@@ -1,5 +1,6 @@
 package com.cg.educationsystem.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class StudentDetailsService implements IStudentDetailsService {
 			studentRepository.deleteById(studentId);
 			return studentRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class StudentDetailsService implements IStudentDetailsService {
 			studentRepository.save(student);
 			return studentRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 }
 	

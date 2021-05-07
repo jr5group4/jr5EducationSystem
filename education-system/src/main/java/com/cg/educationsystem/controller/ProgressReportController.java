@@ -26,10 +26,12 @@ public class ProgressReportController {
 	@Autowired
 	ProgressReportService reportService;
 	
+	String string="No Progress Report Available ";
+	
 	@PostMapping("/add")
 	public ResponseEntity<List<ProgressReport>> addProgressReport(@RequestBody ProgressReportDto reportDto){
 		List<ProgressReport> report= reportService.addProgressReport(reportDto);
-		if(report==null) {
+		if(report.isEmpty()) {
 			throw new CourseNotFoundException("Course not available for Id: "+reportDto.getCourseId());
 		}
 		return new ResponseEntity<>(report,HttpStatus.OK);
@@ -38,7 +40,7 @@ public class ProgressReportController {
 	public ResponseEntity<List<ProgressReport>> viewAllReport(){
 		List<ProgressReport> reportList=reportService.viewAllProgressReport();
 		if(reportList.isEmpty()) {
-			throw new ProgressReportNotFoundException("No Progress Report Available ");
+			throw new ProgressReportNotFoundException(string);
 		}
 		return new ResponseEntity<>(reportList,HttpStatus.OK);
 	}
@@ -47,7 +49,7 @@ public class ProgressReportController {
 	public ResponseEntity<List<ProgressReport>> viewPreviousReport(){
 		List<ProgressReport> reportList=reportService.viewAllPreviousProgressReport();
 		if(reportList.isEmpty()) {
-			throw new ProgressReportNotFoundException("No Progress Report Available ");
+			throw new ProgressReportNotFoundException(string);
 		}
 		return new ResponseEntity<>(reportList,HttpStatus.OK);
 	}
@@ -55,7 +57,7 @@ public class ProgressReportController {
 	public ResponseEntity<List<ProgressReport>> viewCurrentReport(){
 		List<ProgressReport> reportList=reportService.viewAllCurrentProgressReport();
 		if(reportList.isEmpty()) {
-			throw new ProgressReportNotFoundException("No Progress Report Available ");
+			throw new ProgressReportNotFoundException(string);
 		}
 		return new ResponseEntity<>(reportList,HttpStatus.OK);
 	}
@@ -64,7 +66,7 @@ public class ProgressReportController {
 	public ResponseEntity<ProgressReport> viewReportById(@PathVariable int reportId){
 		ProgressReport report=reportService.viewProgressReportById(reportId);
 		if(report==null) {
-			throw new ProgressReportNotFoundException("No Progress Report Found for Report Id : "+reportId);
+			throw new ProgressReportNotFoundException(string+"id :"+reportId);
 		}
 		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
@@ -72,8 +74,8 @@ public class ProgressReportController {
 	@DeleteMapping("/delete/{reportId}")
 	public ResponseEntity<List<ProgressReport>> deleteReport(@PathVariable int reportId){
 		List<ProgressReport> report=reportService.deleteReport(reportId);
-		if(report==null) {
-			throw new ProgressReportNotFoundException("No Progress Report Found for Report Id : "+reportId);
+		if(report.isEmpty()) {
+			throw new ProgressReportNotFoundException(string+"id :"+reportId);
 		}
 		return new ResponseEntity<>(report,HttpStatus.OK);
 	}
@@ -81,8 +83,8 @@ public class ProgressReportController {
 	@PutMapping("/update")
 	public ResponseEntity<List<ProgressReport>> updateReport(@RequestBody ProgressReportDto reportDto){
 		List<ProgressReport> report=reportService.updateReport(reportDto);
-		if(report==null) {
-			throw new ProgressReportNotFoundException("No Progress Report Found for Report Id : "+reportDto.getProgressReportId());
+		if(report.isEmpty()) {
+			throw new ProgressReportNotFoundException(string+"id :"+reportDto.getProgressReportId());
 		}
 		return new ResponseEntity<>(report,HttpStatus.OK);
 	}

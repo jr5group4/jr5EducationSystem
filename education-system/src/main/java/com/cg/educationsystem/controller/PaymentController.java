@@ -26,10 +26,12 @@ public class PaymentController {
 	@Autowired
 	PaymentService paymentService;
 	
+	String string="No payment found for payment id: ";
+	
 	@PostMapping("/add")
 	public ResponseEntity<List<Payment>> addPayment(@RequestBody PaymentDto paymentdto){
 		List<Payment> payment=paymentService.addPayment(paymentdto);
-		if(payment==null) {
+		if(payment.isEmpty()) {
 			throw new CourseNotFoundException("Course not available for Id: "+paymentdto.getCourseId());
 		}
 		return new ResponseEntity<>(payment, HttpStatus.OK);
@@ -46,7 +48,7 @@ public class PaymentController {
 	public ResponseEntity<Payment> getPaymentById(@PathVariable int paymentId){
 		Payment payment =paymentService.getPaymentById(paymentId);
 		if(payment==null) {
-			throw new PaymentNotFoundException("No payment found for payment id: "+paymentId);
+			throw new PaymentNotFoundException(string+paymentId);
 		}
 		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
@@ -54,8 +56,8 @@ public class PaymentController {
 	@DeleteMapping("/delete/{paymentId}")
 	public ResponseEntity<List<Payment>> deletePayment(@PathVariable int paymentId){
 		List<Payment> payment=paymentService.deletePayment(paymentId);
-		if(payment==null) {
-			throw new PaymentNotFoundException("No payment found for payment id: "+paymentId);
+		if(payment.isEmpty()) {
+			throw new PaymentNotFoundException(string+paymentId);
 		}
 		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}
@@ -63,8 +65,8 @@ public class PaymentController {
 	@PutMapping("/update")
 	public ResponseEntity<List<Payment>> updatePayment(@RequestBody PaymentDto paymentDto){
 		List<Payment> payment=paymentService.updatePayment(paymentDto);
-		if(payment==null) {
-			throw new PaymentNotFoundException("No payment found for payment id: "+paymentDto.getPaymentId());
+		if(payment.isEmpty()) {
+			throw new PaymentNotFoundException(string+paymentDto.getPaymentId());
 		}
 		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}

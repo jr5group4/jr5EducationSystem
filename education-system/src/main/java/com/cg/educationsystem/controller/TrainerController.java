@@ -28,7 +28,7 @@ public class TrainerController {
 	@PostMapping("/add")
 	public ResponseEntity<List<Trainer>> addTrainer(@RequestBody TrainerDto trainerdto){
 		List<Trainer> trainer=trainerService.addTrainer(trainerdto);
-		if(trainer==null) {
+		if(trainer.isEmpty()) {
 			throw new TrainerNotFoundException("Trainer not available for Id: "+trainerdto.getTrainerId());
 		}
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
@@ -37,7 +37,7 @@ public class TrainerController {
 	@PutMapping("/register")
 	public ResponseEntity<List<Trainer>> selectTrainer(@RequestBody TrainerDto trainerdto){
 		List<Trainer> trainer=trainerService.selectTrainer(trainerdto);
-		if(trainer==null) {
+		if(trainer.isEmpty()) {
 			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerdto.getTrainerId());
 		}
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
@@ -64,7 +64,7 @@ public class TrainerController {
 	@DeleteMapping("/delete/{trainerId}")
 	public ResponseEntity<List<Trainer>> deleteTrainer(@PathVariable int trainerId){
 		List<Trainer> trainer=trainerService.deleteTrainer(trainerId);
-		if(trainer==null) {
+		if(trainer.isEmpty()) {
 			throw new TrainerNotFoundException("No trainer found with the specified trainer id "+trainerId);
 		}
 		return new ResponseEntity<>(trainer,HttpStatus.OK);
@@ -73,7 +73,7 @@ public class TrainerController {
 	@PutMapping("/update")
 	public ResponseEntity<List<Trainer>> updateTrainer(@RequestBody TrainerDto trainerDto){
 		List<Trainer> trainer=trainerService.updateTrainer(trainerDto);
-		if(trainer==null) {
+		if(trainer.isEmpty()) {
 			throw new TrainerNotFoundException("No Trainer Found for Trainer Id : "+trainerDto.getTrainerId());
 		}
 		return new ResponseEntity<>(trainer,HttpStatus.OK);

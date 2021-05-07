@@ -26,10 +26,12 @@ public class MessageController {
 	@Autowired
 	MessageService messageService;
 	
+	String string="No message found for message id: ";
+	
 	@PostMapping("/add")
 	public ResponseEntity<List<Message>> addMessage(@RequestBody MessageDto message){
 		List<Message> messageList = messageService.addMessage(message);
-		if(messageList==null) {
+		if(messageList.isEmpty()) {
 			throw new StudentDetailsNotFoundException("No student available for id: "+message.getStudentId());
 		}
 		return new ResponseEntity<>(messageList, HttpStatus.OK);
@@ -46,7 +48,7 @@ public class MessageController {
 	public ResponseEntity<Message> viewMessageById(@PathVariable int messageId){
 		Message message = messageService.viewMessageById(messageId);
 		if(message==null) {
-			throw new MessageNotFoundException("No message found for message id: "+messageId);
+			throw new MessageNotFoundException(string+messageId);
 		}
 		return new ResponseEntity<>(message, HttpStatus.OK);
 		
@@ -54,16 +56,16 @@ public class MessageController {
 	@DeleteMapping("/delete/{messageId}")
 	public ResponseEntity<List<Message>> deleteMessage(@PathVariable int messageId){
 		List<Message> message = messageService.deleteMessage(messageId);
-		if(message==null) {
-			throw new MessageNotFoundException("No message found for message id: "+messageId);
+		if(message.isEmpty()) {
+			throw new MessageNotFoundException(string+messageId);
 		}
 		return new ResponseEntity<>(message,HttpStatus.OK);
 	}
 	@PutMapping("/update")
 	public ResponseEntity<List<Message>> updateMessage(@RequestBody MessageDto message){
 		List<Message> messageList = messageService.updateMessage(message);
-		if(messageList==null) {
-			throw new MessageNotFoundException("No message found for message id: "+message.getMessageId());
+		if(messageList.isEmpty()) {
+			throw new MessageNotFoundException(string+message.getMessageId());
 		}
 		return new ResponseEntity<>(messageList, HttpStatus.OK);
 	}

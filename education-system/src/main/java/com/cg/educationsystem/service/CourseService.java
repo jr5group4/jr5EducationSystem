@@ -1,10 +1,9 @@
 package com.cg.educationsystem.service;
 
+import java.util.Collections;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IStudentDetailsRepository;
 import com.cg.educationsystem.dto.CourseDto;
@@ -27,7 +26,7 @@ public class CourseService implements ICourseService {
 			courseRepository.save(course);
 			return courseRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class CourseService implements ICourseService {
 			courseRepository.deleteById(courseId);
 			return courseRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 	@Override
@@ -71,6 +70,6 @@ public class CourseService implements ICourseService {
 			courseRepository.save(course);
 			return courseRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 }

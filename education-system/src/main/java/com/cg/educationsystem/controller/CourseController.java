@@ -30,7 +30,7 @@ public class CourseController {
 	@PutMapping("/register")
 	public ResponseEntity<List<Course>> registerCourse(@RequestBody CourseDto courseDto){
 		List<Course> course=courseService.registerCourse(courseDto);
-		if(course==null) {
+		if(course.isEmpty()) {
 			throw new CourseNotFoundException(string+courseDto.getCourseId());
 		}
 		return new ResponseEntity<>(course,HttpStatus.OK);
@@ -45,7 +45,7 @@ public class CourseController {
 	@DeleteMapping("/delete/{courseId}")
 	public ResponseEntity<List<Course>> deleteCourse(@PathVariable int courseId){
 		List<Course> course=courseService.deleteCourse(courseId);
-		if(course==null) {
+		if(course.isEmpty()) {
 			throw new CourseNotFoundException(string+courseId);
 		}
 		return new ResponseEntity<>(course,HttpStatus.OK);
@@ -72,7 +72,7 @@ public class CourseController {
 	@PutMapping("/update")
 	public ResponseEntity<List<Course>> updateCourse(@RequestBody CourseDto courseDto){
 		List<Course> course=courseService.updateCourse(courseDto);
-		if(course==null) {
+		if(course.isEmpty()) {
 			throw new CourseNotFoundException("No Course Found for Course Id : "+courseDto.getCourseId());
 		}
 		return new ResponseEntity<>(course,HttpStatus.OK);

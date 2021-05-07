@@ -1,10 +1,10 @@
 package com.cg.educationsystem.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IPaymentRepository;
@@ -38,7 +38,7 @@ public class PaymentService implements IPaymentService{
 			paymentRepository.save(payment);
 			return paymentRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 	@Override
 	public Payment getPaymentById(int paymentId) {
@@ -58,7 +58,7 @@ public class PaymentService implements IPaymentService{
 			paymentRepository.deleteById(paymentId);
 			return paymentRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 	@Override
 	public List<Payment> updatePayment(PaymentDto paymentDto) {
@@ -73,7 +73,7 @@ public class PaymentService implements IPaymentService{
 			paymentRepository.save(payment);
 			return paymentRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 

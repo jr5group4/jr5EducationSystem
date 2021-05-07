@@ -1,5 +1,6 @@
 package com.cg.educationsystem.service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class MessageService implements IMessageService{
 			messageRepository.save(message);
 			return messageRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 	@Override
 	public Message viewMessageById(int messageId) {
@@ -50,7 +51,7 @@ public class MessageService implements IMessageService{
 			messageRepository.deleteById(messageId);
 			return messageRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 	@Override
 	public List<Message> updateMessage(MessageDto messageDto) {
@@ -62,6 +63,6 @@ public class MessageService implements IMessageService{
 			messageRepository.save(message);
 			return messageRepository.findAll();
 		}
-		return null;
+		return Collections.emptyList();
 	}
 }
