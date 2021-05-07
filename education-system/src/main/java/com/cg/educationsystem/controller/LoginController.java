@@ -13,7 +13,6 @@ import com.cg.educationsystem.entity.Login;
 import com.cg.educationsystem.service.LoginService;
 import com.cg.educationsystem.utils.InvalidUserIdOrPasswordException;
 
-@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/login")
 public class LoginController {
