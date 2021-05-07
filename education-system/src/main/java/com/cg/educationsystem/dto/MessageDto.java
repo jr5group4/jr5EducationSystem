@@ -25,6 +25,12 @@ public class MessageDto {
 	public MessageDto() {
 		
 	}
+	
+	public MessageDto(int messageId, String messageDescription) {
+		super();
+		this.messageId = messageId;
+		this.messageDescription = messageDescription;
+	}
 	public MessageDto(int messageId, String messageDescription, int studentId) {
 		super();
 		this.messageId = messageId;

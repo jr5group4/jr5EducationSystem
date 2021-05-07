@@ -1,6 +1,5 @@
 package com.cg.educationsystem.service;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import com.cg.educationsystem.dao.IStudentDetailsRepository;
 import com.cg.educationsystem.dao.ITrainerRepository;
 import com.cg.educationsystem.dto.TrainerDto;
 import com.cg.educationsystem.entity.Course;
-import com.cg.educationsystem.entity.ProgressReport;
 import com.cg.educationsystem.entity.StudentDetails;
 import com.cg.educationsystem.entity.Trainer;
 
@@ -25,17 +23,20 @@ public class TrainerService implements ITrainerService{
 	
 	@Override
 	public List<Trainer> addTrainer(TrainerDto trainerdto) {
-		Trainer trainer=new Trainer();
-		trainer.setTrainerId(trainerdto.getTrainerId());
-		trainer.setTrainerName(trainerdto.getTrainerName());
-		trainer.setTrainerEmailId(trainerdto.getTrainerEmailId());
-		trainer.setPhoneNumber(trainerdto.getPhoneNumber());
-		trainer.setTrainerExperience(trainerdto.getTrainerExperience());
-		
 		Course course=courseRepository.getCourseById(trainerdto.getCourseId());
-		trainer.setCourse(course);
-		trainerRepository.save(trainer);
-		return trainerRepository.findAll();
+		if(course!=null) {
+			Trainer trainer=new Trainer();
+			trainer.setTrainerId(trainerdto.getTrainerId());
+			trainer.setTrainerName(trainerdto.getTrainerName());
+			trainer.setTrainerEmailId(trainerdto.getTrainerEmailId());
+			trainer.setPhoneNumber(trainerdto.getPhoneNumber());
+			trainer.setTrainerExperience(trainerdto.getTrainerExperience());
+	
+			trainer.setCourse(course);
+			trainerRepository.save(trainer);
+			return trainerRepository.findAll();
+		}
+		return null;
 	}
 
 	@Override
