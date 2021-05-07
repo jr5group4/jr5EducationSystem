@@ -16,7 +16,6 @@ import com.cg.educationsystem.entity.Payment;
 
 
 @Service
-@Transactional
 public class PaymentService implements IPaymentService{
 	@Autowired
 	IPaymentRepository paymentRepository;
