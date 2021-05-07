@@ -41,13 +41,6 @@ public class TestMessageService {
 	MessageDto messageDto=new MessageDto(1,"Welcome to the course",1);
 	
 	@Test
-	public void testAddMessage() {
-		Mockito.when(studentDetailsDao.getStudentDetailsById(messageDto.getStudentId())).thenReturn(student);
-		messageService.addMessage(messageDto);
-		Mockito.verify(messageDao,Mockito.times(1)).save(message);
-	}
-	
-	@Test
 	public void testViewMessageById() {
 		Mockito.when(messageDao.viewMessageById(1)).thenReturn(message);
 		messageService.viewMessageById(1);

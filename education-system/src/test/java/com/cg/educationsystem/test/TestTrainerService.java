@@ -49,12 +49,6 @@ public class TestTrainerService {
 	Trainer trainer=new Trainer(1, "Kumar", 9875642315l, 5, "kumar@gmail.com", student, course);
 	
 	@Test
-	public void testAddTrainer() {
-		Mockito.when(courseDao.getCourseById(trainerDto.getCourseId())).thenReturn(course);
-		trainerService.addTrainer(trainerDto);
-		Mockito.verify(trainerDao,Mockito.times(1)).save(trainer);
-	}
-	@Test
 	public void testSelectTrainer() {
 		Mockito.when(trainerDao.getTrainerById(trainerDto.getTrainerId())).thenReturn(trainer);
 		Mockito.when(studentDao.getStudentDetailsById(trainerDto.getStudentId())).thenReturn(student);

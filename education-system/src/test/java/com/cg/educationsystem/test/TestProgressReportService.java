@@ -46,14 +46,6 @@ public class TestProgressReportService {
 	ProgressReportDto reportDto=new ProgressReportDto(1,520,"B","Present",80.00,"Pass",1);
 	
 	@Test
-	public void testAddReport() {
-		Mockito.when(courseDao.getCourseById(reportDto.getCourseId())).thenReturn(course);
-		reportService.addProgressReport(reportDto);
-		Mockito.verify(reportDao,Mockito.times(1)).save(report);
-		Mockito.verify(reportDao,Mockito.times(1)).findAll();
-		
-	}
-	@Test
 	public void testDeleteReport() {
 		Mockito.when(reportDao.viewReportById(1)).thenReturn(report);
 		reportService.deleteReport(1);

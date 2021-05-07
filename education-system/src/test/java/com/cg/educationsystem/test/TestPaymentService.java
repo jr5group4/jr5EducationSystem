@@ -55,13 +55,6 @@ public class TestPaymentService {
 	Payment payment=new Payment(1,Date.valueOf("2021-01-01"),Date.valueOf("2021-01-15"),1500.00,"Paid",course);
 	
 	@Test
-	public void testAddPayment() {
-		Mockito.when(courseDao.getCourseById(paymentDto.getCourseId())).thenReturn(course);
-		paymentService.addPayment(paymentDto);
-		Mockito.verify(paymentDao,Mockito.times(1)).save(payment);
-	}
-	
-	@Test
 	public void testDeletePayment() {
 		Mockito.when(paymentDao.getPaymentById(1)).thenReturn(payment);
 		paymentService.deletePayment(1);
