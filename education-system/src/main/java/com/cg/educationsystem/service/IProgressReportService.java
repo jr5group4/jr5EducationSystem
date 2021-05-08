@@ -12,12 +12,12 @@ public interface IProgressReportService {
 	public List<ProgressReport> viewAllPreviousProgressReport();
 	//allows student/user to view progress reports of ongoing courses
 	public List<ProgressReport> viewAllCurrentProgressReport();
-	//allows student/user to view perticular report based on course
+	//allows student/user to view particular report based on course
 	public ProgressReport viewProgressReportById(int progressId);
 	//allows admin to delete progress report
 	public List<ProgressReport> deleteReport(int reportId);
-	
+	//allows student/user to view all progress reports
 	public List<ProgressReport> viewAllProgressReport();
-	
+	//allows admin to update progress reports
 	public List<ProgressReport> updateReport(ProgressReportDto reportDto);
 }
