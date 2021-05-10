@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.cg.educationsystem.service.PaymentService;
 import com.cg.educationsystem.utils.CourseNotFoundException;
 import com.cg.educationsystem.utils.PaymentNotFoundException;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/payment")
 public class PaymentController {
@@ -54,7 +56,7 @@ public class PaymentController {
 	}
 	
 	@DeleteMapping("/delete/{paymentId}")
-	public ResponseEntity<List<Payment>> deletePayment(@PathVariable int paymentId){
+	public ResponseEntity<List<Payment>> deletePayment(@PathVariable("paymentId") int paymentId){
 		List<Payment> payment=paymentService.deletePayment(paymentId);
 		if(payment.isEmpty()) {
 			throw new PaymentNotFoundException(string+paymentId);
