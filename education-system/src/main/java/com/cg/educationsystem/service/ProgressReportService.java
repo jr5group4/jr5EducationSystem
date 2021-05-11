@@ -39,13 +39,13 @@ public class ProgressReportService implements IProgressReportService {
 	}
 
 	@Override
-	public List<ProgressReport> viewAllPreviousProgressReport() {
-		return progressRepository.viewAllPreviousReport();
+	public List<ProgressReport> viewAllPreviousProgressReport(int studentId) {
+		return progressRepository.viewAllPreviousReport(studentId);
 	}
 
 	@Override
-	public List<ProgressReport> viewAllCurrentProgressReport() {
-		return progressRepository.viewAllCurrentReport();
+	public List<ProgressReport> viewAllCurrentProgressReport(int studentId) {
+		return progressRepository.viewAllCurrentReport(studentId);
 	}
 
 	@Override

@@ -9,9 +9,9 @@ public interface IProgressReportService {
 	//allows admin to add progress report of a student based on course
 	public List<ProgressReport> addProgressReport(ProgressReportDto progressreportdto);
 	//allows student/user to view progress reports of completed courses
-	public List<ProgressReport> viewAllPreviousProgressReport();
+	public List<ProgressReport> viewAllPreviousProgressReport(int studentId);
 	//allows student/user to view progress reports of ongoing courses
-	public List<ProgressReport> viewAllCurrentProgressReport();
+	public List<ProgressReport> viewAllCurrentProgressReport(int studentId);
 	//allows student/user to view particular report based on course
 	public ProgressReport viewProgressReportById(int progressId);
 	//allows admin to delete progress report

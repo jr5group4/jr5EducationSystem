@@ -10,10 +10,10 @@ import com.cg.educationsystem.entity.ProgressReport;
 
 @Repository
 public interface IProgressReportRepository extends JpaRepository<ProgressReport, Integer> {
-	@Query(value = "from ProgressReport report where report.course.endDate<current_date")
-	public List<ProgressReport> viewAllPreviousReport();
-	@Query(value = "from ProgressReport report where report.course.endDate>current_date")
-	public List<ProgressReport> viewAllCurrentReport();
+	@Query(value = "from ProgressReport report where report.course.endDate<current_date and report.course.student.studentId=?1")
+	public List<ProgressReport> viewAllPreviousReport(int studentId);
+	@Query(value = "from ProgressReport report where report.course.endDate>current_date and report.course.student.studentId=?1")
+	public List<ProgressReport> viewAllCurrentReport(int studentId);
 	@Query(value = "from ProgressReport report where report.progressReportId=?1")
 	public ProgressReport viewReportById(int progressId);
 }

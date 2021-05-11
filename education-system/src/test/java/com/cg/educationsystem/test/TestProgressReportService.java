@@ -63,9 +63,9 @@ public class TestProgressReportService {
 		List<ProgressReport> reportList=new ArrayList<ProgressReport>();
 		reportList.add(new ProgressReport(1,520,"B","Present",80,"Pass",course));
 		
-		Mockito.when(reportDao.viewAllCurrentReport()).thenReturn(reportList);
-		reportService.viewAllCurrentProgressReport();
-		Mockito.verify(reportDao,Mockito.times(1)).viewAllCurrentReport();
+		Mockito.when(reportDao.viewAllCurrentReport(1)).thenReturn(reportList);
+		reportService.viewAllCurrentProgressReport(1);
+		Mockito.verify(reportDao,Mockito.times(1)).viewAllCurrentReport(1);
 	}
 	
 	@Test
@@ -73,9 +73,9 @@ public class TestProgressReportService {
 		List<ProgressReport> reportList=new ArrayList<ProgressReport>();
 		reportList.add(new ProgressReport(1,520,"B","Present",80,"Pass",course));
 
-		Mockito.when(reportDao.viewAllPreviousReport()).thenReturn(reportList);
-		reportService.viewAllPreviousProgressReport();
-		Mockito.verify(reportDao,Mockito.times(1)).viewAllPreviousReport();
+		Mockito.when(reportDao.viewAllPreviousReport(1)).thenReturn(reportList);
+		reportService.viewAllPreviousProgressReport(1);
+		Mockito.verify(reportDao,Mockito.times(1)).viewAllPreviousReport(1);
 	}
 	
 	@Test
