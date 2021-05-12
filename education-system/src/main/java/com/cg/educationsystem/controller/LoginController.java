@@ -23,9 +23,9 @@ public class LoginController {
 	@PostMapping("/validate")
 	public ResponseEntity<Login> loginValidation(@RequestBody Login login){
 		Login newLogin=loginService.loginValidation(login.getUserId(),login.getUserPassword(),login.getRole());
-		if(newLogin==null) {
+		/*if(newLogin==null) {
 			throw new InvalidUserIdOrPasswordException("Invalid username or password");
-		}
+		}*/
 		return new ResponseEntity<>(newLogin,HttpStatus.OK);
 	}
 	
