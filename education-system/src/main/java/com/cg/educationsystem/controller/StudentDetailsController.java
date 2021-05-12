@@ -23,7 +23,7 @@ import com.cg.educationsystem.utils.StudentDetailsNotFoundException;
 @RestController
 @RequestMapping("/student")
 public class StudentDetailsController {
-	
+
 	@Autowired
 	StudentDetailsService studentDetailsService;
 	
