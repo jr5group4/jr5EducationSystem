@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IProgressReportRepository;
+import com.cg.educationsystem.dao.IStudentDetailsRepository;
 import com.cg.educationsystem.dto.ProgressReportDto;
 import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.entity.ProgressReport;
+import com.cg.educationsystem.entity.StudentDetails;
 
 @Service
 public class ProgressReportService implements IProgressReportService {
@@ -18,11 +20,14 @@ public class ProgressReportService implements IProgressReportService {
 	IProgressReportRepository progressRepository;
 	@Autowired
 	ICourseRepository courseRepository;
-
+	@Autowired
+	IStudentDetailsRepository studentRepository;
+	
 	@Override
 	public List<ProgressReport> addProgressReport(ProgressReportDto progressreportdto) {
 		Course course=courseRepository.getCourseById(progressreportdto.getCourseId());
-		if(course!=null) {
+		StudentDetails student=studentRepository.getStudentDetailsById(progressreportdto.getStudentId());
+		if(course!=null&&student!=null) {
 			ProgressReport report=new ProgressReport();
 			report.setProgressReportId(progressreportdto.getProgressReportId());
 			report.setStudentMarks(progressreportdto.getStudentMarks());
@@ -32,6 +37,7 @@ public class ProgressReportService implements IProgressReportService {
 			report.setStudentResult(progressreportdto.getStudentResult());
 			
 			report.setCourse(course);
+			report.setStudent(student);
 			progressRepository.save(report);
 			return progressRepository.findAll();
 		}
@@ -58,6 +64,7 @@ public class ProgressReportService implements IProgressReportService {
 		ProgressReport report=progressRepository.viewReportById(reportId);
 		if(report!=null) {
 			report.setCourse(null);
+			report.setStudent(null);
 			progressRepository.save(report);
 			progressRepository.deleteById(reportId);
 			return progressRepository.findAll();
@@ -69,13 +76,16 @@ public class ProgressReportService implements IProgressReportService {
 	public List<ProgressReport> updateReport(ProgressReportDto reportDto) {
 		ProgressReport progressReport=progressRepository.viewReportById(reportDto.getProgressReportId());
 		Course course=courseRepository.getCourseById(reportDto.getCourseId());
-		if(progressReport!=null&&course!=null) {
+		StudentDetails student=studentRepository.getStudentDetailsById(reportDto.getStudentId());
+		if(progressReport!=null&&course!=null&&student!=null) {
 			progressReport.setStudentMarks(reportDto.getStudentMarks());
 			progressReport.setStudentGrade(reportDto.getStudentGrade());
 			progressReport.setPresentForTest(reportDto.getPresentForTest());
 			progressReport.setStudentPercentage(reportDto.getStudentPercentage());
 			progressReport.setStudentResult(reportDto.getStudentResult());
+			
 			progressReport.setCourse(course);
+			progressReport.setStudent(student);
 			progressRepository.save(progressReport);
 			return progressRepository.findAll();
 		}

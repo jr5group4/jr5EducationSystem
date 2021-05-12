@@ -36,6 +36,16 @@ public class ProgressReport {
 	@JoinColumn(name="courseId")
 	private Course course;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="studentId")
+	private StudentDetails student;
+	
+	public StudentDetails getStudent() {
+		return student;
+	}
+	public void setStudent(StudentDetails student) {
+		this.student = student;
+	}
 	public int getProgressReportId() {
 		return progressReportId;
 	}
