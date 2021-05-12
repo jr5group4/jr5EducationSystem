@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.service.CourseService;
 import com.cg.educationsystem.utils.CourseNotFoundException;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/course")
 public class CourseController {
@@ -43,7 +45,7 @@ public class CourseController {
 	}
 	
 	@DeleteMapping("/delete/{courseId}")
-	public ResponseEntity<List<Course>> deleteCourse(@PathVariable int courseId){
+	public ResponseEntity<List<Course>> deleteCourse(@PathVariable("courseId") int courseId){
 		List<Course> course=courseService.deleteCourse(courseId);
 		if(course.isEmpty()) {
 			throw new CourseNotFoundException(string+courseId);
