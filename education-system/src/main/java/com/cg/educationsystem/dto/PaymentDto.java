@@ -8,6 +8,14 @@ public class PaymentDto {
 	private double feePaid;
 	private String feeStatus;
 	private int courseId;
+	private int studentId;
+	
+	public int getStudentId() {
+		return studentId;
+	}
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
+	}
 	public int getPaymentId() {
 		return paymentId;
 	}
