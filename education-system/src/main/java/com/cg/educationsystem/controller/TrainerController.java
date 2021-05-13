@@ -23,7 +23,6 @@ import com.cg.educationsystem.utils.TrainerNotFoundException;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/trainer")
-
 public class TrainerController {
 	@Autowired
 	TrainerService trainerService;
