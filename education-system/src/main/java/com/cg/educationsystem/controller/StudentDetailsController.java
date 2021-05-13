@@ -45,7 +45,7 @@ public class StudentDetailsController {
 	}
 	
 	@GetMapping("/getbyid/{studentId}")
-	public ResponseEntity<StudentDetails> getStudentDetailsById(@PathVariable int studentId) {
+	public ResponseEntity<StudentDetails> getStudentDetailsById(@PathVariable("studentId") int studentId) {
 		StudentDetails studentDetails=studentDetailsService.getStudentDetailsById(studentId);
 		if(studentDetails==null) {
 			throw new StudentDetailsNotFoundException(string+"id :"+studentId);
