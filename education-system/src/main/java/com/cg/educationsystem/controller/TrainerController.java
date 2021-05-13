@@ -24,6 +24,7 @@ import com.cg.educationsystem.utils.TrainerNotFoundException;
 @RestController
 @RequestMapping("/trainer")
 
+
 public class TrainerController {
 	@Autowired
 	TrainerService trainerService;
