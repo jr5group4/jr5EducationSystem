@@ -55,7 +55,7 @@ public class TrainerController {
 	}
 	
 	@GetMapping("/getbyid/{trainerId}")
-	public ResponseEntity<Trainer> getTrainerById(@PathVariable int trainerId){
+	public ResponseEntity<Trainer> getTrainerById(@PathVariable("trainerId") int trainerId){
 		Trainer trainer=trainerService.getTrainerById(trainerId);
 		if(trainer==null) {
 			throw new TrainerNotFoundException("No Trainer found for trainer Id : "+trainerId);

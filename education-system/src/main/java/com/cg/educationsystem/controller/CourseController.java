@@ -63,7 +63,7 @@ public class CourseController {
 	}
 	
 	@GetMapping("/getbyid/{courseId}")
-	public ResponseEntity<Course> getCourseById(@PathVariable int courseId){
+	public ResponseEntity<Course> getCourseById(@PathVariable("courseId") int courseId){
 		Course course=courseService.getCourseById(courseId);
 		if(course==null) {
 			throw new CourseNotFoundException(string+courseId);
