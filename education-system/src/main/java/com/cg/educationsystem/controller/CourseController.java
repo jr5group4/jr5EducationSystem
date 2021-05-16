@@ -29,11 +29,11 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 	
-	@PutMapping("/register")
-	public ResponseEntity<List<Course>> registerCourse(@RequestBody CourseDto courseDto){
-		List<Course> course=courseService.registerCourse(courseDto);
+	@PutMapping("/register/{courseId}/{studentId}")
+	public ResponseEntity<List<Course>> registerCourse(@PathVariable int courseId,@PathVariable int  studentId){
+		List<Course> course=courseService.registerCourse(courseId,studentId);
 		if(course.isEmpty()) {
-			throw new CourseNotFoundException(string+courseDto.getCourseId());
+			throw new CourseNotFoundException(string+courseId);
 		}
 		return new ResponseEntity<>(course,HttpStatus.OK);
 	}
@@ -56,6 +56,23 @@ public class CourseController {
 	@GetMapping("/getall")
 	public ResponseEntity<List<Course>> getAllCourse(){
 		List<Course> courseList=courseService.getAllCourse();
+		if(courseList.isEmpty()) {
+			throw new CourseNotFoundException("No course available ");
+		}
+		return new ResponseEntity<>(courseList,HttpStatus.OK);
+	}
+	@GetMapping("/getallupcomming")
+	public ResponseEntity<List<Course>> getAllUpcommingCourses(){
+		List<Course> courseList=courseService.getAllUpcommingCourses();
+		if(courseList.isEmpty()) {
+			throw new CourseNotFoundException("No course available ");
+		}
+		return new ResponseEntity<>(courseList,HttpStatus.OK);
+	}
+	
+	@GetMapping("/getallregistered/{studentId}")
+	public ResponseEntity<List<Course>> getAllRegisteredCourses(@PathVariable int studentId){
+		List<Course> courseList=courseService.getAllRegisteredCourse(studentId);
 		if(courseList.isEmpty()) {
 			throw new CourseNotFoundException("No course available ");
 		}

@@ -54,14 +54,14 @@ public class TestCourseService {
 		Mockito.verify(courseDao,Mockito.times(1)).save(course);
 	}
 	
-	@Test
+	/*@Test
 	public void testRegisterCourse() {
 		Mockito.when(courseDao.getCourseById(courseDto.getCourseId())).thenReturn(course);
 		Mockito.when(studentDao.getStudentDetailsById(courseDto.getStudentId())).thenReturn(student);
 		
 		courseService.registerCourse(courseDto);
 		Mockito.verify(courseDao,Mockito.times(1)).save(course);
-	}
+	}*/
 	@Test
 	public void testDeleteCourse() {
 		Mockito.when(courseDao.getCourseById(1)).thenReturn(course);

@@ -41,9 +41,9 @@ public class TrainerService implements ITrainerService{
 	}
 
 	@Override
-	public List<Trainer> selectTrainer(TrainerDto trainerdto) {
-		Trainer trainer=trainerRepository.getTrainerById(trainerdto.getTrainerId());
-		StudentDetails student=studentRepository.getStudentDetailsById(trainerdto.getStudentId());
+	public List<Trainer> selectTrainer(int trainerId,int studentId) {
+		Trainer trainer=trainerRepository.getTrainerById(trainerId);
+		StudentDetails student=studentRepository.getStudentDetailsById(trainerId);
 		if(trainer!=null&&student!=null) {
 			trainer.setStudent(student);
 			trainerRepository.save(trainer);
@@ -91,5 +91,15 @@ public class TrainerService implements ITrainerService{
 			return trainerRepository.findAll();
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Trainer> getTrainerByCourse(int courseId) {
+		List<Trainer> trainerList= trainerRepository.getTrainerByCourse(courseId);
+		for(Trainer trainer:trainerList) {
+			if(trainer.getStudent()!=null)
+				return Collections.emptyList();
+		}
+		return trainerList;
 	}
 }

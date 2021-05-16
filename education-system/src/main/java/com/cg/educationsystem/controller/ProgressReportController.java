@@ -48,7 +48,7 @@ public class ProgressReportController {
 	}
 	
 	@GetMapping("/getprevious/{studentId}")
-	public ResponseEntity<List<ProgressReport>> viewPreviousReport(@PathVariable int studentId){
+	public ResponseEntity<List<ProgressReport>> viewPreviousReport(@PathVariable("studentId") int studentId){
 		List<ProgressReport> reportList=reportService.viewAllPreviousProgressReport(studentId);
 		if(reportList.isEmpty()) {
 			throw new ProgressReportNotFoundException(string);
@@ -56,7 +56,7 @@ public class ProgressReportController {
 		return new ResponseEntity<>(reportList,HttpStatus.OK);
 	}
 	@GetMapping("/getcurrent/{studentId}")
-	public ResponseEntity<List<ProgressReport>> viewCurrentReport(@PathVariable int studentId){
+	public ResponseEntity<List<ProgressReport>> viewCurrentReport(@PathVariable("studentId") int studentId){
 		List<ProgressReport> reportList=reportService.viewAllCurrentProgressReport(studentId);
 		if(reportList.isEmpty()) {
 			throw new ProgressReportNotFoundException(string);

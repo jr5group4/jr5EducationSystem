@@ -46,11 +46,11 @@ public class PaymentController {
 		}
 		return new ResponseEntity<>(paymentList, HttpStatus.OK);
 	}
-	@GetMapping("/getbyid/{paymentId}")
-	public ResponseEntity<Payment> getPaymentById(@PathVariable int paymentId){
-		Payment payment =paymentService.getPaymentById(paymentId);
+	@GetMapping("/getbyid/{studentId}")
+	public ResponseEntity<Payment> getPaymentById(@PathVariable("studentId") int studentId){
+		Payment payment =paymentService.getPaymentById(studentId);
 		if(payment==null) {
-			throw new PaymentNotFoundException(string+paymentId);
+			throw new PaymentNotFoundException(string+studentId);
 		}
 		return new ResponseEntity<>(payment, HttpStatus.OK);
 	}

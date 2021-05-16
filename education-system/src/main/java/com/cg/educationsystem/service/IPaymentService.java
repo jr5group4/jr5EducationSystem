@@ -8,7 +8,7 @@ public interface IPaymentService {
 	//allows user to add payment details of a student based on course
 	public List<Payment> addPayment(PaymentDto paymentDto);
 	//allows student/user to view payment details
-	public Payment getPaymentById(int paymentId);
+	public Payment getPaymentById(int studentId);
 	//allows user to view all payment details
 	public List<Payment> getAllPayment();
 	//allows user to delete payment details

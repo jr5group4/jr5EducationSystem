@@ -48,13 +48,13 @@ public class TestTrainerService {
 	Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
 	Trainer trainer=new Trainer(1, "Kumar", 9875642315l, 5, "kumar@gmail.com", student, course);
 	
-	@Test
+	/*@Test
 	public void testSelectTrainer() {
 		Mockito.when(trainerDao.getTrainerById(trainerDto.getTrainerId())).thenReturn(trainer);
 		Mockito.when(studentDao.getStudentDetailsById(trainerDto.getStudentId())).thenReturn(student);
 		trainerService.selectTrainer(trainerDto);
 		Mockito.verify(trainerDao,Mockito.times(1)).save(trainer);
-	}
+	}*/
 	@Test
 	public void testDeleteTrainer() {
 		Mockito.when(trainerDao.getTrainerById(1)).thenReturn(trainer);

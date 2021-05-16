@@ -18,9 +18,9 @@ public class CourseService implements ICourseService {
 	IStudentDetailsRepository studentDetailsRepository;
 	
 	@Override
-	public List<Course> registerCourse(CourseDto courseDto) {
-		Course course=courseRepository.getCourseById(courseDto.getCourseId());
-		StudentDetails student=studentDetailsRepository.getStudentDetailsById(courseDto.getStudentId());
+	public List<Course> registerCourse(int courseId,int studentId) {
+		Course course=courseRepository.getCourseById(courseId);
+		StudentDetails student=studentDetailsRepository.getStudentDetailsById(studentId);
 		if(course!=null&&student!=null) {
 			course.setStudent(student);
 			courseRepository.save(course);
@@ -71,5 +71,15 @@ public class CourseService implements ICourseService {
 			return courseRepository.findAll();
 		}
 		return Collections.emptyList();
+	}
+
+	@Override
+	public List<Course> getAllUpcommingCourses() {
+		return courseRepository.getAllUpcommingCourses();
+	}
+
+	@Override
+	public List<Course> getAllRegisteredCourse(int studentId) {
+		return courseRepository.getAllRegisteredCourses(studentId);
 	}
 }

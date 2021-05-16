@@ -44,9 +44,9 @@ public class PaymentService implements IPaymentService{
 		return Collections.emptyList();
 	}
 	@Override
-	public Payment getPaymentById(int paymentId) {
+	public Payment getPaymentById(int studentId) {
 		
-		return paymentRepository.getPaymentById(paymentId);
+		return paymentRepository.getPaymentById(studentId);
 	}
 	@Override
 	public List<Payment> getAllPayment() {

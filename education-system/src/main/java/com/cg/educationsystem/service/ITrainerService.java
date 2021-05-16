@@ -8,9 +8,11 @@ public interface ITrainerService {
 	//allows admin to add trainer details
 	public List<Trainer> addTrainer(TrainerDto trainerdto);
 	//allows student/user to register trainer based on course
-	public List<Trainer> selectTrainer(TrainerDto trainerdto);
+	public List<Trainer> selectTrainer(int trainerId,int studentId);
 	//allows admin to view all trainer details
 	public List<Trainer> getAllTrainer();
+	
+	public List<Trainer> getTrainerByCourse(int courseId);
 	//allows admin to view individual trainer details
 	public Trainer getTrainerById(int trainerId);
 	//allows admin to delete trainer details
