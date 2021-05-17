@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import com.cg.educationsystem.service.MessageService;
 import com.cg.educationsystem.utils.MessageNotFoundException;
 import com.cg.educationsystem.utils.StudentDetailsNotFoundException;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/message")
 public class MessageController {
@@ -54,7 +56,7 @@ public class MessageController {
 		
 	}
 	@DeleteMapping("/delete/{messageId}")
-	public ResponseEntity<List<Message>> deleteMessage(@PathVariable int messageId){
+	public ResponseEntity<List<Message>> deleteMessage(@PathVariable("messageId") int messageId){
 		List<Message> message = messageService.deleteMessage(messageId);
 		if(message.isEmpty()) {
 			throw new MessageNotFoundException(string+messageId);
