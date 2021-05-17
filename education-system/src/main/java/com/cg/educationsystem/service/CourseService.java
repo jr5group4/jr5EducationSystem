@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.cg.educationsystem.dao.ICourseRepository;
 import com.cg.educationsystem.dao.IStudentDetailsRepository;
+import com.cg.educationsystem.dao.ITrainerRepository;
 import com.cg.educationsystem.dto.CourseDto;
 import com.cg.educationsystem.entity.Course;
 import com.cg.educationsystem.entity.StudentDetails;
+import com.cg.educationsystem.entity.Trainer;
 
 @Service
 public class CourseService implements ICourseService {
@@ -16,6 +18,8 @@ public class CourseService implements ICourseService {
 	ICourseRepository courseRepository;
 	@Autowired
 	IStudentDetailsRepository studentDetailsRepository;
+	@Autowired
+	ITrainerRepository trainerRepository;
 	
 	@Override
 	public List<Course> registerCourse(int courseId,int studentId) {
@@ -80,6 +84,25 @@ public class CourseService implements ICourseService {
 
 	@Override
 	public List<Course> getAllRegisteredCourse(int studentId) {
-		return courseRepository.getAllRegisteredCourses(studentId);
+		List<Course> courseList= courseRepository.getAllRegisteredCourses(studentId);
+		for(Course course:courseList) {
+			List<Trainer> trainerList=trainerRepository.getTrainerByCourse(course.getCourseId());
+			if(trainerList.isEmpty()) {
+				courseList.remove(course);
+			}
+		}
+		return courseList;
+	}
+
+	@Override
+	public List<Course> getAllOngoingCourses(int studentId) {
+		List<Course> courseList= courseRepository.getAllOngoingCourses(studentId);
+		for(Course course:courseList) {
+			List<Trainer> trainerList=trainerRepository.getTrainerByCourse(course.getCourseId());
+			if(!trainerList.isEmpty()) {
+				courseList.remove(course);
+			}
+		}
+		return courseList;
 	}
 }

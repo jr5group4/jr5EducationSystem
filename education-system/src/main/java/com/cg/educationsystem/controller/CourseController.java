@@ -79,6 +79,15 @@ public class CourseController {
 		return new ResponseEntity<>(courseList,HttpStatus.OK);
 	}
 	
+	@GetMapping("/getallongoing/{studentId}")
+	public ResponseEntity<List<Course>> getAllOngoingCourses(@PathVariable int studentId){
+		List<Course> courseList=courseService.getAllOngoingCourses(studentId);
+		if(courseList.isEmpty()) {
+			throw new CourseNotFoundException("No course available ");
+		}
+		return new ResponseEntity<>(courseList,HttpStatus.OK);
+	}
+	
 	@GetMapping("/getbyid/{courseId}")
 	public ResponseEntity<Course> getCourseById(@PathVariable("courseId") int courseId){
 		Course course=courseService.getCourseById(courseId);

@@ -12,6 +12,6 @@ import com.cg.educationsystem.entity.Trainer;
 public interface ITrainerRepository extends JpaRepository<Trainer,Integer>{
 	@Query(value = "from Trainer trainer where trainer.trainerId=?1")
 	public Trainer getTrainerById(int trainerId);
-	@Query(value = "from Trainer trainer where trainer.course.courseId=?1")
+	@Query(value = "from Trainer trainer where trainer.course.courseId=?1 and trainer.student=null")
 	public List<Trainer> getTrainerByCourse(int courseId);
 }
