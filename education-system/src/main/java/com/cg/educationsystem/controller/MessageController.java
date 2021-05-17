@@ -23,7 +23,7 @@ import com.cg.educationsystem.utils.StudentDetailsNotFoundException;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/message") 
 public class MessageController {
 	@Autowired
 	MessageService messageService;
