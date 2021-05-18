@@ -47,9 +47,9 @@ public class StudentDetailsController {
 	@GetMapping("/getbyid/{studentId}")
 	public ResponseEntity<StudentDetails> getStudentDetailsById(@PathVariable("studentId") int studentId) {
 		StudentDetails studentDetails=studentDetailsService.getStudentDetailsById(studentId);
-		if(studentDetails==null) {
+		/*if(studentDetails==null) {
 			throw new StudentDetailsNotFoundException(string+"id :"+studentId);
-		}
+		}*/
 		return new ResponseEntity<>(studentDetails,HttpStatus.OK);
 	}
 	@DeleteMapping("/delete/{studentId}")

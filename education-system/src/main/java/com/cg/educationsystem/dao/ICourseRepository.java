@@ -17,5 +17,7 @@ public interface ICourseRepository extends JpaRepository<Course, Integer> {
 	@Query(value="from Course course where course.startDate>current_date and course.student.studentId=?1")
 	public List<Course> getAllRegisteredCourses(int studentId);
 	@Query(value="from Course course where course.endDate>current_date and course.student.studentId=?1")
-	public List<Course> getAllOngoingCourses(int studentId);      
+	public List<Course> getAllOngoingCourses(int studentId);  
+	@Query(value="from Course course where course.endDate<current_date and course.student.studentId=?1")
+	public List<Course> completedCourses(int studentId);
 }

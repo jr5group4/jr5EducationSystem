@@ -55,13 +55,13 @@ public class ProgressReportService implements IProgressReportService {
 	}
 
 	@Override
-	public ProgressReport viewProgressReportById(int progressId) {
-		return progressRepository.viewReportById(progressId);
+	public ProgressReport viewProgressReportById(int studentId,int courseId) {
+		return progressRepository.viewReportById(studentId,courseId);
 	}
 
 	@Override
 	public List<ProgressReport> deleteReport(int reportId) {
-		ProgressReport report=progressRepository.viewReportById(reportId);
+		ProgressReport report=progressRepository.findById(reportId).get();
 		if(report!=null) {
 			report.setCourse(null);
 			report.setStudent(null);
@@ -74,7 +74,7 @@ public class ProgressReportService implements IProgressReportService {
 
 	@Override
 	public List<ProgressReport> updateReport(ProgressReportDto reportDto) {
-		ProgressReport progressReport=progressRepository.viewReportById(reportDto.getProgressReportId());
+		ProgressReport progressReport=progressRepository.findById(reportDto.getProgressReportId()).get();
 		Course course=courseRepository.getCourseById(reportDto.getCourseId());
 		StudentDetails student=studentRepository.getStudentDetailsById(reportDto.getStudentId());
 		if(progressReport!=null&&course!=null&&student!=null) {

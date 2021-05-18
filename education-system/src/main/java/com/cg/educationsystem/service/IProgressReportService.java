@@ -13,7 +13,7 @@ public interface IProgressReportService {
 	//allows student/user to view progress reports of ongoing courses
 	public List<ProgressReport> viewAllCurrentProgressReport(int studentId);
 	//allows student/user to view particular report based on course
-	public ProgressReport viewProgressReportById(int progressId);
+	public ProgressReport viewProgressReportById(int studentId,int courseId);
 	//allows admin to delete progress report
 	public List<ProgressReport> deleteReport(int reportId);
 	//allows student/user to view all progress reports

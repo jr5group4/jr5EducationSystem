@@ -44,9 +44,9 @@ public class PaymentService implements IPaymentService{
 		return Collections.emptyList();
 	}
 	@Override
-	public Payment getPaymentById(int studentId) {
+	public List<Payment> getPaymentById(int studentId,int courseId) {
 		
-		return paymentRepository.getPaymentById(studentId);
+		return paymentRepository.getPaymentById(studentId,courseId);
 	}
 	@Override
 	public List<Payment> getAllPayment() {
@@ -54,7 +54,7 @@ public class PaymentService implements IPaymentService{
 	}
 	@Override
 	public List<Payment> deletePayment(int paymentId) {
-		Payment payment=paymentRepository.getPaymentById(paymentId);
+		Payment payment=paymentRepository.findById(paymentId).get();
 		if(payment!=null) {
 			payment.setCourse(null);
 			payment.setStudent(null);
@@ -66,7 +66,7 @@ public class PaymentService implements IPaymentService{
 	}
 	@Override
 	public List<Payment> updatePayment(PaymentDto paymentDto) {
-		Payment payment=paymentRepository.getPaymentById(paymentDto.getPaymentId());
+		Payment payment=paymentRepository.findById(paymentDto.getPaymentId()).get();
 		Course course=courseRepository.getCourseById(paymentDto.getCourseId());
 		StudentDetails student=studentRepository.getStudentDetailsById(paymentDto.getStudentId());
 		if(payment!=null&&course!=null&&student!=null) {

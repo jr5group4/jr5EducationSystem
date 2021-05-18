@@ -54,12 +54,12 @@ public class TestPaymentService {
 	Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
 	Payment payment=new Payment(1,Date.valueOf("2021-01-01"),Date.valueOf("2021-01-15"),1500.00,"Paid",course);
 	
-	@Test
+	/*@Test
 	public void testDeletePayment() {
 		Mockito.when(paymentDao.getPaymentById(1)).thenReturn(payment);
 		paymentService.deletePayment(1);
 		Mockito.verify(paymentDao,Mockito.times(1)).deleteById(1);
-	}
+	}*/
 	@Test
 	public void testGetAllPayment() {
 		List<Payment> paymentList=new ArrayList<>();
@@ -71,7 +71,7 @@ public class TestPaymentService {
 		Mockito.verify(paymentDao,Mockito.times(1)).findAll();
 	}
 	
-	@Test
+	/*@Test
 	public void testGetPaymentById() {
 		Mockito.when(paymentDao.getPaymentById(1)).thenReturn(payment);
 		paymentService.getPaymentById(1);
@@ -84,5 +84,5 @@ public class TestPaymentService {
 		paymentService.updatePayment(paymentDto);
 		Mockito.verify(paymentDao,Mockito.times(1)).save(payment);
 		
-	}
+	}*/
 }

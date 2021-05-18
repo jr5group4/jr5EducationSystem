@@ -64,27 +64,33 @@ public class CourseController {
 	@GetMapping("/getallupcomming")
 	public ResponseEntity<List<Course>> getAllUpcommingCourses(){
 		List<Course> courseList=courseService.getAllUpcommingCourses();
-		if(courseList.isEmpty()) {
+		/*if(courseList.isEmpty()) {
 			throw new CourseNotFoundException("No course available ");
-		}
+		}*/
 		return new ResponseEntity<>(courseList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getallregistered/{studentId}")
 	public ResponseEntity<List<Course>> getAllRegisteredCourses(@PathVariable int studentId){
 		List<Course> courseList=courseService.getAllRegisteredCourse(studentId);
-		if(courseList.isEmpty()) {
+		/*if(courseList.isEmpty()) {
 			throw new CourseNotFoundException("No course available ");
-		}
+		}*/
 		return new ResponseEntity<>(courseList,HttpStatus.OK);
 	}
 	
 	@GetMapping("/getallongoing/{studentId}")
 	public ResponseEntity<List<Course>> getAllOngoingCourses(@PathVariable int studentId){
 		List<Course> courseList=courseService.getAllOngoingCourses(studentId);
-		if(courseList.isEmpty()) {
+		/*if(courseList.isEmpty()) {
 			throw new CourseNotFoundException("No course available ");
-		}
+		}*/
+		return new ResponseEntity<>(courseList,HttpStatus.OK);
+	}
+	
+	@GetMapping("/getallcompleted/{studentId}")
+	public ResponseEntity<List<Course>> getAllCompletedCourses(@PathVariable int studentId){
+		List<Course> courseList=courseService.completedCourses(studentId);
 		return new ResponseEntity<>(courseList,HttpStatus.OK);
 	}
 	

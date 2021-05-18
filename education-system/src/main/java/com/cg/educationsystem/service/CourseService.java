@@ -85,24 +85,33 @@ public class CourseService implements ICourseService {
 	@Override
 	public List<Course> getAllRegisteredCourse(int studentId) {
 		List<Course> courseList= courseRepository.getAllRegisteredCourses(studentId);
+		Course newCourse=null;
 		for(Course course:courseList) {
 			List<Trainer> trainerList=trainerRepository.getTrainerByCourse(course.getCourseId());
 			if(trainerList.isEmpty()) {
-				courseList.remove(course);
+				newCourse=course;
 			}
 		}
+		courseList.remove(newCourse);
 		return courseList;
 	}
 
 	@Override
 	public List<Course> getAllOngoingCourses(int studentId) {
 		List<Course> courseList= courseRepository.getAllOngoingCourses(studentId);
+		Course newCourse=null;
 		for(Course course:courseList) {
 			List<Trainer> trainerList=trainerRepository.getTrainerByCourse(course.getCourseId());
 			if(!trainerList.isEmpty()) {
-				courseList.remove(course);
+				newCourse=course;
 			}
 		}
+		courseList.remove(newCourse);
 		return courseList;
+	}
+
+	@Override
+	public List<Course> completedCourses(int studentId) {
+		return courseRepository.completedCourses(studentId);
 	}
 }

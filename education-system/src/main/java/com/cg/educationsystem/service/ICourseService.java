@@ -24,4 +24,6 @@ public interface ICourseService {
 	public List<Course> getAllRegisteredCourse(int studentId);
 	
 	public List<Course> getAllOngoingCourses(int studentId);
+	
+	public List<Course> completedCourses(int studentId);
 }

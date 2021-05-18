@@ -44,7 +44,7 @@ public class TestProgressReportService {
 	Course course=new Course(1,"Java",3,Date.valueOf("2021-01-02"),Date.valueOf("2021-04-02"),student);
 	ProgressReport report=new ProgressReport(1,520,"B","Present",80,"Pass",course);
 	ProgressReportDto reportDto=new ProgressReportDto(1,520,"B","Present",80.00,"Pass",1);
-	
+	/*
 	@Test
 	public void testDeleteReport() {
 		Mockito.when(reportDao.viewReportById(1)).thenReturn(report);
@@ -57,7 +57,7 @@ public class TestProgressReportService {
 		reportService.viewProgressReportById(1);
 		Mockito.verify(reportDao,Mockito.times(1)).viewReportById(1);
 	}
-	
+	*/
 	@Test
 	public void testCurrentReport() {
 		List<ProgressReport> reportList=new ArrayList<ProgressReport>();
@@ -88,11 +88,11 @@ public class TestProgressReportService {
 		Mockito.verify(reportDao,Mockito.times(1)).findAll();
 	}
 	
-	@Test
+	/*@Test
 	public void testUpdateReport() {
 		Mockito.when(reportDao.viewReportById(reportDto.getProgressReportId())).thenReturn(report);
 		Mockito.when(courseDao.getCourseById(reportDto.getCourseId())).thenReturn(course);
 		reportService.updateReport(reportDto);
 		Mockito.verify(reportDao,Mockito.times(1)).save(report);
-	}
+	}*/
 }

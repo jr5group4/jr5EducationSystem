@@ -14,6 +14,6 @@ public interface IProgressReportRepository extends JpaRepository<ProgressReport,
 	public List<ProgressReport> viewAllPreviousReport(int studentId);
 	@Query(value = "from ProgressReport report where report.course.endDate>current_date and report.student.studentId=?1")
 	public List<ProgressReport> viewAllCurrentReport(int studentId);
-	@Query(value = "from ProgressReport report where report.progressReportId=?1")
-	public ProgressReport viewReportById(int progressId);
+	@Query(value = "from ProgressReport report where report.student.studentId=?1 and report.course.courseId=?2")
+	public ProgressReport viewReportById(int studentId,int courseId);
 }
