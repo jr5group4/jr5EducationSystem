@@ -20,7 +20,6 @@ public class CourseService implements ICourseService {
 	IStudentDetailsRepository studentDetailsRepository;
 	@Autowired
 	ITrainerRepository trainerRepository;
-	
 	@Override
 	public List<Course> registerCourse(int courseId,int studentId) {
 		Course course=courseRepository.getCourseById(courseId);
