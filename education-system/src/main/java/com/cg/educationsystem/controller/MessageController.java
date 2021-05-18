@@ -23,7 +23,7 @@ import com.cg.educationsystem.utils.StudentDetailsNotFoundException;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/message") 
 public class MessageController {
 	@Autowired
 	MessageService messageService;
@@ -56,7 +56,7 @@ public class MessageController {
 		
 	}
 	@DeleteMapping("/delete/{messageId}")
-	public ResponseEntity<List<Message>> deleteMessage(@PathVariable int messageId){
+	public ResponseEntity<List<Message>> deleteMessage(@PathVariable("messageId") int messageId){
 		List<Message> message = messageService.deleteMessage(messageId);
 		if(message.isEmpty()) {
 			throw new MessageNotFoundException(string+messageId);
