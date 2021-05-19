@@ -14,4 +14,6 @@ public interface ITrainerRepository extends JpaRepository<Trainer,Integer>{
 	public Trainer getTrainerById(int trainerId);
 	@Query(value = "from Trainer trainer where trainer.course.courseId=?1 and trainer.student=null")
 	public List<Trainer> getTrainerByCourse(int courseId);
+	@Query(value = "from Trainer trainer where trainer.course=null")
+	public List<Trainer> getAvailableTrainers();
 }

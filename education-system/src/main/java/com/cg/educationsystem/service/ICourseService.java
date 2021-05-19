@@ -9,7 +9,7 @@ public interface ICourseService {
 	//allows student/user to register a course
 	public List<Course> registerCourse(int courseId,int studentId);
 	//allows admin to add course details
-	public List<Course> addCourseDetails(Course course);
+	public List<Course> addCourseDetails(CourseDto course);
 	//allows admin to delete course details
 	public List<Course> deleteCourse(int courseId);
 	//allows admin and student to view perticular course

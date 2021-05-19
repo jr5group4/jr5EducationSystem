@@ -8,7 +8,9 @@ public class CourseDto {
 	private int duration;
 	private Date startDate;
 	private Date endDate;
+	private int trainerId;
 	private int studentId;
+	
 	public int getCourseId() {
 		return courseId;
 	}
@@ -38,6 +40,12 @@ public class CourseDto {
 	}
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
+	}
+	public int getTrainerId() {
+		return trainerId;
+	}
+	public void setTrainerId(int trainerId) {
+		this.trainerId = trainerId;
 	}
 	public int getStudentId() {
 		return studentId;

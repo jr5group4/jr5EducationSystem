@@ -28,12 +28,12 @@ public class TrainerController {
 	TrainerService trainerService;
 	
 	@PostMapping("/add")
-	public ResponseEntity<List<Trainer>> addTrainer(@RequestBody TrainerDto trainerdto){
-		List<Trainer> trainer=trainerService.addTrainer(trainerdto);
-		if(trainer.isEmpty()) {
-			throw new TrainerNotFoundException("Trainer not available for Id: "+trainerdto.getTrainerId());
+	public ResponseEntity<List<Trainer>> addTrainer(@RequestBody Trainer trainer){
+		List<Trainer> trainerList=trainerService.addTrainer(trainer);
+		if(trainerList.isEmpty()) {
+			throw new TrainerNotFoundException("Trainer not available for Id: "+trainer.getTrainerId());
 		}
-		return new ResponseEntity<>(trainer,HttpStatus.OK);
+		return new ResponseEntity<>(trainerList,HttpStatus.OK);
 	}
 	
 	@PutMapping("/register/{trainerId}/{studentId}")
@@ -53,6 +53,16 @@ public class TrainerController {
 		}
 		return new ResponseEntity<>(trainerList,HttpStatus.OK);
 	}
+	
+	@GetMapping("/getallavailable")
+	public ResponseEntity<List<Trainer>> getAllAvailableTrainers(){
+		List<Trainer> trainerList=trainerService.getAvailableTrainers();
+		/*if(trainerList.isEmpty()) {
+			throw new TrainerNotFoundException("No Trainer found ");
+		}*/
+		return new ResponseEntity<>(trainerList,HttpStatus.OK);
+	}
+	
 	@GetMapping("/getbycourse/{courseId}")
 	public ResponseEntity<List<Trainer>> getTrainerByCourse(@PathVariable int courseId){
 		List<Trainer> trainerList=trainerService.getTrainerByCourse(courseId);

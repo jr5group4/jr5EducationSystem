@@ -23,21 +23,9 @@ public class TrainerService implements ITrainerService{
 	IStudentDetailsRepository studentRepository;
 	
 	@Override
-	public List<Trainer> addTrainer(TrainerDto trainerdto) {
-		Course course=courseRepository.getCourseById(trainerdto.getCourseId());
-		if(course!=null) {
-			Trainer trainer=new Trainer();
-			trainer.setTrainerId(trainerdto.getTrainerId());
-			trainer.setTrainerName(trainerdto.getTrainerName());
-			trainer.setTrainerEmailId(trainerdto.getTrainerEmailId());
-			trainer.setPhoneNumber(trainerdto.getPhoneNumber());
-			trainer.setTrainerExperience(trainerdto.getTrainerExperience());
-	
-			trainer.setCourse(course);
+	public List<Trainer> addTrainer(Trainer trainer) {
 			trainerRepository.save(trainer);
 			return trainerRepository.findAll();
-		}
-		return Collections.emptyList();
 	}
 
 	@Override
@@ -101,5 +89,10 @@ public class TrainerService implements ITrainerService{
 				return Collections.emptyList();
 		}*/
 		return trainerList;
+	}
+
+	@Override
+	public List<Trainer> getAvailableTrainers() {
+		return trainerRepository.getAvailableTrainers();
 	}
 }

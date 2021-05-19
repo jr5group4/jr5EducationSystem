@@ -33,8 +33,17 @@ public class CourseService implements ICourseService {
 	}
 
 	@Override
-	public List<Course> addCourseDetails(Course course) {
-		courseRepository.save(course);
+	public List<Course> addCourseDetails(CourseDto course) {
+		Trainer trainer=trainerRepository.getTrainerById(course.getTrainerId());
+		Course newCourse=new Course();
+		newCourse.setCourseId(course.getCourseId());
+		newCourse.setCourseName(course.getCourseName());
+		newCourse.setDuration(course.getDuration());
+		newCourse.setStartDate(course.getStartDate());
+		newCourse.setEndDate(course.getEndDate());
+		trainer.setCourse(newCourse);
+		courseRepository.save(newCourse);
+		trainerRepository.save(trainer);
 		return courseRepository.findAll();
 	}
 

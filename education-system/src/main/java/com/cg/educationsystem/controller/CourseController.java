@@ -39,7 +39,7 @@ public class CourseController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<List<Course>> addCourseDetails(@RequestBody Course courseNew){
+	public ResponseEntity<List<Course>> addCourseDetails(@RequestBody CourseDto courseNew){
 		List<Course> course=courseService.addCourseDetails(courseNew);
 		return new ResponseEntity<>(course,HttpStatus.OK);
 	}

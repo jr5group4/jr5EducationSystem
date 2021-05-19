@@ -6,7 +6,7 @@ import com.cg.educationsystem.entity.Trainer;
 
 public interface ITrainerService {
 	//allows admin to add trainer details
-	public List<Trainer> addTrainer(TrainerDto trainerdto);
+	public List<Trainer> addTrainer(Trainer trainer);
 	//allows student/user to register trainer based on course
 	public List<Trainer> selectTrainer(int trainerId,int studentId);
 	//allows admin to view all trainer details
@@ -19,4 +19,6 @@ public interface ITrainerService {
 	public List<Trainer> deleteTrainer(int trainerId);
 	//allows admin to update trainer details
 	public List<Trainer> updateTrainer(TrainerDto trainerDto);
+	
+	public List<Trainer> getAvailableTrainers();
 }

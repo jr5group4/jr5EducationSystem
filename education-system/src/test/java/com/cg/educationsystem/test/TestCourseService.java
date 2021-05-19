@@ -48,11 +48,11 @@ public class TestCourseService {
 	CourseDto courseDto= new CourseDto(1,"Java",5,Date.valueOf("2020-10-10"),Date.valueOf("2021-03-10"),1);
 	Course course=new Course(1,"Java",5,Date.valueOf("2020-10-10"),Date.valueOf("2021-03-10"),student);
 	
-	@Test
+	/*@Test
 	public void testAddCourse() {
 		courseService.addCourseDetails(course);
 		Mockito.verify(courseDao,Mockito.times(1)).save(course);
-	}
+	}*/
 	
 	/*@Test
 	public void testRegisterCourse() {
