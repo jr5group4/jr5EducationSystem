@@ -30,9 +30,6 @@ public class TrainerController {
 	@PostMapping("/add")
 	public ResponseEntity<List<Trainer>> addTrainer(@RequestBody Trainer trainer){
 		List<Trainer> trainerList=trainerService.addTrainer(trainer);
-		if(trainerList.isEmpty()) {
-			throw new TrainerNotFoundException("Trainer not available for Id: "+trainer.getTrainerId());
-		}
 		return new ResponseEntity<>(trainerList,HttpStatus.OK);
 	}
 	
@@ -66,9 +63,6 @@ public class TrainerController {
 	@GetMapping("/getbycourse/{courseId}")
 	public ResponseEntity<List<Trainer>> getTrainerByCourse(@PathVariable int courseId){
 		List<Trainer> trainerList=trainerService.getTrainerByCourse(courseId);
-		if(trainerList.isEmpty()) {
-			throw new TrainerNotFoundException("No Trainer found ");
-		}
 		return new ResponseEntity<>(trainerList,HttpStatus.OK);
 	}
 	

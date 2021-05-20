@@ -1,5 +1,6 @@
 package com.cg.educationsystem.service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,28 +94,32 @@ public class CourseService implements ICourseService {
 	@Override
 	public List<Course> getAllRegisteredCourse(int studentId) {
 		List<Course> courseList= courseRepository.getAllRegisteredCourses(studentId);
-		Course newCourse=null;
+		List<Course> newCourseList=new ArrayList<>();
 		for(Course course:courseList) {
 			List<Trainer> trainerList=trainerRepository.getTrainerByCourse(course.getCourseId());
 			if(trainerList.isEmpty()) {
-				newCourse=course;
+				newCourseList.add(course);
 			}
 		}
-		courseList.remove(newCourse);
+		for(Course newCourse:newCourseList) {
+			courseList.remove(newCourse);
+		}
 		return courseList;
 	}
 
 	@Override
 	public List<Course> getAllOngoingCourses(int studentId) {
 		List<Course> courseList= courseRepository.getAllOngoingCourses(studentId);
-		Course newCourse=null;
+		List<Course> newCourseList=new ArrayList<>();
 		for(Course course:courseList) {
 			List<Trainer> trainerList=trainerRepository.getTrainerByCourse(course.getCourseId());
 			if(!trainerList.isEmpty()) {
-				newCourse=course;
+				newCourseList.add(course);
 			}
 		}
-		courseList.remove(newCourse);
+		for(Course newCourse:newCourseList) {
+			courseList.remove(newCourse);
+		}
 		return courseList;
 	}
 
